@@ -48,16 +48,20 @@ var UserSchema = new Schema({
 		validate: [validateLocalStrategyProperty, 'Please fill in your email'],
 		match: [/.+\@.+\..+/, 'Please fill a valid email address']
 	},
-	username: {
-		type: String,
-		unique: 'Username already exists',
-		required: 'Please fill in a username',
-		trim: true
-	},
 	password: {
 		type: String,
 		default: '',
 		validate: [validateLocalStrategyPassword, 'Password should be longer']
+	},
+	phone: {
+		type: String,
+		// TODO:  Set up validation for phone number length, at least 10 digits
+		// validate: [validateLocalStrategyPhone, 'Phone Number should be at least 10 digits']
+	},
+	active: { /* Active status would be used for User Wide Email Lists, etc. */
+		type: Boolean,
+		default: 'true'
+		// TODO:  Add in Admin support for changing this status
 	},
 	salt: {
 		type: String
@@ -123,7 +127,7 @@ UserSchema.methods.authenticate = function(password) {
 
 /**
  * Find possible not used username
- */
+ 
 UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 	var _this = this;
 	var possibleUsername = username + (suffix || '');
@@ -142,5 +146,5 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 		}
 	});
 };
-
+*/
 mongoose.model('User', UserSchema);

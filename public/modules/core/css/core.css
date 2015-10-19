@@ -18,3 +18,11 @@ body.ng-cloak
 {
 	display: block;
 }
+
+/* ==============================
+Custom CSS
+============================== */
+
+#banner{
+	background-color: #B0CDFF;
+}

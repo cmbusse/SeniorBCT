@@ -21,6 +21,7 @@ exports.signup = function(req, res) {
 	var message = null;
 
 	// Add missing user fields
+	// TODO:  Add in PIN assignment here
 	user.provider = 'local';
 	user.displayName = user.firstName + ' ' + user.lastName;
 
