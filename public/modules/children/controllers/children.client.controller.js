@@ -9,7 +9,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.create = function() {
 			// Create new Child object
 			var child = new Children ({
-				name: this.name
+				firstName: this.firstName,
+				lastName: this.lastName,
+				dob: this.dob,
+				timePunches: this.timePunches
 			});
 
 			// Redirect after save
