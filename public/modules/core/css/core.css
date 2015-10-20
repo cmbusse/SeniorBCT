@@ -24,5 +24,33 @@ Custom CSS
 ============================== */
 
 #banner{
-	background-color: #B0CDFF;
+	background-color: #eeeeee;
+	width: 100vw;
+	position: relative;
+	left: calc(-50vw + 50%);
+}
+
+#thumbsection{
+	background-color: #00b4ff;
+	width: 100vw;
+	position: relative;
+	left: calc(-50vw + 50%);
+}
+
+.loversgray{
+	color: #515151;
+}
+
+/* Thumbnail responive fixer upper */
+
+@media (min-width: 768px){
+	#thumbnailrow{
+		 padding: 30px 30px 70px 0px;
+	}
+}
+
+@media (max-width: 767px){
+	#thumbnailrow{
+		 padding: 30px 0px 70px 0px;
+	}
 }
