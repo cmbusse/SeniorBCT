@@ -1,0 +1,12 @@
+<section data-ng-controller="UsersController" ng-init="">
+	<div class="container" ng-show="!loggedInIsAdmin">
+		You are not an admin, go away loser!
+	</div>
+	<div class="container" ng-show="loggedInIsAdmin">
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="user in users">
+			{{user.firstName}} {{user.lastName}}
+			</li>
+		</ul>
+	</div>
+</section>
