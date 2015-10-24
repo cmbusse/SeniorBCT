@@ -20,6 +20,24 @@ exports.userByID = function(req, res, next, id) {
 };
 
 /**
+* List of Users
+*/
+exports.list = function(req, res) {
+    User.find({}, {
+        salt: 0,
+        password: 0
+    }).exec(function(err, users) {
+        if (err) {
+            return res.status(400).send({
+                message: 'Error in users.authorizations.server.controller.js in exports.list'
+            });
+        } else {
+            res.jsonp(users || null);
+        }
+    });
+};
+
+/**
  * Require login routing middleware
  */
 exports.requiresLogin = function(req, res, next) {
