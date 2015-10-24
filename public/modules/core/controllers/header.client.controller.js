@@ -2,6 +2,10 @@
 
 angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus', 'Users',
 	function($scope, Authentication, Menus, Users) {
+		// TODO: 	Ween on the home page and not logged in, the header is throwing an error with not being
+		//			able to access user.roles[0], probably because user does not exist
+		//			Probably not that big of an issue, but throw in some checks so the user.roles[0] isn't 
+		//			accessed when not logged in, something like if(user), do the check, etc.
 		$scope.authentication = Authentication;
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');

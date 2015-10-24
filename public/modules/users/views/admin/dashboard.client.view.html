@@ -3,9 +3,16 @@
 		You are not an admin, go away loser!
 	</div>
 	<div class="container" ng-show="loggedInIsAdmin">
+		<h3>Manage Users Dashboard</h3>
+		<!-- 	TODO:	Add in a filter/sort by type thing to view clients and admins seperately
+				TODO:	also seperate active and inactive users-->
 		<ul class="list-group">
 			<li class="list-group-item" ng-repeat="user in users">
-			{{user.firstName}} {{user.lastName}}
+				<p><strong>{{user.firstName}} {{user.lastName}}</strong></p>
+				<p class="userp">Account Type:  {{user.roles[0]}}</p>
+				<p class="userp">PIN:  {{user.PIN}}</p>
+				<p class="userp">Email:  {{user.email}}</p>
+				<p class="userp">Phone:  {{user.phone}}</p>
 			</li>
 		</ul>
 	</div>
