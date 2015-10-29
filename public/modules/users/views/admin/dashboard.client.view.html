@@ -1,18 +1,27 @@
 <section data-ng-controller="UsersController" ng-init="">
-	<div class="container" ng-show="!loggedInIsAdmin">
+	<div class="container" ng-show="!loggedInIsAdmin()">
 		You are not an admin, go away loser!
 	</div>
-	<div class="container" ng-show="loggedInIsAdmin">
+	<div class="container" ng-show="loggedInIsAdmin()">
 		<h3>Manage Users Dashboard</h3>
 		<!-- 	TODO:	Add in a filter/sort by type thing to view clients and admins seperately
 				TODO:	also seperate active and inactive users-->
 		<ul class="list-group">
 			<li class="list-group-item" ng-repeat="user in users">
-				<p><strong>{{user.firstName}} {{user.lastName}}</strong></p>
-				<p class="userp">Account Type:  {{user.roles[0]}}</p>
-				<p class="userp">PIN:  {{user.PIN}}</p>
-				<p class="userp">Email:  {{user.email}}</p>
-				<p class="userp">Phone:  {{user.phone}}</p>
+				<div class="row">
+					<div class="col-xs-6 col-md-6">
+						<p><strong>{{user.firstName}} {{user.lastName}}</strong></p>
+						<p class="userp">Account Type:  {{user.roles[0]}}</p>
+						<p class="userp">PIN:  {{user.PIN}}</p>
+						<p class="userp">Email:  {{user.email}}</p>
+						<p class="userp">Phone:  {{user.phone}}</p>
+					</div>
+					<div class="col-xs-6 col-md-6">
+						<div ng-show="isAdmin(user)" style="color:red">THIS USER IS AN ADMIN</div>
+						<div ng-show="!isAdmin(user)" style="color:blue">THIS USER IS A USER</div>
+						<div ng-show="isCurrentUser(user)" style="color:green">THIS USER IS ME</div>
+					</div>
+				</div>
 			</li>
 		</ul>
 	</div>
