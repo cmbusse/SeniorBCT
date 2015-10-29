@@ -7,7 +7,7 @@
 		<!-- 	TODO:	Add in a filter/sort by type thing to view clients and admins seperately
 				TODO:	also seperate active and inactive users-->
 		<ul class="list-group">
-			<li class="list-group-item" ng-repeat="user in users">
+			<li class="list-group-item" ng-repeat="user in users | orderBy: 'roles[0]'">
 				<div class="row">
 					<div class="col-xs-6 col-md-6">
 						<p><strong>{{user.firstName}} {{user.lastName}}</strong></p>
@@ -17,9 +17,9 @@
 						<p class="userp">Phone:  {{user.phone}}</p>
 					</div>
 					<div class="col-xs-6 col-md-6">
-						<div ng-show="isAdmin(user)" style="color:red">THIS USER IS AN ADMIN</div>
-						<div ng-show="!isAdmin(user)" style="color:blue">THIS USER IS A USER</div>
-						<div ng-show="isCurrentUser(user)" style="color:green">THIS USER IS ME</div>
+						<div ng-show="isAdmin(user)" style="color:blue"><img src="modules/users/img/plus-sign1.svg" alt="admin" style="width: 30px">Make Admin User</div>
+						<div ng-show="!isAdmin(user)" style="color:blue"><img src="modules/users/img/administrator1.svg" alt="admin" style="width: 30px">  Make User Admin</div>
+						<div ng-show="!isCurrentUser(user)" style="color:red"><img src="modules/users/img/delete96.svg" alt="admin" style="width: 30px">  Delete User</div>
 					</div>
 				</div>
 			</li>
