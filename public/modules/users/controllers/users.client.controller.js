@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('UsersController', ['$scope', '$rootScope', '$stateParams', '$location', 'Users', 'Authentication',
-	function($scope, $rootScope, $stateParams, $location, Users, Authentication) {
+angular.module('users').controller('UsersController', ['$scope', '$http', '$rootScope', '$stateParams', '$location', 'Users', 'Authentication',
+	function($scope, $http, $rootScope, $stateParams, $location, Users, Authentication) {
 		// Current User
 		$scope.currentuser = Authentication.user;	
 		
@@ -21,7 +21,13 @@ angular.module('users').controller('UsersController', ['$scope', '$rootScope', '
 		// Checks to see if user is currently logged in
 		$scope.isCurrentUser = function(user){
 			return user._id === $scope.currentuser._id;
-		}
+		};
 
+		// Update User
+		$scope.test = function(passeduser){
+			passeduser.roles[0] = 'admin';
+			var currUser = passeduser;
+			Users.save(currUser);
+		};
 	}
 ]);

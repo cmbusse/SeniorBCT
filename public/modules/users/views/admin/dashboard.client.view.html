@@ -1,4 +1,4 @@
-<section data-ng-controller="UsersController" ng-init="">
+<section data-ng-controller="UsersController" data-ng-init="">
 	<div class="container" ng-show="!loggedInIsAdmin()">
 		You are not an admin, go away loser!
 	</div>
@@ -17,9 +17,10 @@
 						<p class="userp">Phone:  {{user.phone}}</p>
 					</div>
 					<div class="col-xs-6 col-md-6">
-						<div ng-show="isAdmin(user)" style="color:blue"><img src="modules/users/img/plus-sign1.svg" alt="admin" style="width: 30px">Make Admin User</div>
-						<div ng-show="!isAdmin(user)" style="color:blue"><img src="modules/users/img/administrator1.svg" alt="admin" style="width: 30px">  Make User Admin</div>
-						<div ng-show="!isCurrentUser(user)" style="color:red"><img src="modules/users/img/delete96.svg" alt="admin" style="width: 30px">  Delete User</div>
+						<div ng-show="isAdmin(user)" style="color:blue"><img src="modules/users/img/plus-sign1.svg" alt="admin" style="width: 30px"> Demote Admin to User</div>
+						<div ng-show="!isAdmin(user)" style="color:blue"><img src="modules/users/img/administrator1.svg" alt="admin" style="width: 30px"> Promote User to Admin</div>
+						<div ng-show="!isCurrentUser(user)" style="color:red"><img src="modules/users/img/delete96.svg" alt="admin" style="width: 30px"> Delete User</div>
+						<a ng-show="!isAdmin(user)" ng-click="test(user)" class="plus" title="Make Admin"><img src="modules/users/img/administrator1.svg" alt="admin" style="width: 30px"> Promote User to Admin</a>
 					</div>
 				</div>
 			</li>

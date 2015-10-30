@@ -22,19 +22,15 @@ exports.userByID = function(req, res, next, id) {
 /**
 * List of Users
 */
-exports.list = function(req, res) {
-    User.find({}, {
-        salt: 0,
-        password: 0
-    }).exec(function(err, users) {
-        if (err) {
-            return res.status(400).send({
-                message: 'Error in users.authorizations.server.controller.js in exports.list'
-            });
-        } else {
-            res.jsonp(users || null);
-        }
-    });
+exports.userByID = function(req, res, next, id) {
+	User.findOne({
+		_id: id
+	}).exec(function(err, user) {
+		if (err) return next(err);
+		if (!user) return next(new Error('Failed to load User ' + id));
+		req.profile = user;
+		next();
+	});
 };
 
 /**
@@ -60,10 +56,12 @@ exports.hasAuthorization = function(roles) {
 		_this.requiresLogin(req, res, function() {
 			if (_.intersection(req.user.roles, roles).length) {
 				return next();
-			} else {
-				return res.status(403).send({
-					message: 'User is not authorized'
-				});
+			} else{
+				if(req.user.roles.indexOf('admin') === -1){
+					return res.status(403).send({
+						message: 'User is not authorized'
+					});
+				}
 			}
 		});
 	};
