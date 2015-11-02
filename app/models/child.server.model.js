@@ -23,7 +23,7 @@ var ChildSchema = new Schema({
 		trim: true
 	},
 	dob: {
-		type: String,
+		type: Date,
 		required: 'Please fill in child\'s date of birth'
 	},
 	timePunches: [{
