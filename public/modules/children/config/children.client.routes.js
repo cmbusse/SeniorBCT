@@ -5,6 +5,10 @@ angular.module('children').config(['$stateProvider',
 	function($stateProvider) {
 		// Children state routing
 		$stateProvider.
+		state('addmore', {
+			url: '/children/addmore',
+			templateUrl: 'modules/children/views/addmore.client.view.html'
+		}).
 		state('listChildren', {
 			url: '/children',
 			templateUrl: 'modules/children/views/list-children.client.view.html'

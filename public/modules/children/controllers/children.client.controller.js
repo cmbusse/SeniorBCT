@@ -17,7 +17,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 			// Redirect after save
 			child.$save(function(response) {
-				$location.path('children/' + response._id);
+				$location.path('children/addmore');
 
 				// Clear form fields
 				$scope.name = '';
