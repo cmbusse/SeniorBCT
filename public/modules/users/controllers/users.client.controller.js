@@ -1,12 +1,33 @@
 'use strict';
 
+//possibly should split controllers
+
 angular.module('users').controller('UsersController', ['$scope', '$http', '$rootScope', '$stateParams', '$location', 'Users', 'Authentication',
 	function($scope, $http, $rootScope, $stateParams, $location, Users, Authentication) {
 		// Current User
-		$scope.currentuser = Authentication.user;	
+		$scope.currentuser = Authentication.user;
+		$scope.authentication = Authentication;
+		$scope.user = {};
+		$scope.users = {};	
 		
-		// retrieve a list of users in the website
-		$scope.users = Users.query();
+		//retrieve a list of users in the website
+		$scope.findAllUsers = function(){
+			$scope.users = Users.query();
+		};
+
+		//Retrieve a specific user from the back end
+		$scope.findOneUser = function() {
+       		var allUsers = Users.query({}, function(){
+	       		for(var i=0; i < allUsers.length; i++)
+	       		{
+	       			var currUser = allUsers[i];
+	       			if(currUser._id === $stateParams.userId)
+	       			{
+	       				$scope.user = currUser;
+	       			}
+	       		}
+        	});
+		};
 		
 		// Is logged in user an admin
 		$scope.loggedInIsAdmin = function(){
@@ -24,9 +45,11 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 		};
 
 		// Update User
-		$scope.test = function(passeduser){
-			passeduser.roles[0] = 'admin';
-			var currUser = passeduser;
+		$scope.test = function(){
+			$scope.user.roles[0]= 'admin';
+			console.log('test');
+			var currUser = $scope.user;
+			//Users.updateUserRoles(currUser);
 			Users.save(currUser);
 		};
 	}

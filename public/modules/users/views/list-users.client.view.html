@@ -1,0 +1,26 @@
+<section data-ng-controller="UsersController" data-ng-init="findAllUsers()">
+	<div class="container" ng-show="!loggedInIsAdmin()">
+		You are not an admin, go away loser!
+	</div>
+	<div class="container" ng-show="loggedInIsAdmin()">
+		<h3>Manage Users Dashboard</h3>
+		<!-- 	TODO:	Add in a filter/sort by type thing to view clients and admins seperately
+				TODO:	also seperate active and inactive users-->
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="user in users | orderBy: 'roles[0]'">
+				<div class="row">
+					<div class="col-xs-6 col-md-6">
+						<p><strong>{{user.firstName}} {{user.lastName}}</strong></p>
+						<p class="userp">Account Type:  {{user.roles[0]}}</p>
+						<p class="userp">PIN:  {{user.PIN}}</p>
+						<p class="userp">Email:  {{user.email}}</p>
+						<p class="userp">Phone:  {{user.phone}}</p>
+					</div>
+					<div class="col-xs-6 col-md-6">
+					<a  data-ng-href="#!/users/{{user._id}}" class="list-group-item">Click Here to Edit this User</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>

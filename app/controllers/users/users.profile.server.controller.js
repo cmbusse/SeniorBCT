@@ -59,7 +59,7 @@ exports.me = function(req, res) {
 * List Users
 */
 exports.list = function(req, res) {
-	//console.log('listing users');
+	console.log('listing users');
 	User.find().sort('lastName').exec(function(err, users) {
 		if(err) {
 			return res.status(400).send({
@@ -83,6 +83,20 @@ exports.read = function(req, res) {
  * Update specific User
 */
 exports.updateUserRoles = function(req, res) { 
+	/*var user = req.user ;
+
+	user = _.extend(user , req.body);
+
+	user.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(user);
+		}
+	});
+	*/
 	var currUser = req.body;
 	User.findById(currUser._id, function(err, user) {
 		user.roles = currUser.roles;
