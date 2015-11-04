@@ -10,12 +10,14 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
 
-		$scope.user = Authentication.user;
-		$scope.loggedInIsAdmin = false;
-		if ($scope.user.roles[0] === 'admin'){
-			$scope.loggedInIsAdmin = true;
-		}
-
+		$scope.findCurrentUser = function(){
+			$scope.currentUser = Authentication.user;
+		};
+		
+		$scope.loggedInIsAdmin = function(){
+			return $scope.currentUser.roles[0] === 'admin';
+		};
+		
 		$scope.toggleCollapsibleMenu = function() {
 			$scope.isCollapsed = !$scope.isCollapsed;
 		};

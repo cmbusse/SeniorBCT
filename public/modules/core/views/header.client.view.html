@@ -1,6 +1,6 @@
 <!-- TODO:  Fix some strange issue with the hamburger collapse menu not being visible yet still clickable -->
 
-<div class="container" data-ng-controller="HeaderController">
+<div class="container" data-ng-controller="HeaderController" data-ng-init="findCurrentUser()">
 	<div class="navbar-header">
 		<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
 			<span class="sr-only">Toggle navigation</span>
@@ -28,18 +28,14 @@
 		</ul>
 		-->
 		<!--
-			TODO:  	There is a strange down arrow being displayed on the navbar, not sure why its there
 			TODO:  	Double check all these permissions for "Dashboard" showing up, I'm not positive they're correct
-			TODO:  	Getting some strange behaviors with signing in
-					After signing in it still says Sign Up / Sign In at top, but they can't be clicked
-					Have to refresh page for it to perform correctly
-					Possibly something to do with the shouldRender and authentication.user stuff below, but not sure
 		-->
 		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
-			<li ui-route="/dashboard" ng-class="{active: $uiRoute}" ng-show="loggedInIsAdmin">
+			<li ui-route="/dashboard" ng-class="{active: $uiRoute}" ng-show="loggedInIsAdmin()">
 				<a href="#!/dashboard" class="loversgray">Dashboard</a>
 			</li>
 		</ul>
+		
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
 			<li ui-route="/signup" ng-class="{active: $uiRoute}">
 				<a href="/#!/signup" class="loversgray">Sign Up</a>
