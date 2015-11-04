@@ -1,8 +1,8 @@
 'use strict';
 
 // Children controller
-angular.module('children').controller('ChildrenController', ['$scope', '$stateParams', '$location', 'Authentication', 'Children',
-	function($scope, $stateParams, $location, Authentication, Children) {
+angular.module('children').controller('ChildrenController', ['$scope', '$stateParams', '$location', 'Authentication', 'Children', 'Users',
+	function($scope, $stateParams, $location, Authentication, Children, Users) {
 		$scope.authentication = Authentication;
 
 		// Create new Child
@@ -20,7 +20,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				$location.path('children/addmore');
 
 				// Clear form fields
-				$scope.name = '';
+				$scope.firstName = '';
+				$scope.lastName = '';
+				$scope.dob = '';
+				$scope.timePunches = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

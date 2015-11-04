@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" style="position: relative; min-height: 100%">
 
 <head>
 	<title>{{title}}</title>
@@ -44,15 +44,15 @@
 	<![endif]-->
 </head>
 
-<body class="ng-cloak">
-	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top"
-	style="border-width: 0 0 1px; border-style: solid; border-color: #eeeeee; background-color: #ffffff"></header>
-	<section class="content">
-		<section class="container">
-			{% block content %}{% endblock %}
+<body class="ng-cloak" style="margin-bottom: 80px">
+		<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top"
+		style="border-width: 0 0 1px; border-style: solid; border-color: #eeeeee; background-color: #ffffff"></header>
+		<section class="content">
+			<section class="container">
+				{% block content %}{% endblock %}
+			</section>
 		</section>
-	</section>
-	<footer data-ng-include="'/modules/core/views/footer.client.view.html'" class="footer" style="border-width: 1px 0 0 0; border-style: solid; border-color: #eeeeee; background-color: #ffffff"></footer>
+	<footer data-ng-include="'/modules/core/views/footer.client.view.html'" class="footer" style="border-width: 1px 0 0 0; border-style: solid; border-color: #eeeeee; background-color: #ffffff; position: absolute; bottom: 0; width: 100%; height: 80px"></footer>
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
