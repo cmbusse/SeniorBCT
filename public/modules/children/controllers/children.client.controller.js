@@ -8,6 +8,34 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		// Create new Child
 		$scope.create = function() {
 			// Create new Child object
+			// TODO:  Actually add in PIN creation here
+			// Basically when adding a child, check if PIN === 'No Pin'
+			//  If it is, do the pin assignment shown below, will need a users resource to work with
+			/*
+				// PIN Setting
+		        var testPIN = 0;
+		        var PINFound = false;
+
+		        var i = 0;
+		        do{
+		          // Format the PIN so it is 4 digits
+		          testPIN = ("000" + i).slice(-4);
+		            // Check the PIN against every user in users for matches
+		            for(var j = 0; j < $scope.users.length; j++){
+		              // If the PIN matches a user, move on to the next try
+		              if($scope.users[j].PIN === testPIN){
+		                break;
+		              }
+		              // If we have checked it against every user and there were no matches
+		              // we have found a good PIN
+		              if(j === ($scope.users.length-1)){
+		                PINFound = true;
+		              }
+		            }
+		            i++;
+		        }
+		        while (i < 9999 && PINFound != true)
+			*/
 			var child = new Children ({
 				firstName: this.firstName,
 				lastName: this.lastName,

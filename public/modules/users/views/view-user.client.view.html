@@ -1,7 +1,9 @@
 <section data-ng-controller="UsersController" data-ng-init="findOneUser()">
-
+	<div class="container" ng-show="!loggedInIsAdmin()">
+		You are not an admin, go away loser!
+	</div>
 <!--  TODO:  Style this page -->
-	<div class="container">
+	<div class="container" ng-show="loggedInIsAdmin()">
 		<div class="row">
 			<div class="col-md-12">
 				<h3>{{user.firstName}} {{user.lastName}}'s Account</h3>

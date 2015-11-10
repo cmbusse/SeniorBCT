@@ -3,6 +3,9 @@
 	<div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
 		<form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
 			<fieldset>
+				<!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+	            <input style="display:none" type="text" name="fakeusernameremembered"/>
+	            <input style="display:none" type="password" name="fakepasswordremembered"/>
 				<div class="form-group">
 					<label for="username">Username</label>
 					<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
