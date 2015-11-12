@@ -82,12 +82,11 @@ exports.read = function(req, res) {
 /**
  * Update specific User
 */
-exports.poop = function(req, res) { 
-	/*var user = req.user ;
-
-	user = _.extend(user , req.body);
-
-	user.save(function(err) {
+exports.updateUserRoles = function(req, res) { 
+	var currUser = req.body;
+	User.findById(currUser._id, function(err, user) {
+		user.roles = currUser.roles;
+		user.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -96,13 +95,8 @@ exports.poop = function(req, res) {
 			res.jsonp(user);
 		}
 	});
-	/*/
-	var currUser = req.body;
-	User.findById(currUser._id, function(err, user) {
-		user.roles = currUser.roles;
-		user.save();
 	});
-
+	
 };
 
 /**

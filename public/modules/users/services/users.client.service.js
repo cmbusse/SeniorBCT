@@ -11,7 +11,7 @@ angular.module('users').factory('Users', ['$resource',
 */
 		return $resource('users/:userId', { userId: '@_id'
 		}, {
-			poop: {
+			updateUserRoles: {
 				method: 'PUT'
 			}
 		});

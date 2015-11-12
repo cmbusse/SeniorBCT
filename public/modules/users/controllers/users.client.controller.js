@@ -58,7 +58,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			$scope.user.roles[0] = 'admin';
 			console.log('test');
 			//var currUser = $scope.user;
-			$scope.user.$poop(function() {
+			$scope.user.$updateUserRoles(function() {
 				//updated in the backend
 			});
 			//Users.save(currUser);
