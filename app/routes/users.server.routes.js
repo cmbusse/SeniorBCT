@@ -18,7 +18,7 @@ module.exports = function(app) {
 	app.route('/users/:userId').get(users.read)
 							   .put(users.requiresLogin, users.update)
 							   .delete(users.requiresLogin)
-							   .put(users.updateUserRoles);
+							   .put(users.poop);
 
 	// Setting up the users password api
 	app.route('/users/password').post(users.changePassword);

@@ -3,15 +3,17 @@
 // Users service used for communicating with the users REST endpoint
 angular.module('users').factory('Users', ['$resource',
 	function($resource) {
-		return $resource('users/', {}, {
-			updateUserRoles: {
-				method: 'PUT',
-				url: 'users/:id',
-				params: {id: '@_id'}
-			},
+		/*return $resource('users/', {}, {
 			update: {
 				method: 'PUT'
 			}		
+		});
+*/
+		return $resource('users/:userId', { userId: '@_id'
+		}, {
+			poop: {
+				method: 'PUT'
+			}
 		});
 	}
 ]);

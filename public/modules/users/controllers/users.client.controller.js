@@ -54,11 +54,13 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 
 		// Update User
 		$scope.test = function(){
-			var currUser = $scope.user;
-			currUser.roles[0]= 'admin';
+			//var currUser = $scope.user;
+			$scope.user.roles[0] = 'admin';
 			console.log('test');
 			//var currUser = $scope.user;
-			Users.updateUserRoles(currUser);
+			$scope.user.$poop(function() {
+				//updated in the backend
+			});
 			//Users.save(currUser);
 		};
 	}

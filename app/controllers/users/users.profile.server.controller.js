@@ -82,7 +82,7 @@ exports.read = function(req, res) {
 /**
  * Update specific User
 */
-exports.updateUserRoles = function(req, res) { 
+exports.poop = function(req, res) { 
 	/*var user = req.user ;
 
 	user = _.extend(user , req.body);
@@ -96,12 +96,13 @@ exports.updateUserRoles = function(req, res) {
 			res.jsonp(user);
 		}
 	});
-	*/
+	/*/
 	var currUser = req.body;
 	User.findById(currUser._id, function(err, user) {
 		user.roles = currUser.roles;
 		user.save();
 	});
+
 };
 
 /**
