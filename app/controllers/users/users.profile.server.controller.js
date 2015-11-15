@@ -80,23 +80,49 @@ exports.read = function(req, res) {
 };
 
 /**
- * Update specific User
+ * Update specific User Roles
 */
-exports.updateUserRoles = function(req, res) { 
+exports.updateUser = function(req, res) { 
 	var currUser = req.body;
 	User.findById(currUser._id, function(err, user) {
-		user.roles = currUser.roles;
-		user.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(user);
-		}
+		var query = {'_id': currUser._id };
+		var update = { 	roles: currUser.roles, 
+						active: currUser.active,
+						PIN: currUser.PIN,
+						displayName: currUser.displayName,
+						email: currUser.email,
+						firstName: currUser.firstName,
+						lastName: currUser.lastName,
+						phone: currUser.phone,
+						username: currUser.username };
+		var options = { new: true };
+		User.findOneAndUpdate(query, update, options, function(err, person) {
+			if (err) {
+				console.log('got an error');
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} 
+		});
 	});
+};
+
+/**
+ * Update specific users active status
+ *
+
+exports.updateActiveStatus = function(req, res) {
+	var currUser = req.body;
+	User.findById(currUser._id, function(err, user) {
+		var query = {'_id': currUser._id };
+		var update = { active: currUser.active };
+		var options = { new: true };
+		User.findOneAndUpdate(query, update, options, function(err, person) {
+			if (err) {
+				console.log('got an error');
+			}
+		});
 	});
-	
 };
 
 /**

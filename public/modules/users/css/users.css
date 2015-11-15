@@ -21,3 +21,11 @@
 	margin: 0px;
 	color: #515151;
 }
+
+.editUserList{
+	padding-bottom: 10px;
+}
+
+.userOp:hover{
+	cursor: pointer;
+}

@@ -2,23 +2,81 @@
 	<div class="container" ng-show="!loggedInIsAdmin()">
 		You are not an admin, go away loser!
 	</div>
-<!--  TODO:  Style this page -->
+<!--  TODO:  Style this page, maybe add border around the two md-6 divs -->
 	<div class="container" ng-show="loggedInIsAdmin()">
 		<div class="row">
-			<div class="col-md-12">
-				<h3>{{user.firstName}} {{user.lastName}}'s Account</h3>
-				<p class="userp">Account Type:  {{user.roles[0]}}</p>
+			<div class="col-md-6">
+				<h3>{{user.firstName}} {{user.lastName}}'s Account 
+				<span ng-show="isActive(user)" class="text-muted"> - Active User</span>
+				<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
+				</h3>
+				<p class="userp">Account Type:  {{user.roles}}</p>
 				<p class="userp">PIN:  {{user.PIN}}</p>
 				<p class="userp">Email:  {{user.email}}</p>
 				<p class="userp">Phone:  {{user.phone}}</p>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div ng-show="isAdmin(user)" style="color:blue"><img src="modules/users/img/plus-sign1.svg" alt="admin" style="width: 30px"> Demote Admin to User</div>
-				<div ng-show="!isCurrentUser(user)" style="color:red"><img src="modules/users/img/delete96.svg" alt="admin" style="width: 30px"> Delete User</div>
-				<a ng-show="!isAdmin(user)" ng-click="test()" class="plus" title="Make Admin"><img src="modules/users/img/administrator1.svg" alt="admin" style="width: 30px"> Promote User to Admin</a>
+			<div class="col-md-6" style="margin-top: 0px">
+				<h3>Quick Editing</h3>
+				<ul style="list-style-type: none; padding-left: 0px">
+					<li ng-show="!isActive(user)" class="editUserList">
+						<a ng-show="!isActive(user)" ng-click="activateUser()" class="userOp" title="Make Active"><img src="modules/users/img/checked21.svg" alt="checked" style="width: 30px"> Reactivate User</a>
+					</li>
+					<li ng-show="isActive(user)" class="editUserList">
+						<a ng-show="isActive(user)" ng-click="deactivateUser()" class="userOp" title="Make Inactive"><img src="modules/users/img/forbidden15.svg" alt="x'ed" style="width: 30px"> Deactivate User</a>
+					</li>
+					<li ng-show="!isAdmin(user)" class="editUserList">
+						<a ng-show="!isAdmin(user)" ng-click="makeUserAdmin()" class="userOp" title="Make Admin"><img src="modules/users/img/administrator1.svg" alt="admin" style="width: 30px"> Promote User to Admin</a>
+					</li>
+					<li ng-show="isAdmin(user)" class="editUserList">
+						<a ng-show="isAdmin(user)" ng-click="makeAdminUser()" class="userOp" title="Make User"><img src="modules/users/img/plus-sign1.svg" alt="admin" style="width: 30px"> Demote Admin to User</a>
+					</li>
+					<li ng-show="!isCurrentUser(user)" class="editUserList">
+						<div ng-show="!isCurrentUser(user)" style="color:red"><img src="modules/users/img/delete96.svg" alt="admin" style="width: 30px"> Delete User</div>
+					</li>
+				</ul>
 			</div>
 		</div>
+		
+		<div class="row" style="margin-top: 30px">
+			<h3 class="col-md-12 text-center">Edit this user's General Info</h3>
+			<div class="col-md-12 text-center text-muted">Note:  Only need to edit fields that need updating</div>
+			<div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
+				<form name="userForm" data-ng-submit="updateGeneralInfo(userForm.$valid)" class="signin form-horizontal" autocomplete="off">
+					<fieldset>
+						<div class="form-group">
+							<label for="firstName">First Name</label>
+							<input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="user.firstName" placeholder="First Name">
+						</div>
+						<div class="form-group">
+							<label for="lastName">Last Name</label>
+							<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="user.lastName" placeholder="Last Name">
+						</div>
+						<div class="form-group">
+							<label for="username">Username</label>
+							<input type="text" id="username" name="username" class="form-control" data-ng-model="user.username" placeholder="Username">
+						</div>
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input type="email" id="email" name="email" class="form-control" data-ng-model="user.email" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<label for="phone">Phone Number</label>
+							<input type="text" id="phone" name="phone" class="form-control" data-ng-model="user.phone" placeholder="Phone Number">
+						</div>
+						<div class="text-center form-group">
+							<button type="submit" class="btn btn-large btn-primary">Save Profile</button>
+						</div>
+						<div data-ng-show="submittedNoErrors" class="text-center text-success">
+							<strong>Profile Saved Successfully</strong>
+						</div>
+						<div data-ng-show="error" class="text-center text-danger">
+							<strong data-ng-bind="error"></strong><br>
+							<strong>Either the username or email is already in use by another account</strong>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		
 	</div>
 </section>

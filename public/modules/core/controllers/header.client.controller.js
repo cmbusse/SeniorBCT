@@ -15,7 +15,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		};
 		
 		$scope.loggedInIsAdmin = function(){
-			return $scope.authentication.user.roles[0] === 'admin';
+			return $scope.authentication.user.roles === 'admin';
 		};
 		
 		$scope.toggleCollapsibleMenu = function() {

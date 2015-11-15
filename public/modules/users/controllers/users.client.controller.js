@@ -30,7 +30,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 		// Is logged in user an admin
 		$scope.loggedInIsAdmin = function(){
 			if($scope.currentuser){
-				return $scope.currentuser.roles[0] === 'admin';	
+				return $scope.currentuser.roles === 'admin';	
 			}
 			else{
 				return false;
@@ -40,7 +40,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 		// Checks to see if a user is an admin
 		$scope.isAdmin = function(passeduser){
 			if('roles' in passeduser){
-				return passeduser.roles[0] === 'admin';
+				return passeduser.roles === 'admin';
 			}
 			else{
 				return false;
@@ -52,16 +52,90 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			return passeduser._id === $scope.currentuser._id;
 		};
 
-		// Update User
-		$scope.test = function(){
-			//var currUser = $scope.user;
-			$scope.user.roles[0] = 'admin';
-			console.log('test');
-			//var currUser = $scope.user;
-			$scope.user.$updateUserRoles(function() {
-				//updated in the backend
+		$scope.isActive = function(passeduser){
+			return passeduser.active;
+		};
+
+		// Make User Admin
+		$scope.makeUserAdmin = function(){
+			$scope.user.roles = 'admin';
+			$scope.user.$updateUser(function(response) {
+				$scope.success = true;
+					$scope.user = response;
+				}, function(response) {
+					$scope.error = response.data.message;
 			});
-			//Users.save(currUser);
+		};
+
+		// Make Admin User
+		$scope.makeAdminUser = function(){
+			$scope.user.roles = 'user';
+			$scope.user.$updateUser(function(response) {
+				$scope.success = true;
+					$scope.user = response;
+				}, function(response) {
+					$scope.error = response.data.message;
+			});
+		};
+
+		// Set User's account to Active
+		$scope.activateUser = function(){
+			$scope.user.active = true;
+			$scope.user.$updateUser(function(response) {
+				$scope.success = true;
+					$scope.user = response;
+				}, function(response) {
+					$scope.error = response.data.message;
+			});
+		};
+
+		// Set User's account to Inactive
+		$scope.deactivateUser = function(){
+			$scope.user.active = false;
+			$scope.user.$updateUser(function(response) {
+				$scope.success = true;
+					$scope.user = response;
+				}, function(response) {
+					$scope.error = response.data.message;
+			});
+		};
+
+		/*
+
+		$scope.updateUserProfile = function(isValid) {
+			if (isValid) {
+				$scope.success = $scope.error = null;
+				var user = new Users($scope.user);
+
+				user.$update(function(response) {
+					$scope.success = true;
+					Authentication.user = response;
+				}, function(response) {
+					$scope.error = response.data.message;
+				});
+			} else {
+				$scope.submitted = true;
+			}
+		};
+
+		*/
+
+		$scope.updateGeneralInfo = function(isValid){
+			if (isValid) {
+				$scope.submittedNoErrors = true;
+				$scope.success = $scope.error = null;
+				$scope.user.username = $scope.userForm.username.$modelValue;
+				$scope.user.$updateUser(function(response) {
+					$scope.success = true;
+						$scope.user = response;
+					}, function(response) {
+						$scope.error = response.data.message;
+						$scope.submittedNoErrors = false;
+				});
+				console.log('test');
+			} else {
+				$scope.submitted = true;
+			}
 		};
 	}
 ]);
