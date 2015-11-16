@@ -55,6 +55,8 @@ module.exports = {
 				'public/lib/angular-material/angular-material.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
+				'public/lib/angular-messages/angular-messages.js',
+				'public/lib/angular-route/angular-route.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
 			]
 		},
