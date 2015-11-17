@@ -54,6 +54,18 @@ var UserSchema = new Schema({
 		required: 'Please fill in a username',
 		trim: true
 	},
+	childNames: {
+		type: [{
+			type: String,
+			trim: true,
+		}]
+	},
+	childIds: {
+		type: [{
+			type: String,
+			trim: true,
+		}]
+	},
 	PIN: {
 		type: String,
 		trim: true,

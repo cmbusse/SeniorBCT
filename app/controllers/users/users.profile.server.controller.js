@@ -94,7 +94,9 @@ exports.updateUser = function(req, res) {
 						firstName: currUser.firstName,
 						lastName: currUser.lastName,
 						phone: currUser.phone,
-						username: currUser.username };
+						username: currUser.username,
+						childNames: currUser.childNames,
+						childIds: currUser.childIds };
 		var options = { new: true };
 		User.findOneAndUpdate(query, update, options, function(err, person) {
 			if (err) {

@@ -4,6 +4,21 @@
 angular.module('children').controller('ChildrenController', ['$scope', '$stateParams', '$location', 'Authentication', 'Children', 'Users',
 	function($scope, $stateParams, $location, Authentication, Children, Users) {
 		$scope.authentication = Authentication;
+		/*$scope.user = {};
+
+		//Retrieve a specific user from the back end
+		$scope.findOneUser = function() {
+       		var allUsers = Users.query({}, function(){
+	       		for(var i=0; i < allUsers.length; i++)
+	       		{
+	       			var currUser = allUsers[i];
+	       			if(currUser._id === $stateParams.userId)
+	       			{
+	       				$scope.user = currUser;
+	       			}
+	       		}
+        	});
+		};*/
 
 		// Create new Child
 		$scope.create = function() {
@@ -45,6 +60,15 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 			// Redirect after save
 			child.$save(function(response) {
+				/*
+				$scope.user.childNames.push(child.firstName);
+				$scope.user.$updateUser(function(response){
+					$scope.success = true;
+					$scope.user = response;
+				}, function(response) {
+					$scope.error = response.data.message;
+				});
+*/
 				$location.path('children/addmore');
 
 				// Clear form fields

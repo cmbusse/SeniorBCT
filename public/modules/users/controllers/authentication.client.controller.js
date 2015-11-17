@@ -8,6 +8,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 		if ($scope.authentication.user) $location.path('/');
 
 		$scope.signup = function() {
+			// TODO:  Can we do PIN addition here, might fuck it up if the request isn't successful
+			// Try editing a default PIN and see what happens with a mess up
 			$http.post('/auth/signup', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
 				$scope.authentication.user = response;
