@@ -1,0 +1,34 @@
+<section class="row" data-ng-controller="CheckinController">
+	<h2 class="col-md-12 text-center">Welcome USER</h2>
+	<h3 class="col-md-12 text-center">Press the Button next to your child's name</h3>
+	<h3 class="col-md-12 text-center">
+	<div ng-controller='ClockController'>
+    <p>{{ clock  | date:'medium'}}</p>
+</div>
+</h3>
+	<div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 login-form-bg">
+		<form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
+			<fieldset>
+			<div class = "form-group">
+			<div data-ng-show="error" class="text-center text-danger">
+				<div class="alert alert-danger" role="alert">
+						<strong data-ng-bind="error"></strong>
+				</div>
+			</div>
+			</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success btn-lg pull-right" ng-disabled="signInDisabled" ng-click="disableSigninButton()">Sign in</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-danger btn-lg pull-right" ng-disabled="signOutDisabled" ng-click="disableSignoutButton()">Sign Out</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success btn-lg pull-right" ng-disabled="signInDisabled" ng-click="disableSigninButton()">Sign in</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-danger btn-lg pull-right" ng-disabled="signOutDisabled" ng-click="disableSignoutButton()">Sign Out</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</section>

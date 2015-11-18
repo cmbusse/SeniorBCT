@@ -5,6 +5,10 @@ angular.module('users').config(['$stateProvider',
 	function($stateProvider) {
 		// Users state routing
 		$stateProvider.
+		state('childview', {
+			url: '/childview',
+			templateUrl: 'modules/users/views/childview.client.view.html'
+		}).
 		state('view-user', {
 			url: '/users/:userId',
 			templateUrl: 'modules/users/views/view-user.client.view.html'
