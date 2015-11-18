@@ -42,8 +42,8 @@ if(signOut === true){
 			$http.post('/auth/signin', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
 				$scope.authentication.user = response;
-				// And redirect to the index page
-				$location.path('/');
+				// And redirect to the childview page for that user
+				$location.path('/childview');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
