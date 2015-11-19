@@ -3,6 +3,14 @@
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
 		<h3 class="text-center text-danger"><strong>Please click DayCamp at the top left</strong></h3>
 	</div>
+	<div>
+
+	<uib-tabset vertical="true" type="pills">
+	    <uib-tab heading="Vertical 1">Vertical content 1</uib-tab>
+	    <uib-tab heading="Vertical 2">Vertical content 2</uib-tab>
+	  </uib-tabset>
+	    
+
 	<div class="container" ng-show="loggedInIsAdmin()">
 		<h3>Manage Users Dashboard</h3>
 		<!-- 	TODO:	Add in a filter/sort by type thing to view clients and admins seperately
@@ -17,7 +25,7 @@
 							<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
 						</h4>							
 						<p class="userp" ng-show="isAdmin(user)" style="color: red"><strong>Admin Account</strong></p>
-						<!--<p class="userp" ng-show="!isAdmin(user)">User Account</p>-->
+						<!--<p class="userp" ng-show="!isAdmin(user)">User Account</	p>-->
 						<p class="userp">PIN:  {{user.PIN}}</p>
 						<p class="userp">Email:  {{user.email}}</p>
 						<p class="userp">Phone:  {{user.phone}}</p>

@@ -7,6 +7,13 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 		$scope.authentication = Authentication;
 		$scope.user = {};
 		$scope.users = {};	
+
+		//testing for tabs stuff
+		$scope.tabs = [
+		    { title:'Dynamic Title 1', content:'Dynamic content 1' },
+		    { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+		 ];
+
 		
 		//retrieve a list of users in the website
 		$scope.findAllUsers = function(){
