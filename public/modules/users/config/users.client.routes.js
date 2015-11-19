@@ -5,6 +5,10 @@ angular.module('users').config(['$stateProvider',
 	function($stateProvider) {
 		// Users state routing
 		$stateProvider.
+		state('success', {
+			url: '/success',
+			templateUrl: 'modules/users/views/success.client.view.html'
+		}).
 		state('edit-user', {
 			url: '/users/:userId/edit',
 			templateUrl: 'modules/users/views/edit-user.client.view.html'

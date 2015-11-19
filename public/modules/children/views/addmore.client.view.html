@@ -1,14 +1,16 @@
-<section data-ng-controller="ChildrenController">
+<section data-ng-controller="ChildrenController" data-ng-init="findUsersChildren()">
 	<!-- TODO:  Style this page its awful -->
-	<!-- TODO:  Once we figure out saving users, when a child is added, push the first name into an array that 
-	holds the children in the user model.  Then in this screen take the most recent push into the user's
-	children array and use that as the display name -->
-	<h1 style="padding: 20px 0px 30px 0px">_________ was added to your account!</h1>
-	<!-- TODO:  Put here the child first and last name, dob, etc, so they can see all the info is right -->
-	<h3 style="padding: 10px 0px 30px 0px">Would you like to add another child?</h3>
-	<div class="row" style="padding-bottom: 40px">
-		<a href='#!/children/create'><button type="button" class="btn btn-default btn-lg">Yes</button></a>
-		<a href='#!/'><button type="button" class="btn btn-default btn-lg">No</button></a>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 style="">{{newestChild.firstName}} {{newestChild.lastName}} was added to your account!</h1>
+				<!-- TODO:  Put here the child first and last name, dob, etc, so they can see all the info is right -->
+				<h3 style="">Would you like to add another child?</h3>
+				<div class="row" style="margin-left: 0px">
+					<a href='#!/children/create'><button type="button" class="btn btn-default btn-lg">Yes</button></a>
+					<a href='#!/'><button type="button" class="btn btn-default btn-lg">No</button></a>
+				</div>
+			</div>
+		</div>
 	</div>
-
 </section>

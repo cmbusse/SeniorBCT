@@ -67,6 +67,15 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 				return false;
 			}
 		};
+
+		// Is there a user logged in
+		$scope.isLoggedIn = function(){
+			if($scope.currentuser){
+				return true;
+			} else{
+				return false;
+			}
+		};
 		
 		// Checks to see if a user is an admin
 		$scope.isAdmin = function(passeduser){

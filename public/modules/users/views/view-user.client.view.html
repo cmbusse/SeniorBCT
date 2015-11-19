@@ -1,7 +1,7 @@
 <section data-ng-controller="UsersController" data-ng-init="findOneUser(); findUsersChildren()">
 	<div class="container" ng-show="!loggedInIsAdmin()">
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
-		<h3 class="text-center text-danger"><strong>Please click DayCamp at the top left</strong></h3>
+		<h3 class="text-center text-danger"><strong>Please click <a href="/">here</a> to go home</strong></h3>
 	</div>
 <!--  TODO:  Style this page, maybe add border around the two md-6 divs -->
 	<div class="container" ng-show="loggedInIsAdmin()">

@@ -4,6 +4,9 @@
 angular.module('children').controller('ChildrenController', ['$scope', '$stateParams', '$location', 'Authentication', 'Children', 'Users',
 	function($scope, $stateParams, $location, Authentication, Children, Users) {
 		$scope.authentication = Authentication;
+		$scope.currentuser = Authentication.user;
+		$scope.usersChildren = {};
+		$scope.newestChild = {};
 
 		// Create new Child
 		$scope.create = function() {
@@ -66,6 +69,24 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			$scope.child = Children.get({ 
 				childId: $stateParams.childId
 			});
+		};
+
+		//Retrieve an array of children that are associated with a user
+		$scope.findUsersChildren = function(){
+			var usersChildren = [];
+
+			var allChildren = Children.query({}, function(){
+				var userid = $scope.currentuser._id;
+				for(var i=0; i < allChildren.length; i++)
+	       		{
+	       			var currChild = allChildren[i];
+	       			if(currChild.user._id === userid)
+	       			{
+	       				usersChildren.push(currChild);
+	       			}
+	       		}
+	       		$scope.newestChild = usersChildren[0];
+        	});
 		};
 	}
 ]);

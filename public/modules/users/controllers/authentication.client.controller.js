@@ -45,7 +45,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.authentication.user = response;
 
 				// And redirect to the children/create page
-				$location.path('/children/create');
+				//$location.path('/children/create');
+				$location.path('/success');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
