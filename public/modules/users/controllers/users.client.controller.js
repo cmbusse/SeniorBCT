@@ -1,12 +1,13 @@
 'use strict';
 
-angular.module('users').controller('UsersController', ['$scope', '$http', '$rootScope', '$stateParams', '$location', 'Users', 'Authentication',
-	function($scope, $http, $rootScope, $stateParams, $location, Users, Authentication) {
+angular.module('users').controller('UsersController', ['$scope', '$http', '$rootScope', '$stateParams', '$location', 'Users', 'Authentication', 'Children',
+	function($scope, $http, $rootScope, $stateParams, $location, Users, Authentication, Children) {
 		// Current User
 		$scope.currentuser = Authentication.user;
 		$scope.authentication = Authentication;
 		$scope.user = {};
 		$scope.users = {};	
+		$scope.children = {};
 
 		//testing for tabs stuff
 		$scope.tabs = [
@@ -18,6 +19,10 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 		//retrieve a list of users in the website
 		$scope.findAllUsers = function(){
 			$scope.users = Users.query();
+		};
+
+		$scope.findAllChildren = function(){
+			$scope.children = Children.query();
 		};
 
 		//Retrieve a specific user from the back end
