@@ -20,18 +20,22 @@
 				<div class="row">
 					<div class="col-xs-6 col-md-6">
 						<h4>
-							{{user.firstName}} {{user.lastName}}
-							<span ng-show="isActive(user)" class="text-muted"> - Active User</span>
-							<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
+							<a data-ng-href="#!/users/{{user._id}}">
+								{{user.firstName}} {{user.lastName}}
+								<span ng-show="isActive(user)" class="text-muted"> - Active User</span>
+								<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
+							</a>
 						</h4>							
 						<p class="userp" ng-show="isAdmin(user)" style="color: red"><strong>Admin Account</strong></p>
 						<!--<p class="userp" ng-show="!isAdmin(user)">User Account</	p>-->
 						<p class="userp">PIN:  {{user.PIN}}</p>
+						<p class="userp">Username:  {{user.username}}</p>
 						<p class="userp">Email:  {{user.email}}</p>
 						<p class="userp">Phone:  {{user.phone}}</p>
 					</div>
 					<div class="col-xs-6 col-md-6">
-					<a  data-ng-href="#!/users/{{user._id}}" class="list-group-item">Click Here to Edit this User</a>
+						<!-- TODO:  If this button gets restyled (it should) apply some formatted in view-user.client.view.html for children -->
+						<a data-ng-href="#!/users/{{user._id}}/edit" class="list-group-item">Click Here to Edit this User</a>
 					</div>
 				</div>
 			</li>

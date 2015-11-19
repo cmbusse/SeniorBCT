@@ -8,6 +8,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 		$scope.user = {};
 		$scope.users = {};	
 		$scope.children = {};
+		$scope.usersChildren = {};
 
 		//testing for tabs stuff
 		$scope.tabs = [
@@ -36,6 +37,24 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 	       				$scope.user = currUser;
 	       			}
 	       		}
+        	});
+		};
+
+		//Retrieve an array of children that are associated with a user
+		$scope.findUsersChildren = function(){
+			var usersChildren = [];
+
+			var allChildren = Children.query({}, function(){
+				var userid = $scope.user._id;
+				for(var i=0; i < allChildren.length; i++)
+	       		{
+	       			var currChild = allChildren[i];
+	       			if(currChild.user._id === userid)
+	       			{
+	       				usersChildren.push(currChild);
+	       			}
+	       		}
+	       		$scope.usersChildren = usersChildren;
         	});
 		};
 		
