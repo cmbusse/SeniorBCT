@@ -54,21 +54,10 @@ var UserSchema = new Schema({
 		required: 'Please fill in a username',
 		trim: true
 	},
-	childNames: {
-		type: [{
-			type: String,
-			trim: true,
-		}]
-	},
-	childIds: {
-		type: [{
-			type: String,
-			trim: true,
-		}]
-	},
 	PIN: {
 		type: String,
 		trim: true,
+		unique: 'PIN already exists',
 		default: 'No Pin'
 	},
 	password: {
@@ -85,7 +74,6 @@ var UserSchema = new Schema({
 	active: { /* Active status would be used for User Wide Email Lists, etc. */
 		type: Boolean,
 		default: 'true'
-		// TODO:  Add in Admin support for changing this status
 	},
 	salt: {
 		type: String

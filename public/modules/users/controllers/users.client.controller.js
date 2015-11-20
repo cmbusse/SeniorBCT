@@ -164,7 +164,6 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			if (isValid) {
 				$scope.submittedNoErrors = true;
 				$scope.success = $scope.error = null;
-				$scope.user.username = $scope.userForm.username.$modelValue;
 				$scope.user.$updateUser(function(response) {
 					$scope.success = true;
 						$scope.user = response;
