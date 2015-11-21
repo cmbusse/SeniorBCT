@@ -18,7 +18,7 @@ module.exports = {
 		}
 	},
 	app: {
-		title: 'MEAN.JS - Development Environment'
+		title: 'DayCamp'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

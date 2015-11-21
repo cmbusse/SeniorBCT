@@ -104,28 +104,13 @@ exports.updateUser = function(req, res) {
 				return res.status(400).send({
 					message: errorHandler.getErrorMessage(err)
 				});
-			} 
-		});
-	});
-};
-
-/**
- * Update specific users active status
- *
-
-exports.updateActiveStatus = function(req, res) {
-	var currUser = req.body;
-	User.findById(currUser._id, function(err, user) {
-		var query = {'_id': currUser._id };
-		var update = { active: currUser.active };
-		var options = { new: true };
-		User.findOneAndUpdate(query, update, options, function(err, person) {
-			if (err) {
-				console.log('got an error');
+			} else {
+				res.json(currUser);
 			}
 		});
 	});
 };
+
 
 /**
  * Delete a user

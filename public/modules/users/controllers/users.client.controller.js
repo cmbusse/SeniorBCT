@@ -100,8 +100,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 		$scope.makeUserAdmin = function(){
 			$scope.user.roles = 'admin';
 			$scope.user.$updateUser(function(response) {
-				$scope.success = true;
-					$scope.user = response;
+
 				}, function(response) {
 					$scope.error = response.data.message;
 			});
@@ -111,8 +110,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 		$scope.makeAdminUser = function(){
 			$scope.user.roles = 'user';
 			$scope.user.$updateUser(function(response) {
-				$scope.success = true;
-					$scope.user = response;
+
 				}, function(response) {
 					$scope.error = response.data.message;
 			});
@@ -123,7 +121,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			$scope.user.active = true;
 			$scope.user.$updateUser(function(response) {
 				$scope.success = true;
-					$scope.user = response;
+				$scope.user = response;
 				}, function(response) {
 					$scope.error = response.data.message;
 			});
@@ -134,46 +132,69 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			$scope.user.active = false;
 			$scope.user.$updateUser(function(response) {
 				$scope.success = true;
-					$scope.user = response;
+				$scope.user = response;
 				}, function(response) {
 					$scope.error = response.data.message;
 			});
 		};
 
-		/*
-
-		$scope.updateUserProfile = function(isValid) {
-			if (isValid) {
-				$scope.success = $scope.error = null;
-				var user = new Users($scope.user);
-
-				user.$update(function(response) {
-					$scope.success = true;
-					Authentication.user = response;
-				}, function(response) {
-					$scope.error = response.data.message;
-				});
-			} else {
-				$scope.submitted = true;
-			}
-		};
-
-		*/
-
 		$scope.updateGeneralInfo = function(isValid){
 			if (isValid) {
-				$scope.submittedNoErrors = true;
-				$scope.success = $scope.error = null;
+				$scope.success1 = $scope.error1 = null;
 				$scope.user.$updateUser(function(response) {
-					$scope.success = true;
-						$scope.user = response;
+					$scope.success1 = true;
+					$scope.user = response;
 					}, function(response) {
-						$scope.error = response.data.message;
-						$scope.submittedNoErrors = false;
+						$scope.error1 = response.data.message;
 				});
 				console.log('test');
 			} else {
-				$scope.submitted = true;
+				$scope.submitted1 = true;
+			}
+		};
+
+		$scope.updateUsername = function(isValid){
+			if (isValid) {
+				$scope.success2 = $scope.error2 = null;
+				$scope.user.$updateUser(function(response) {
+					$scope.success2 = true;
+					$scope.user = response;
+					}, function(response) {
+						$scope.error2 = response.data.message;
+				});
+				console.log('test');
+			} else {
+				$scope.submitted2 = true;
+			}
+		};
+
+		$scope.updateEmail = function(isValid){
+			if (isValid) {
+				$scope.success3 = $scope.error3 = null;
+				$scope.user.$updateUser(function(response) {
+					$scope.success3 = true;
+					$scope.user = response;
+					}, function(response) {
+						$scope.error3 = response.data.message;
+				});
+				console.log('test');
+			} else {
+				$scope.submitted3 = true;
+			}
+		};
+
+		$scope.updatePIN = function(isValid){
+			if (isValid) {
+				$scope.success4 = $scope.error4 = null;
+				$scope.user.$updateUser(function(response) {
+					$scope.success4 = true;
+					$scope.user = response;
+					}, function(response) {
+						$scope.error4 = response.data.message;
+				});
+				console.log('test');
+			} else {
+				$scope.submitted4 = true;
 			}
 		};
 	}

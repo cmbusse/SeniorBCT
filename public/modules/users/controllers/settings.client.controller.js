@@ -39,6 +39,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 		};
 
 		// Update a user profile
+		/*
 		$scope.updateUserProfile = function(isValid) {
 			if (isValid) {
 				$scope.success = $scope.error = null;
@@ -54,6 +55,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				$scope.submitted = true;
 			}
 		};
+		*/
 
 		// Change user password
 		$scope.changeUserPassword = function() {
@@ -66,6 +68,70 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
+		};
+
+		$scope.updateGeneralInfo = function(isValid){
+			if (isValid) {
+				$scope.success1 = $scope.error1 = null;
+				var user = new Users($scope.user);
+				user.$update(function(response) {
+					$scope.success1 = true;
+					$scope.user = response;
+					}, function(response) {
+						$scope.error1 = response.data.message;
+				});
+				console.log('test');
+			} else {
+				$scope.submitted1 = true;
+			}
+		};
+
+		$scope.updateUsername = function(isValid){
+			if (isValid) {
+				$scope.success2 = $scope.error2 = null;
+				var user = new Users($scope.user);
+				user.$update(function(response) {
+					$scope.success2 = true;
+					$scope.user = response;
+					}, function(response) {
+						$scope.error2 = response.data.message;
+				});
+				console.log('test');
+			} else {
+				$scope.submitted2 = true;
+			}
+		};
+
+		$scope.updateEmail = function(isValid){
+			if (isValid) {
+				$scope.success3 = $scope.error3 = null;
+				var user = new Users($scope.user);
+				user.$update(function(response) {
+					$scope.success3 = true;
+					$scope.user = response;
+					}, function(response) {
+						$scope.error3 = response.data.message;
+				});
+				console.log('test');
+			} else {
+				$scope.submitted3 = true;
+			}
+		};
+
+		$scope.updatePIN = function(isValid){
+			if (isValid) {
+				$scope.success4 = $scope.error4 = null;
+				var user = new Users($scope.user);
+				user.$update(function(response) {
+					$scope.success4 = true;
+					$scope.user = response;
+					}, function(response) {
+						$scope.error4 = response.data.message;
+				});
+				console.log('test');
+			} else {
+				$scope.submitted4 = true;
+			}
 		};
 	}
 ]);
