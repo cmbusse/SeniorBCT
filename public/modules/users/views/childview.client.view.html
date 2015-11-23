@@ -1,11 +1,23 @@
-<section class="row" data-ng-controller="CheckinController">
+<section class="row" data-ng-controller="CheckinController" data-ng-init="extractUser(); findUsersChildren()">
 	<h2 class="col-md-12 text-center">Welcome {{user.firstName}}</h2>
 	<h3 class="col-md-12 text-center">Press the Button next to your child's name</h3>
 	<h3 class="col-md-12 text-center">
-	<div ng-controller='ClockController'>
-    <p>{{ clock  | date:'medium'}}</p>
-</div>
-</h3>
+		<div ng-controller='ClockController'>
+	    	<p>{{ clock  | date:'medium'}}</p>
+		</div>
+	</h3>
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="child in usersChildren">
+					{{child.firstName}} {{child.lastName}}
+					<span><button type="button" class="btn btn-default" ng-disabled="checkInStatus">Check In</button></span>
+					<span><button type="button" class="btn btn-default" ng-disabled="checkOutStatus">Check Out</button></span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--
 	<div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 login-form-bg">
 		<form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
 			<fieldset>
@@ -31,4 +43,5 @@
 			</fieldset>
 		</form>
 	</div>
+	-->
 </section>

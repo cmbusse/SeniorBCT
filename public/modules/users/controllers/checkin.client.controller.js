@@ -1,16 +1,55 @@
 'use strict';
 
-angular.module('users').controller('CheckinController', ['$scope', '$http', '$location', 'Authentication', 'Users',
-	function($scope, $http, $location, Authentication, Users) {
+angular.module('users').controller('CheckinController', ['$scope', '$http', '$location', 'Authentication', 'Users', 'Children',
+	function($scope, $http, $location, Authentication, Users, Children) {
 		
 		$scope.authentication = Authentication;
 		$scope.currentuser = Authentication.user;
 		$scope.user = {};
+		$scope.usersChildren = {};
 		var signIn = false;
 		var signOut = true;
-		var path = $location.path();
-		// TODO:  If length > /checkin/ then crop path to a var as usersId, use that to find $scope.user()
-		console.log('test');
+
+		// Extracting User ID from URL and setting the "signed in" user to scope.user
+		$scope.extractUser = function(){
+			var path = $location.path();
+			var checkInUserID;
+			if(path.length > 9){
+				checkInUserID = path.slice(9,path.length);
+			}
+
+			var allUsers = Users.query({}, function(){
+	       		for(var i=0; i < allUsers.length; i++)
+	       		{
+	       			var currUser = allUsers[i];
+	       			if(currUser._id === checkInUserID)
+	       			{
+	       				$scope.user = currUser;
+	       			}
+	       		}    		
+        	});
+		};
+
+		// Retrieve an arry of children that are associated with a user
+		$scope.findUsersChildren = function(){
+			// Make each entry an array/object
+			// Make the first part the child object
+			// Make the second part a boolean for checked in
+			var usersChildren = [];
+
+			var allChildren = Children.query({}, function(){
+				var userid = $scope.user._id;
+				for(var i=0; i < allChildren.length; i++)
+	       		{
+	       			var currChild = allChildren[i];
+	       			if(currChild.user._id === userid)
+	       			{
+	       				usersChildren.push(currChild);
+	       			}
+	       		}
+	       		$scope.usersChildren = usersChildren;
+        	});
+		};
 
 		// Is logged in user an admin
 		$scope.loggedInIsAdmin = function(){
@@ -24,11 +63,6 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 
 		// "Sign in" a user
 		$scope.signinUser = function(isValid){
-			// take PIN, search users for match
-			// if no match say "unknown PIN" or something
-			// if match, direct to checkin/userId
-			// PIN is stord in 'credentials'
-
 			var userID = 'Not Found';
 			$scope.PINnotFound = false;
 
