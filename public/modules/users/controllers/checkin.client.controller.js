@@ -5,8 +5,12 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 		
 		$scope.authentication = Authentication;
 		$scope.currentuser = Authentication.user;
+		$scope.user = {};
 		var signIn = false;
 		var signOut = true;
+		var path = $location.path();
+		// TODO:  If length > /checkin/ then crop path to a var as usersId, use that to find $scope.user()
+		console.log('test');
 
 		// Is logged in user an admin
 		$scope.loggedInIsAdmin = function(){
@@ -18,22 +22,6 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 			}
 		};
 
-		//Retrieve a specific user from the back end
-		/*
-		$scope.findOneUser = function() {
-       		var allUsers = Users.query({}, function(){
-	       		for(var i=0; i < allUsers.length; i++)
-	       		{
-	       			var currUser = allUsers[i];
-	       			if(currUser._id === $stateParams.userId)
-	       			{
-	       				$scope.user = currUser;
-	       			}
-	       		}
-        	});
-		};
-		*/
-
 		// "Sign in" a user
 		$scope.signinUser = function(isValid){
 			// take PIN, search users for match
@@ -42,6 +30,7 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 			// PIN is stord in 'credentials'
 
 			var userID = 'Not Found';
+			$scope.PINnotFound = false;
 
 			var allUsers = Users.query({}, function(){
 	       		for(var i=0; i < allUsers.length; i++)
@@ -50,12 +39,15 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       			if(currUser.PIN === $scope.credentials.PIN)
 	       			{
 	       				userID = currUser._id;
+	       				$scope.user = currUser;
 	       			}
 	       		}
+	       		if(userID === 'Not Found'){
+	       			$scope.PINnotFound = true;
+	       		} else{
+	       			$location.path('/checkin/' + (userID));
+	       		}	       		
         	});
-			// Checks for not found
-
 		};
-
 	}
 ]);

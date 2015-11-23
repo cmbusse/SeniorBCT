@@ -14,7 +14,7 @@ angular.module('users').config(['$stateProvider',
 			templateUrl: 'modules/users/views/edit-user.client.view.html'
 		}).
 		state('childview', {
-			url: '/childview',
+			url: '/checkin/:userId',
 			templateUrl: 'modules/users/views/childview.client.view.html'
 		}).
 		state('view-user', {
