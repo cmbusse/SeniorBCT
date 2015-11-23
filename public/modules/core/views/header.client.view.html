@@ -34,6 +34,9 @@
 			<li ui-route="/dashboard" ng-class="{active: $uiRoute}" ng-show="loggedInIsAdmin()">
 				<a href="#!/dashboard" class="loversgray">Dashboard</a>
 			</li>
+			<li ui-route="/checkin" ng-class="{active: $uiRoute}" ng-show="loggedInIsAdmin()">
+				<a href="/#!/checkin" class="loversgray">Check In</a>
+			</li>
 		</ul>
 		
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
@@ -42,10 +45,7 @@
 			</li>
 			<li class="divider-vertical"></li>
 			<li ui-route="/signin" ng-class="{active: $uiRoute}">
-				<a href="/#!/signin" class="loversgray">Sign In (Employee's Only)</a>
-			</li>
-			<li ui-route="/checkin" ng-class="{active: $uiRoute}">
-				<a href="/#!/checkin" class="loversgray">Check In</a>
+				<a href="/#!/signin" class="loversgray">Sign In</a>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
