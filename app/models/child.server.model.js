@@ -1,10 +1,22 @@
 'use strict';
 
+//http://mongoosejs.com/docs/subdocs.html
+
 /**
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
+	var punchSchema = new Schema({
+		dateTimeIn: {
+			type: String,
+			default: Date.now
+		},
+		dateTimeOut: {
+			type: String,
+			default: Date.now
+		}
+	});
 
 /**
  * Child Schema
@@ -26,16 +38,10 @@ var ChildSchema = new Schema({
 		type: Date,
 		required: 'Please fill in child\'s date of birth'
 	},
-	timePunches: [{
-		dateTimeIn: String,
-		dateTimeOut: String
-		/* TODO - If Time Allows
-		Add a way to track edits to the time punches
-		Tracks if an entry has been edited
-		Who it was edited by
-		What the changes were
-		*/
-	}],
+	timePunches: [ punchSchema
+		/* TODO - If Time Allows Add a way to track edits to the time punches
+		Tracks if an entry has been edited Who it was edited by	What the changes were*/
+	],
 	created: {
 		type: Date,
 		default: Date.now

@@ -6,6 +6,7 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 		$scope.authentication = Authentication;
 		$scope.currentuser = Authentication.user;
 		$scope.user = {};
+		$scope.child = {};
 		$scope.usersChildren = {};
 		var signIn = false;
 		var signOut = true;
@@ -82,6 +83,28 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       			$location.path('/checkin/' + (userID));
 	       		}	       		
         	});
+		};
+
+		$scope.checkChildIn = function(childId){
+			var allChildren = Children.query({}, function(){
+				for(var i=0; i < allChildren.length; i++)
+	       		{
+	       			var currChild = allChildren[i];
+	       			if(currChild._id === childId)
+	       			{
+	       				$scope.child = currChild;
+	       			}
+	       		}
+	       		var punches = $scope.child.timePunches;
+	       		var dateNow = new Date();
+	       		punches[punches.length].dateTimeIn = dateNow;
+
+        		console.log('test');
+        	});
+		};
+
+		$scope.checkChildOut = function(childId){
+
 		};
 	}
 ]);

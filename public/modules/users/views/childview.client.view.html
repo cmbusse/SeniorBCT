@@ -11,8 +11,8 @@
 			<ul class="list-group">
 				<li class="list-group-item" ng-repeat="child in usersChildren">
 					{{child.firstName}} {{child.lastName}}
-					<span><button type="button" class="btn btn-default" ng-disabled="checkInStatus">Check In</button></span>
-					<span><button type="button" class="btn btn-default" ng-disabled="checkOutStatus">Check Out</button></span>
+					<span><button type="button" class="btn btn-default" ng-click="checkChildIn(child._id)" ng-disabled="">Check In</button></span>
+					<span><button type="button" class="btn btn-default" ng-click="checkChildOut(child._id)" ng-disabled="">Check Out</button></span>
 				</li>
 			</ul>
 		</div>
