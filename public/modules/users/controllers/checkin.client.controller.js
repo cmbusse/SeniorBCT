@@ -84,7 +84,51 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       		}	       		
         	});
 		};
+		/*
+		$scope.isCheckedIn = function(){
+			var allChildren = Children.query({}, function(){
+				for(var i=0; i < allChildren.length; i++)
+	       		{
+	       			var currChild = allChildren[i];
+	       			if(currChild._id === childId)
+	       			{
+	       				$scope.child = currChild;
+	       			}
+	       		}
+	       		var punchesIn = $scope.child.punchesIn;
+	       		var punchesOut = $scope.child.punchesOut;
+	       		// If the child has an even number of check ins as check outs, they are good to check in
+	       		if(punchesIn.length === (punchesOut.length+1)){
+					return true;
+	       		} else{
+	       			return false;
+	       		}
 
+        	});
+		}
+
+		$scope.isCheckedOut = function(){
+			var allChildren = Children.query({}, function(){
+				for(var i=0; i < allChildren.length; i++)
+	       		{
+	       			var currChild = allChildren[i];
+	       			if(currChild._id === childId)
+	       			{
+	       				$scope.child = currChild;
+	       			}
+	       		}
+	       		var punchesIn = $scope.child.punchesIn;
+	       		var punchesOut = $scope.child.punchesOut;
+	       		// If the child has an even number of check ins as check outs, they are good to check in
+	       		if(punchesIn.length === punchesOut.length){
+					return true;
+	       		} else{
+	       			return false;
+	       		}
+
+        	});
+		}
+		
 		$scope.checkChildIn = function(childId){
 			var allChildren = Children.query({}, function(){
 				for(var i=0; i < allChildren.length; i++)
@@ -95,16 +139,45 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       				$scope.child = currChild;
 	       			}
 	       		}
-	       		var punches = $scope.child.timePunches;
-	       		var dateNow = new Date();
-	       		punches[punches.length].dateTimeIn = dateNow;
+	       		var punchesIn = $scope.child.punchesIn;
+	       		var punchesOut = $scope.child.punchesOut;
+	       		// If the child has an even number of check ins as check outs, they are good to check in
+	       		if(punchesIn.length === punchesOut.length){
+					var dateNow = new Date();
+		       		punchesIn[punchesIn.length] = dateNow;
+	        		console.log('test');
+	        		// TODO:  Call the PUT method
+	       		} else{
+	       			// TODO:  Error handling
+	       		}
 
-        		console.log('test');
         	});
 		};
 
 		$scope.checkChildOut = function(childId){
+			var allChildren = Children.query({}, function(){
+				for(var i=0; i < allChildren.length; i++)
+	       		{
+	       			var currChild = allChildren[i];
+	       			if(currChild._id === childId)
+	       			{
+	       				$scope.child = currChild;
+	       			}
+	       		}
+	       		var punchesIn = $scope.child.punchesIn;
+	       		var punchesOut = $scope.child.punchesOut;
+	       		// If the child has an even number of check ins as check outs, they are good to check in
+	       		if(punchesIn.length === (punchesOut.length+1)){
+					var dateNow = new Date();
+		       		punchesOut[punchesOut.length] = dateNow;
+	        		console.log('test');
+	        		// TODO:  Call the PUT method
+	       		} else{
+	       			// TODO:  Error handling
+	       		}
 
+        	});
 		};
+		*/
 	}
 ]);

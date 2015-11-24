@@ -2,22 +2,14 @@
 
 //http://mongoosejs.com/docs/subdocs.html
 
+
+
 /**
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
-	var punchSchema = new Schema({
-		dateTimeIn: {
-			type: String,
-			default: Date.now
-		},
-		dateTimeOut: {
-			type: String,
-			default: Date.now
-		}
-	});
-
+	var punchSchema = new Schema({punch: Date});
 /**
  * Child Schema
  */
@@ -38,10 +30,8 @@ var ChildSchema = new Schema({
 		type: Date,
 		required: 'Please fill in child\'s date of birth'
 	},
-	timePunches: [ punchSchema
-		/* TODO - If Time Allows Add a way to track edits to the time punches
-		Tracks if an entry has been edited Who it was edited by	What the changes were*/
-	],
+	punchesIn: [punchSchema],
+	punchesOut: [punchSchema],
 	created: {
 		type: Date,
 		default: Date.now
