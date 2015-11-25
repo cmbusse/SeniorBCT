@@ -10,6 +10,7 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 	var punchSchema = new Schema({punch: Date});
+	
 /**
  * Child Schema
  */
@@ -43,3 +44,4 @@ var ChildSchema = new Schema({
 });
 
 mongoose.model('Child', ChildSchema);
+mongoose.model('Punch', punchSchema);

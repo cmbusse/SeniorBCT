@@ -80,7 +80,7 @@ exports.read = function(req, res) {
 };
 
 /**
- * Update specific User Roles
+ * Update specific User
 */
 exports.updateUser = function(req, res) { 
 	var currUser = req.body;

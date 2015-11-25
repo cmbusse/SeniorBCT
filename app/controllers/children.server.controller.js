@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Child = mongoose.model('Child'),
+	Punch = mongoose.model('Punch'),
 	_ = require('lodash');
 
 /**
@@ -37,18 +38,58 @@ exports.read = function(req, res) {
  * Update a Child
  */
 exports.update = function(req, res) {
-	var child = req.child ;
+	var currChild = req.body;
+	var punchListIn = currChild.punchesIn;
+	var punchListOut = currChild.punchesOut;
 
-	child = _.extend(child , req.body);
-
-	child.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(child);
+	var newPunchesIn = [];
+	var newPunchesOut = [];
+	for (var i=0; i<punchListIn.length; i++){
+		var d;
+		if(typeof punchListIn[i] === 'string'){
+			d = new Date(punchListIn[i]);	
+		} else{
+			d = punchListIn[i].punch;
 		}
+		var punch = new Punch({
+			punch: d
+		});
+		newPunchesIn.push(punch);
+	}
+
+	for (var j=0; j<punchListOut.length; j++){
+		var d2;
+		if(typeof punchListOut[j] === 'string'){
+			d2 = new Date(punchListOut[j]);	
+		} else{
+			d2 = punchListOut[j].punch;
+		}
+		var punch2 = new Punch({
+			punch: d2
+		});
+		newPunchesOut.push(punch2);
+	}
+	
+	
+	Child.findById(currChild._id, function(err, child) {
+		var query = {'_id': currChild._id };
+		var update = { 	$set: {
+							firstName: currChild.firstName, 
+							lastName: currChild.lastName,
+							dob: currChild.dob,
+							punchesIn: newPunchesIn,
+							punchesOut: newPunchesOut
+						},
+					 };
+		var options = { new: true };
+		Child.findOneAndUpdate(query, update, options, function(err, child) {
+			if (err) {
+				console.log('got an error');
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			}
+		});
 	});
 };
 

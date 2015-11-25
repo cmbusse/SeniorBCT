@@ -85,7 +85,7 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
         	});
 		};
 		/*
-		$scope.isCheckedIn = function(){
+		$scope.isCheckedIn = function(childId){
 			var allChildren = Children.query({}, function(){
 				for(var i=0; i < allChildren.length; i++)
 	       		{
@@ -105,9 +105,9 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       		}
 
         	});
-		}
+		};
 
-		$scope.isCheckedOut = function(){
+		$scope.isCheckedOut = function(childId){
 			var allChildren = Children.query({}, function(){
 				for(var i=0; i < allChildren.length; i++)
 	       		{
@@ -127,8 +127,8 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       		}
 
         	});
-		}
-		
+		};
+		*/
 		$scope.checkChildIn = function(childId){
 			var allChildren = Children.query({}, function(){
 				for(var i=0; i < allChildren.length; i++)
@@ -139,16 +139,19 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       				$scope.child = currChild;
 	       			}
 	       		}
-	       		var punchesIn = $scope.child.punchesIn;
-	       		var punchesOut = $scope.child.punchesOut;
 	       		// If the child has an even number of check ins as check outs, they are good to check in
-	       		if(punchesIn.length === punchesOut.length){
+	       		if($scope.child.punchesIn.length === $scope.child.punchesOut.length || true){
 					var dateNow = new Date();
-		       		punchesIn[punchesIn.length] = dateNow;
+		       		$scope.child.punchesIn[$scope.child.punchesIn.length] = dateNow;
 	        		console.log('test');
-	        		// TODO:  Call the PUT method
+	        		$scope.child.$update(function(response) {
+
+	        			}, function(response) {
+	        				$scope.error = response.data.message;
+	        			});
 	       		} else{
 	       			// TODO:  Error handling
+	       			console.log('bing');
 	       		}
 
         	});
@@ -167,17 +170,22 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       		var punchesIn = $scope.child.punchesIn;
 	       		var punchesOut = $scope.child.punchesOut;
 	       		// If the child has an even number of check ins as check outs, they are good to check in
-	       		if(punchesIn.length === (punchesOut.length+1)){
+	       		if(punchesIn.length === (punchesOut.length+1) || true){
 					var dateNow = new Date();
 		       		punchesOut[punchesOut.length] = dateNow;
 	        		console.log('test');
-	        		// TODO:  Call the PUT method
+	        		$scope.child.$update(function(response) {
+
+	        			}, function(response) {
+	        				$scope.error = response.data.message;
+	        			});
 	       		} else{
 	       			// TODO:  Error handling
+	       			console.log('bing');
 	       		}
 
         	});
 		};
-		*/
+		
 	}
 ]);
