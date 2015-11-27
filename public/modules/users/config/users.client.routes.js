@@ -35,7 +35,7 @@ angular.module('users').config(['$stateProvider',
 		}).
 		state('list', {
 			url: '/dashboard',
-			templateUrl: 'modules/users/views/list-users.client.view.html'
+			templateUrl: 'modules/users/views/admin/dashboard.client.view.html'
 		}).
 		state('signup', {
 			url: '/signup',
