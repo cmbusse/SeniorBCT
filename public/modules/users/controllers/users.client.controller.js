@@ -57,6 +57,14 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 	       		$scope.usersChildren = usersChildren;
         	});
 		};
+
+		$scope.seedOrderBy = function(){
+			$scope.orderBy = 'roles';
+		};
+
+		$scope.setOrderByUsers = function(order){
+			$scope.orderBy = order;
+		};
 		
 		// Is logged in user an admin
 		$scope.loggedInIsAdmin = function(){

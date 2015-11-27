@@ -1,17 +1,20 @@
-<section data-ng-controller="UsersController" data-ng-init="findAllUsers(); findAllChildren()">
+<section data-ng-controller="UsersController" data-ng-init="findAllUsers(); findAllChildren(); seedOrderBy()">
 	<div class="container" ng-show="!loggedInIsAdmin()">
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
 		<h3 class="text-center text-danger"><strong>Please click <a href="/">here</a> to go home</strong></h3>
 	</div>	    
-
 	<tabset style="margin-top: 20px">
     	<tab heading="Manage Users">
 	    		<div class="container" ng-show="loggedInIsAdmin()">
 				<h3>Manage Users Dashboard</h3>
-				<!-- 	TODO:	Add in a filter/sort by type thing to view clients and admins seperately
-						TODO:	also seperate active and inactive users-->
+
+				<!-- 	TODO:	Change these up from pills, implement same thing for children-->
+				<ul class="nav nav-pills">
+					<li><a href="#" ng-click="setOrderByUsers('roles')">Order by Account Type</a></li>
+					<li><a href="#" ng-click="setOrderByUsers('inactive')">Order by Inactive</a></li>
+				</ul>
 				<ul class="list-group">
-					<li class="list-group-item" ng-repeat="user in users | orderBy: 'roles'">
+					<li class="list-group-item" ng-repeat="user in users | orderBy: orderBy">
 						<div class="row">
 							<div class="col-xs-6 col-md-6">
 								<h4>
