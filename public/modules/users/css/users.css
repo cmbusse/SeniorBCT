@@ -29,3 +29,46 @@
 .userOp:hover{
 	cursor: pointer;
 }
+
+
+
+/* Media Queries */
+/* Custom, iPhone Retina */ 
+    @media only screen and (min-width : 320px) {
+		.sortByBar{
+			margin-top: 0px;
+		}        
+    }
+
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (min-width : 480px) {
+		.sortByBar{
+			margin-top: 0px;
+		}
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+		.sortByBar{
+			margin-top: 0px;
+		}
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+		.sortByBar{
+			margin-top: 30px;
+			text-align: right;
+		}
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+    	.sortByBar{
+			margin-top: 30px;
+			text-align: right;
+		}
+		#sortByBar a:visited { 
+		    background-color: yellow;
+		}
+    }

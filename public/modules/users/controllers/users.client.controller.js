@@ -9,13 +9,6 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 		$scope.users = {};	
 		$scope.children = {};
 		$scope.usersChildren = {};
-
-		//testing for tabs stuff
-		$scope.tabs = [
-		    { title:'Dynamic Title 1', content:'Dynamic content 1' },
-		    { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
-		 ];
-
 		
 		//retrieve a list of users in the website
 		$scope.findAllUsers = function(){
@@ -59,11 +52,16 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 		};
 
 		$scope.seedOrderBy = function(){
-			$scope.orderBy = 'roles';
+			$scope.orderByUsers = 'lastName';
+			$scope.orderByChildren = 'lastName';
 		};
 
 		$scope.setOrderByUsers = function(order){
-			$scope.orderBy = order;
+			$scope.orderByUsers = order;
+		};
+
+		$scope.setOrderByChildren = function(order){
+			$scope.orderByChildren = order;
 		};
 		
 		// Is logged in user an admin
@@ -102,6 +100,21 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 
 		$scope.isActive = function(passeduser){
 			return passeduser.active;
+		};
+
+		$scope.isPunchedIn = function(passedchild){
+			return passedchild.isPunchedIn;
+		};
+
+		$scope.parentIsActive = function(passedchild){
+			if($scope.users){
+				for(var i=0; i < $scope.users.length; i++){
+					var currUser = $scope.users[i];
+					if(currUser._id === passedchild.user._id){
+						return currUser.active;
+					}
+				}
+			}
 		};
 
 		// Make User Admin

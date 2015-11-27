@@ -15,7 +15,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				firstName: this.firstName,
 				lastName: this.lastName,
 				dob: this.dob,
-				timePunches: this.timePunches
+				timePunches: this.timePunches,
+				parentLastName: $scope.currentuser.lastName,
+				parentFirstName: $scope.currentuser.firstName
+
 			});
 
 			// Redirect after save

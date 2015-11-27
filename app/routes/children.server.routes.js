@@ -11,8 +11,8 @@ module.exports = function(app) {
 
 	app.route('/children/:childId')
 		.get(children.read)
-		.put(users.requiresLogin, children.hasAuthorization, children.update)
-		.delete(users.requiresLogin, children.hasAuthorization, children.delete);
+		.put(users.requiresLogin, children.update)
+		.delete(users.requiresLogin, children.delete);
 
 	// Finish by binding the Child middleware
 	app.param('childId', children.childByID);

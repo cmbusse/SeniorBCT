@@ -7,15 +7,15 @@
 	<div class="container" ng-show="loggedInIsAdmin()">
 		<div class="row">
 			<div class="col-md-6">
-				<h3>{{user.firstName}} {{user.lastName}}'s Account 
+				<h3>{{::user.firstName}} {{::user.lastName}}'s Account 
 				<span ng-show="isActive(user)" class="text-muted"> - Active User</span>
 				<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
 				</h3>
 				<p class="userp" ng-show="isAdmin(user)" style="color: red"><strong>Admin Account</strong></p>
 
-				<p class="userp">PIN:  {{user.PIN}}</p>
-				<p class="userp">Email:  {{user.email}}</p>
-				<p class="userp">Phone:  {{user.phone}}</p>
+				<p class="userp">PIN:  {{::user.PIN}}</p>
+				<p class="userp">Email:  {{::user.email}}</p>
+				<p class="userp">Phone:  {{::user.phone}}</p>
 			</div>
 			<div class="col-md-6" style="margin-top: 0px">
 				<h3>Quick Editing</h3>

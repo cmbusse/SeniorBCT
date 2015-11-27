@@ -80,7 +80,9 @@ exports.update = function(req, res) {
 							punchesIn: newPunchesIn,
 							punchesOut: newPunchesOut,
 							isPunchedIn: currChild.isPunchedIn,
-							lastCheckIn: currChild.lastCheckIn
+							lastCheckIn: currChild.lastCheckIn,
+							parentFirstName: currChild.parentFirstName,
+							parentLastName: currChild.parentLastName
 						},
 					 };
 		var options = { new: true };

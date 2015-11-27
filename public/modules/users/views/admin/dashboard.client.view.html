@@ -6,53 +6,72 @@
 	<tabset style="margin-top: 20px">
     	<tab heading="Manage Users">
 	    		<div class="container" ng-show="loggedInIsAdmin()">
-				<h3>Manage Users Dashboard</h3>
-
-				<!-- 	TODO:	Change these up from pills, implement same thing for children-->
-				<ul class="nav nav-pills">
-					<li><a href="#" ng-click="setOrderByUsers('roles')">Order by Account Type</a></li>
-					<li><a href="#" ng-click="setOrderByUsers('inactive')">Order by Inactive</a></li>
-				</ul>
-				<ul class="list-group">
-					<li class="list-group-item" ng-repeat="user in users | orderBy: orderBy">
-						<div class="row">
-							<div class="col-xs-6 col-md-6">
-								<h4>
-									<a data-ng-href="#!/users/{{user._id}}">
-										{{user.firstName}} {{user.lastName}}
-										<span ng-show="isActive(user)" class="text-muted"> - Active User</span>
-										<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
-									</a>
-								</h4>							
-								<p class="userp" ng-show="isAdmin(user)" style="color: red"><strong>Admin Account</strong></p>
-								<p class="userp">PIN:  {{user.PIN}}</p>
-								<p class="userp">Username:  {{user.username}}</p>
-								<p class="userp">Email:  {{user.email}}</p>
-								<p class="userp">Phone:  {{user.phone}}</p>
+	    		<div class="row">
+	    			<div class="col-xs-12 col-sm-6 col-md-6">
+						<h3>Manage Users Dashboard</h3>
+					</div>
+					<div class="col-xs-12 col-md-6 sortByBar">
+						<span>Sort Users by:  </span>
+						<a href="" ng-click="setOrderByUsers('lastName')">Last Name</a><span> | </span>
+						<a href="" ng-click="setOrderByUsers('roles')">Account Type</a><span> | </span>
+						<a href="" ng-click="setOrderByUsers('-active')">Active Users</a>
+					</div>
+				</div>
+				<div style="margin-top: 10px">
+					<ul class="list-group">
+						<li class="list-group-item" ng-repeat="user in users | orderBy: orderByUsers">
+							<div class="row">
+								<div class="col-xs-12 col-md-6">
+									<h4>
+										<a data-ng-href="#!/users/{{user._id}}">
+											{{user.firstName}} {{user.lastName}}
+											<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
+										</a>
+									</h4>							
+									<p class="userp" ng-show="isAdmin(user)" style="color: red"><strong>Admin Account</strong></p>
+									<p class="userp">PIN:  {{user.PIN}}</p>
+									<p class="userp">Username:  {{user.username}}</p>
+									<p class="userp">Email:  {{user.email}}</p>
+									<p class="userp">Phone:  {{user.phone}}</p>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-6">
+									<a data-ng-href="#!/users/{{user._id}}/edit" class="btn btn-default btn-md">Click Here to Edit this User</a>
+								</div>
 							</div>
-							<div class="col-xs-6 col-md-6">
-								<!-- TODO:  If this button gets restyled (it should) apply some formatted in view-user.client.view.html for children -->
-								<a data-ng-href="#!/users/{{user._id}}/edit" class="list-group-item">Click Here to Edit this User</a>
-							</div>
-						</div>
-					</li>
-				</ul>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</tab>
     	<tab heading="Manage Children">
     			<div class="container" ng-show="loggedInIsAdmin()">
-				<h3>Manage Children Dashboard</h3>
-				<!-- 	TODO:	Add in a filter/sort by type thing to view clients and admins seperately
-						TODO:	also seperate active and inactive users-->
+				<div class="row">
+	    			<div class="col-xs-12 col-sm-6 col-md-6">
+						<h3>Manage Children Dashboard</h3>
+					</div>
+					<div class="col-xs-12 col-md-6 sortByBar">
+						<span>Sort Children by:  </span>
+						<a href="" ng-click="setOrderByChildren('lastName')">Last Name (A-Z)</a>
+						<span> | </span>
+						<a href="" ng-click="setOrderByChildren('-isPunchedIn')">Checked In</a>
+					</div>
+				</div>
 				<ul class="list-group">
-					<li class="list-group-item" ng-repeat="child in children">
+					<li class="list-group-item" ng-repeat="child in children | orderBy: orderByChildren">
 						<div class="row">
-							<div class="col-xs-6 col-md-6">
+							<div class="col-xs-12 col-md-6">
 								<h4>
 									<a data-ng-href="#!/children/{{child._id}}">
 										{{child.firstName}} {{child.lastName}}
+										<span ng-show="!parentIsActive(child)" class="text-muted"> - Inactive Parent</span>
 									</a>
-								</h4>							
+								</h4>
+								<p class="userp" ng-show="isPunchedIn(child)" style="color: red"><strong>Checked In</strong></p>
+								<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>
+								<p class="userp">Parent:  {{child.parentFirstName}} {{child.parentLastName}}</p>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-6">
+								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-default btn-md">Click Here to Edit this Child</a>
 							</div>
 						</div>
 					</li>

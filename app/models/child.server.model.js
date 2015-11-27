@@ -47,6 +47,14 @@ var ChildSchema = new Schema({
 	},
 	lastCheckIn: {
 		type: Date
+	},
+	parentFirstName: {
+		type: String,
+		default: ''
+	},
+	parentLastName: {
+		type: String,
+		default: ''
 	}
 });
 
