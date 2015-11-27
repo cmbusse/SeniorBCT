@@ -40,6 +40,13 @@ var ChildSchema = new Schema({
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
+	},
+	isPunchedIn: {
+		type: Boolean,
+		default: false
+	},
+	lastCheckIn: {
+		type: Date
 	}
 });
 

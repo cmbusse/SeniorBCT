@@ -2,14 +2,7 @@
 	<div class="container" ng-show="!loggedInIsAdmin()">
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
 		<h3 class="text-center text-danger"><strong>Please click <a href="/">here</a> to go home</strong></h3>
-	</div>
-	<div>
-
-	<uib-tabset vertical="true" type="pills">
-	    <uib-tab heading="Vertical 1">Vertical content 1</uib-tab>
-	    <uib-tab heading="Vertical 2">Vertical content 2</uib-tab>
-	  </uib-tabset>
-	    
+	</div>	    
 
 	<div class="container" ng-show="loggedInIsAdmin()">
 		<h3>Manage Users Dashboard</h3>
@@ -27,7 +20,6 @@
 							</a>
 						</h4>							
 						<p class="userp" ng-show="isAdmin(user)" style="color: red"><strong>Admin Account</strong></p>
-						<!--<p class="userp" ng-show="!isAdmin(user)">User Account</	p>-->
 						<p class="userp">PIN:  {{user.PIN}}</p>
 						<p class="userp">Username:  {{user.username}}</p>
 						<p class="userp">Email:  {{user.email}}</p>
@@ -51,7 +43,9 @@
 				<div class="row">
 					<div class="col-xs-6 col-md-6">
 						<h4>
-							{{child.firstName}} {{child.lastName}}
+							<a data-ng-href="#!/children/{{child._id}}">
+								{{child.firstName}} {{child.lastName}}
+							</a>
 						</h4>							
 					</div>
 				</div>

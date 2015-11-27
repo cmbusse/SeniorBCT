@@ -84,51 +84,15 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       		}	       		
         	});
 		};
-		/*
-		$scope.isCheckedIn = function(childId){
-			var allChildren = Children.query({}, function(){
-				for(var i=0; i < allChildren.length; i++)
-	       		{
-	       			var currChild = allChildren[i];
-	       			if(currChild._id === childId)
-	       			{
-	       				$scope.child = currChild;
-	       			}
-	       		}
-	       		var punchesIn = $scope.child.punchesIn;
-	       		var punchesOut = $scope.child.punchesOut;
-	       		// If the child has an even number of check ins as check outs, they are good to check in
-	       		if(punchesIn.length === (punchesOut.length+1)){
-					return true;
-	       		} else{
-	       			return false;
-	       		}
 
-        	});
+		$scope.childIsPunchedIn = function(passedchild){
+			if(passedchild.isPunchedIn === true){
+				return true;
+			} else{
+				return false;
+			}
 		};
 
-		$scope.isCheckedOut = function(childId){
-			var allChildren = Children.query({}, function(){
-				for(var i=0; i < allChildren.length; i++)
-	       		{
-	       			var currChild = allChildren[i];
-	       			if(currChild._id === childId)
-	       			{
-	       				$scope.child = currChild;
-	       			}
-	       		}
-	       		var punchesIn = $scope.child.punchesIn;
-	       		var punchesOut = $scope.child.punchesOut;
-	       		// If the child has an even number of check ins as check outs, they are good to check in
-	       		if(punchesIn.length === punchesOut.length){
-					return true;
-	       		} else{
-	       			return false;
-	       		}
-
-        	});
-		};
-		*/
 		$scope.checkChildIn = function(childId){
 			var allChildren = Children.query({}, function(){
 				for(var i=0; i < allChildren.length; i++)
@@ -140,12 +104,14 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       			}
 	       		}
 	       		// If the child has an even number of check ins as check outs, they are good to check in
-	       		if($scope.child.punchesIn.length === $scope.child.punchesOut.length || true){
+	       		if($scope.child.punchesIn.length === $scope.child.punchesOut.length){
 					var dateNow = new Date();
 		       		$scope.child.punchesIn[$scope.child.punchesIn.length] = dateNow;
+		       		$scope.child.isPunchedIn = true;
+		       		$scope.child.lastCheckIn = dateNow;
 	        		console.log('test');
 	        		$scope.child.$update(function(response) {
-
+	        			
 	        			}, function(response) {
 	        				$scope.error = response.data.message;
 	        			});
@@ -170,12 +136,13 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       		var punchesIn = $scope.child.punchesIn;
 	       		var punchesOut = $scope.child.punchesOut;
 	       		// If the child has an even number of check ins as check outs, they are good to check in
-	       		if(punchesIn.length === (punchesOut.length+1) || true){
+	       		if(punchesIn.length === (punchesOut.length+1)){
 					var dateNow = new Date();
 		       		punchesOut[punchesOut.length] = dateNow;
+		       		$scope.child.isPunchedIn = false;
 	        		console.log('test');
 	        		$scope.child.$update(function(response) {
-
+	        			
 	        			}, function(response) {
 	        				$scope.error = response.data.message;
 	        			});

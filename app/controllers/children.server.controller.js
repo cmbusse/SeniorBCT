@@ -78,7 +78,9 @@ exports.update = function(req, res) {
 							lastName: currChild.lastName,
 							dob: currChild.dob,
 							punchesIn: newPunchesIn,
-							punchesOut: newPunchesOut
+							punchesOut: newPunchesOut,
+							isPunchedIn: currChild.isPunchedIn,
+							lastCheckIn: currChild.lastCheckIn
 						},
 					 };
 		var options = { new: true };

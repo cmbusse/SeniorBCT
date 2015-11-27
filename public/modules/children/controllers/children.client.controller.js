@@ -71,6 +71,30 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			});
 		};
 
+		// Is logged in user admin
+		$scope.loggedInIsAdmin = function(){
+			if($scope.currentuser){
+				return $scope.currentuser.roles === 'admin';	
+			}
+			else{
+				return false;
+			}
+		};
+
+		// Must be admin or child's parent to view child
+		$scope.authorizedToViewChild = function() {
+			if($scope.child){
+				if($scope.currentuser.role === 'admin'){
+					return true;
+				} else if($scope.currentuser._id === $scope.child.user._id){
+					return true;
+				} else{
+					return false;
+				}
+			}
+			return false;
+		};
+
 		//Retrieve an array of children that are associated with a user
 		$scope.findUsersChildren = function(){
 			var usersChildren = [];
