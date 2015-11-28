@@ -87,7 +87,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		// Must be admin or child's parent to view child
 		$scope.authorizedToViewChild = function() {
 			if($scope.child){
-				if($scope.currentuser.role === 'admin'){
+				if($scope.currentuser.roles === 'admin'){
 					return true;
 				} else if($scope.currentuser._id === $scope.child.user._id){
 					return true;
@@ -96,6 +96,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				}
 			}
 			return false;
+		};
+
+		$scope.isPunchedIn = function(passedchild){
+			return passedchild.isPunchedIn;
 		};
 
 		//Retrieve an array of children that are associated with a user
@@ -114,6 +118,21 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 	       		}
 	       		$scope.newestChild = usersChildren[0];
         	});
+		};
+
+		$scope.updateChild = function(isValid) {
+			if (isValid) {
+				$scope.success = $scope.error = null;
+				$scope.child.$update(function(response) {
+					$scope.success = true;
+					$scope.child = response;
+					}, function(response) {
+						$scope.error = response.data.message;
+				});
+				console.log('test');
+			} else {
+				$scope.submitted = true;
+			}
 		};
 	}
 ]);

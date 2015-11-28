@@ -3,13 +3,18 @@
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
 		<h3 class="text-center text-danger"><strong>Please click <a href="/">here</a> to go home</strong></h3>
 	</div>	
-	<div class="page-header" ng-show="authorizedToViewChild()">
-		<h3>{{child.firstName}} {{child.lastName}}</h3>
-		<a class="btn btn-primary" href="/#!/children/{{child._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();" ng-show="loggedInIsAdmin()">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
+	<div class="row" style="margin-top: 20px">
+		<div class="col-xs-12 col-md-6">
+			<h4>
+				{{child.firstName}} {{child.lastName}}
+				<span ng-show="!parentIsActive(child)" class="text-muted"> - Inactive Parent</span>
+			</h4>
+			<p class="userp" ng-show="isPunchedIn(child)" style="color: red"><strong>Checked In</strong></p>
+			<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>
+			<p class="userp">Parent:  {{child.parentFirstName}} {{child.parentLastName}}</p>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-default btn-md" style="margin-top: 5px">Click Here to Edit this Child</a>
+		</div>
 	</div>
 </section>
