@@ -7,6 +7,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.currentuser = Authentication.user;
 		$scope.usersChildren = {};
 		$scope.newestChild = {};
+		$scope.thisMonday = {};
+		$scope.scopeDiff = {};
 		$scope.weekOfDate = {};
 		$scope.monDate = {};
 		$scope.tueDate = {};
@@ -145,63 +147,45 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 		$scope.seedWeekView = function(){
 			var d = new Date();
-			var d2 = new Date();
-			var d3 = new Date();
-			var d4 = new Date();
-			var d5 = new Date();
-			var d6 = new Date();
-			var d7 = new Date();
 			var day = d.getDay();
 			var diff = d.getDate() - day + (day === 0 ? -6:1);
-			$scope.weekOfDate = new Date(d.setDate(diff));
+			$scope.weekOfDate = $scope.thisMonday = new Date(d.setDate(diff));
+			$scope.scopeDiff = $scope.thisMonday.getDate();
 			$scope.monDate = new Date(d.setDate(diff));
-			$scope.tueDate = new Date(d2.setDate(diff+1));
-			$scope.wedDate = new Date(d3.setDate(diff+2));
-			$scope.thuDate = new Date(d4.setDate(diff+3));
-			$scope.friDate = new Date(d5.setDate(diff+4));
-			$scope.satDate = new Date(d6.setDate(diff+5));
-			$scope.sunDate = new Date(d7.setDate(diff+6));
-			console.log('test');
+			$scope.tueDate = new Date(d.setDate(d.getDate()+1));
+			$scope.wedDate = new Date(d.setDate(d.getDate()+1));
+			$scope.thuDate = new Date(d.setDate(d.getDate()+1));
+			$scope.friDate = new Date(d.setDate(d.getDate()+1));
+			$scope.satDate = new Date(d.setDate(d.getDate()+1));
+			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
 		};
 
 		$scope.backOneWeek = function(){
-			// revisit, focus on how things are updating, maybe trying new dating them before setting, idk though.  Or try making new date with weekOfDate as value, might work
-			var d = new Date($scope.weekOfDate);
-			var d2 = new Date($scope.weekOfDate);
-			var d3 = new Date($scope.weekOfDate);
-			var d4 = new Date($scope.weekOfDate);
-			var d5 = new Date($scope.weekOfDate);
-			var d6 = new Date($scope.weekOfDate);
-			var d7 = new Date($scope.weekOfDate);
-			var diff = d.getDate();
-			diff = diff-7;
-			if(diff<=0){
-				$scope.weekOfDate = new Date(d.setDate(diff));
-				$scope.monDate = $scope.weekOfDate;
-				var day = d.getDay();
-				diff = d.getDate() - day + (day === 0 ? -6:1);
-				$scope.tueDate = new Date(d2.setDate(diff+1));
-				$scope.wedDate = new Date(d3.setDate(diff+2));
-				$scope.thuDate = new Date(d4.setDate(diff+3));
-				$scope.friDate = new Date(d5.setDate(diff+4));
-				$scope.satDate = new Date(d6.setDate(diff+5));
-				$scope.sunDate = new Date(d7.setDate(diff+6));
-			} else{
-				$scope.weekOfDate = new Date(d.setDate(diff));
-				$scope.monDate = $scope.weekOfDate;
-				$scope.tueDate = new Date(d2.setDate(diff+1));
-				$scope.wedDate = new Date(d3.setDate(diff+2));
-				$scope.thuDate = new Date(d4.setDate(diff+3));
-				$scope.friDate = new Date(d5.setDate(diff+4));
-				$scope.satDate = new Date(d6.setDate(diff+5));
-				$scope.sunDate = new Date(d7.setDate(diff+6));
-			}
-			console.log('test');
-
+			$scope.scopeDiff -= 7;
+			var d = new Date($scope.thisMonday);
+			d.setDate($scope.scopeDiff);
+			$scope.weekOfDate = $scope.monDate = new Date(d);
+			$scope.tueDate = new Date(d.setDate(d.getDate()+1));
+			$scope.wedDate = new Date(d.setDate(d.getDate()+1));
+			$scope.thuDate = new Date(d.setDate(d.getDate()+1));
+			$scope.friDate = new Date(d.setDate(d.getDate()+1));
+			$scope.satDate = new Date(d.setDate(d.getDate()+1));
+			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
 		};
 
-		// NOTE:  setDate documentation:  http://www.w3schools.com/jsref/jsref_setdate.asp
-		// setDate can basically keep going in -7 intervals to keep moving back dates
+		$scope.forwardOneWeek = function(){
+			$scope.scopeDiff += 7;
+			var d = new Date($scope.thisMonday);
+			d.setDate($scope.scopeDiff);
+			$scope.weekOfDate = $scope.monDate = new Date(d);
+			$scope.tueDate = new Date(d.setDate(d.getDate()+1));
+			$scope.wedDate = new Date(d.setDate(d.getDate()+1));
+			$scope.thuDate = new Date(d.setDate(d.getDate()+1));
+			$scope.friDate = new Date(d.setDate(d.getDate()+1));
+			$scope.satDate = new Date(d.setDate(d.getDate()+1));
+			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
+		};
+		
 		// Copied from UI bootstrap example
 		/*
 		$scope.today = function() {

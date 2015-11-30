@@ -20,13 +20,13 @@
 
 	<div style="margin-top: 20px; width: 320px">
 		<div class="row" style="padding-left: 15px">
-			<div class="col-xs-1 col-sm-1 col-md-1" style="padding: 0px; width: 32px; height: 32px" ng-click="backOneWeek()">
+			<div class="col-xs-1 col-sm-1 col-md-1 arrowBox" style="padding: 0px; width: 32px; height: 32px" ng-click="backOneWeek()">
 				<img src="modules/children/img/play128.svg" id="leftarrow"><!-- Surround with <a> tag and have it, possibly ng-click, to go back a week-->
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 weekbar">
 					Week of {{weekOfDate | date: 'MM-dd-yy'}}
 			</div>
-			<div class="col-xs-1 col-sm-1 col-md-1" style="padding: 0px; width: 32px; height: 32px">
+			<div class="col-xs-1 col-sm-1 col-md-1 arrowBox" style="padding: 0px; width: 32px; height: 32px" ng-click="forwardOneWeek()">
 				<img src="modules/children/img/play128.svg" id="rightarrow"><!-- Surround with <a> tag and have it, possibly ng-click, to go forward a week-->
 			</div>
 		</div>
