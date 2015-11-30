@@ -1,4 +1,4 @@
-<section data-ng-controller="ChildrenController" data-ng-init="findOne()">
+<section data-ng-controller="ChildrenController" data-ng-init="findOne(); seedWeekView()" >
 	<div class="container" ng-show="!authorizedToViewChild()">
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
 		<h3 class="text-center text-danger"><strong>Please click <a href="/">here</a> to go home</strong></h3>
@@ -16,21 +16,131 @@
 		<div class="col-xs-12 col-sm-6 col-md-6">
 			<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-default btn-md" style="margin-top: 5px">Click Here to Edit this Child</a>
 		</div>
+	</div>
+
+	<div style="margin-top: 20px; width: 320px">
+		<div class="row" style="padding-left: 15px">
+			<div class="col-xs-1 col-sm-1 col-md-1" style="padding: 0px; width: 32px; height: 32px" ng-click="backOneWeek()">
+				<img src="modules/children/img/play128.svg" id="leftarrow"><!-- Surround with <a> tag and have it, possibly ng-click, to go back a week-->
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 weekbar">
+					Week of {{weekOfDate | date: 'MM-dd-yy'}}
+			</div>
+			<div class="col-xs-1 col-sm-1 col-md-1" style="padding: 0px; width: 32px; height: 32px">
+				<img src="modules/children/img/play128.svg" id="rightarrow"><!-- Surround with <a> tag and have it, possibly ng-click, to go forward a week-->
+			</div>
+		</div>
+		<div class="row" style="padding-left: 15px">
+			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
+				<span class="dateBoxSpan">
+					Mon<br>
+					{{monDate | date: 'MM-dd'}}
+				</span>	
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
+				<span class="dayBarSpan">
+					In:  ____  Out:  ____<br>
+					Total:  ____ hours
+				</span>
+			</div>
+		</div>
+		<div class="row" style="padding-left: 15px">
+			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
+				<span class="dateBoxSpan">
+					Tue<br>
+					{{tueDate | date: 'MM-dd'}}
+				</span>	
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
+				<span class="dayBarSpan">
+					In:  ____  Out:  ____<br>
+					Total:  ____ hours
+				</span>
+			</div>
+		</div>
+		<div class="row" style="padding-left: 15px">
+			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
+				<span class="dateBoxSpan">
+					Wed<br>
+					{{wedDate | date: 'MM-dd'}}
+				</span>	
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
+				<span class="dayBarSpan">
+					In:  ____  Out:  ____<br>
+					Total:  ____ hours
+				</span>
+			</div>
+		</div>
+		<div class="row" style="padding-left: 15px">
+			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
+				<span class="dateBoxSpan">
+					Thu<br>
+					{{thuDate | date: 'MM-dd'}}
+				</span>	
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
+				<span class="dayBarSpan">
+					In:  ____  Out:  ____<br>
+					Total:  ____ hours
+				</span>
+			</div>
+		</div>
+		<div class="row" style="padding-left: 15px">
+			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
+				<span class="dateBoxSpan">
+					Fri<br>
+					{{friDate | date: 'MM-dd'}}
+				</span>	
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
+				<span class="dayBarSpan">
+					In:  ____  Out:  ____<br>
+					Total:  ____ hours
+				</span>
+			</div>
+		</div>
+		<div class="row" style="padding-left: 15px">
+			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
+				<span class="dateBoxSpan">
+					Sat<br>
+					{{satDate | date: 'MM-dd'}}
+				</span>	
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
+				<span class="dayBarSpan">
+					In:  ____  Out:  ____<br>
+					Total:  ____ hours
+				</span>
+			</div>
+		</div>
+		<div class="row" style="padding-left: 15px">
+			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
+				<span class="dateBoxSpan">
+					Sun<br>
+					{{sunDate | date: 'MM-dd'}}
+				</span>	
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
+				<span class="dayBarSpan">
+					In:  ____  Out:  ____<br>
+					Total:  ____ hours
+				</span>
+			</div>
+		</div>
+
+
+		
+	</div>
+		<!--
 		<div class="col-md-12">
 			<pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
-			<pre>Selected mode is: <em>{{mode}}</em></pre>
-			<pre>Selected datepicker-mode is: <em>{{datepicker-mode}}</em></pre>
-
-		    <h4>Inline</h4>
-		    <div style="display:inline-block; min-height:290px;">
-		        <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm" datepicker-mode="week"></datepicker>
-		    </div>
 
 		    <h4>Popup</h4>
 		    <div class="row">
 		        <div class="col-md-6">
 		            <p class="input-group">
-		              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+		              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
 		              <span class="input-group-btn">
 		                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 		              </span>
@@ -49,5 +159,5 @@
 		    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
 		    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="After today restriction">Min date</button>
 		</div>
-	</div>
+		-->
 </section>
