@@ -1,4 +1,4 @@
-<section data-ng-controller="ChildrenController" data-ng-init="findOne(); seedWeekView()" >
+<section data-ng-controller="ChildrenController" data-ng-init="findOne(); seedWeekView(); buildTimes()">
 	<div class="container" ng-show="!authorizedToViewChild()">
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
 		<h3 class="text-center text-danger"><strong>Please click <a href="/">here</a> to go home</strong></h3>
@@ -24,7 +24,7 @@
 				<img src="modules/children/img/play128.svg" id="leftarrow"><!-- Surround with <a> tag and have it, possibly ng-click, to go back a week-->
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 weekbar">
-					Week of {{weekOfDate | date: 'MM-dd-yy'}}
+					Week of {{weekOfDate | date: 'MM/dd/yy'}}
 			</div>
 			<div class="col-xs-1 col-sm-1 col-md-1 arrowBox" style="padding: 0px; width: 32px; height: 32px" ng-click="forwardOneWeek()">
 				<img src="modules/children/img/play128.svg" id="rightarrow"><!-- Surround with <a> tag and have it, possibly ng-click, to go forward a week-->
@@ -34,13 +34,13 @@
 			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
 				<span class="dateBoxSpan">
 					Mon<br>
-					{{monDate | date: 'MM-dd'}}
+					{{monDate | date: 'MM/dd'}}
 				</span>	
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
 				<span class="dayBarSpan">
-					In:  ____  Out:  ____<br>
-					Total:  ____ hours
+					<strong>In:</strong>  {{monIn | date: 'hh:mm:ss:ss a'}}  <strong>Out:</strong>  {{monOut | date: 'hh:mm:ss:ss a'}}<br>
+					Total:  {{monTotal | millSecondsToTimeString}} 
 				</span>
 			</div>
 		</div>
@@ -48,13 +48,13 @@
 			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
 				<span class="dateBoxSpan">
 					Tue<br>
-					{{tueDate | date: 'MM-dd'}}
+					{{tueDate | date: 'MM/dd'}}
 				</span>	
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
 				<span class="dayBarSpan">
-					In:  ____  Out:  ____<br>
-					Total:  ____ hours
+					<strong>In:</strong>  {{tueIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{tueOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{tueTotal | millSecondsToTimeString}} 
 				</span>
 			</div>
 		</div>
@@ -62,13 +62,13 @@
 			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
 				<span class="dateBoxSpan">
 					Wed<br>
-					{{wedDate | date: 'MM-dd'}}
+					{{wedDate | date: 'MM/dd'}}
 				</span>	
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
 				<span class="dayBarSpan">
-					In:  ____  Out:  ____<br>
-					Total:  ____ hours
+					<strong>In:</strong>  {{wedIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{wedOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{wedTotal | millSecondsToTimeString}} 
 				</span>
 			</div>
 		</div>
@@ -76,13 +76,13 @@
 			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
 				<span class="dateBoxSpan">
 					Thu<br>
-					{{thuDate | date: 'MM-dd'}}
+					{{thuDate | date: 'MM/dd'}}
 				</span>	
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
 				<span class="dayBarSpan">
-					In:  ____  Out:  ____<br>
-					Total:  ____ hours
+					<strong>In:</strong>  {{thuIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{thuOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{thuTotal | millSecondsToTimeString}} 
 				</span>
 			</div>
 		</div>
@@ -90,13 +90,13 @@
 			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
 				<span class="dateBoxSpan">
 					Fri<br>
-					{{friDate | date: 'MM-dd'}}
+					{{friDate | date: 'MM/dd'}}
 				</span>	
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
 				<span class="dayBarSpan">
-					In:  ____  Out:  ____<br>
-					Total:  ____ hours
+					<strong>In:</strong>  {{friIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{friOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{friTotal | millSecondsToTimeString}} 
 				</span>
 			</div>
 		</div>
@@ -104,13 +104,13 @@
 			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
 				<span class="dateBoxSpan">
 					Sat<br>
-					{{satDate | date: 'MM-dd'}}
+					{{satDate | date: 'MM/dd'}}
 				</span>	
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
 				<span class="dayBarSpan">
-					In:  ____  Out:  ____<br>
-					Total:  ____ hours
+					<strong>In:</strong>  {{satIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{satOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{satTotal | millSecondsToTimeString}} 
 				</span>
 			</div>
 		</div>
@@ -118,13 +118,13 @@
 			<div class="col-xs-2 col-sm-2 col-md-2 dateBoxDiv">
 				<span class="dateBoxSpan">
 					Sun<br>
-					{{sunDate | date: 'MM-dd'}}
+					{{sunDate | date: 'MM/dd'}}
 				</span>	
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv">
 				<span class="dayBarSpan">
-					In:  ____  Out:  ____<br>
-					Total:  ____ hours
+					<strong>In:</strong>  {{sunIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{sunOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{sunTotal | millSecondsToTimeString}} 
 				</span>
 			</div>
 		</div>

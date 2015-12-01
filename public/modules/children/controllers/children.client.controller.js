@@ -7,16 +7,6 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.currentuser = Authentication.user;
 		$scope.usersChildren = {};
 		$scope.newestChild = {};
-		$scope.thisMonday = {};
-		$scope.scopeDiff = {};
-		$scope.weekOfDate = {};
-		$scope.monDate = {};
-		$scope.tueDate = {};
-		$scope.wedDate = {};
-		$scope.thuDate = {};
-		$scope.friDate = {};
-		$scope.satDate = {};
-		$scope.sunDate = {};
 
 		// Create new Child
 		$scope.create = function() {
@@ -159,6 +149,278 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			$scope.satDate = new Date(d.setDate(d.getDate()+1));
 			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
 		};
+
+		$scope.buildTimes = function(){
+			$scope.$watch('child.$resolved',function(newValue, oldValue){
+				if(newValue === true){
+					var punchesIn = [];
+					var punchesOut = [];
+					for(var i=0; i<$scope.child.punchesIn.length; i++){
+						var d = new Date($scope.child.punchesIn[i].punch);
+						punchesIn.push(d);
+					}
+					for(i=0; i<$scope.child.punchesOut.length; i++){
+						var d2 = new Date($scope.child.punchesOut[i].punch);
+						punchesOut.push(d2);
+					}
+					// build Monday Times
+					var monDate = $scope.monDate;
+					var monInFound = false;
+					var monOutFound = false;
+					for(i=0; i<punchesIn.length; i++){
+						if(punchesIn[i].getDate() === monDate.getDate()){
+							if(punchesIn[i].getMonth() === monDate.getMonth()){
+								if(punchesIn[i].getFullYear() === monDate.getFullYear()){
+									$scope.monIn = punchesIn[i];
+									monInFound = true;
+								}
+							}
+						}
+					}
+					for(i=0; i<punchesOut.length; i++){
+						if(punchesOut[i].getDate() === monDate.getDate()){
+							if(punchesOut[i].getMonth() === monDate.getMonth()){
+								if(punchesOut[i].getFullYear() === monDate.getFullYear()){
+									$scope.monOut = punchesOut[i];
+									monOutFound = true;
+								}
+							}
+						}
+					}
+					if(!monInFound){
+						$scope.monIn = 'N/A';
+					}
+					if(!monOutFound){
+						$scope.monOut = 'N/A';
+					}
+					if($scope.monIn === 'N/A' || $scope.monOut === 'N/A'){
+						$scope.monTotal = 'N/A';
+					} else{
+						$scope.monTotal = $scope.monOut - $scope.monIn;
+					}
+					// build tuesday Times
+					var tueDate = $scope.tueDate;
+					var tueInFound = false;
+					var tueOutFound = false;
+					for(i=0; i<punchesIn.length; i++){
+						if(punchesIn[i].getDate() === tueDate.getDate()){
+							if(punchesIn[i].getMonth() === tueDate.getMonth()){
+								if(punchesIn[i].getFullYear() === tueDate.getFullYear()){
+									$scope.tueIn = punchesIn[i];
+									tueInFound = true;
+								}
+							}
+						}
+					}
+					for(i=0; i<punchesOut.length; i++){
+						if(punchesOut[i].getDate() === tueDate.getDate()){
+							if(punchesOut[i].getMonth() === tueDate.getMonth()){
+								if(punchesOut[i].getFullYear() === tueDate.getFullYear()){
+									$scope.tueOut = punchesOut[i];
+									tueOutFound = true;
+								}
+							}
+						}
+					}
+					if(!tueInFound){
+						$scope.tueIn = 'N/A';
+					}
+					if(!tueOutFound){
+						$scope.tueOut = 'N/A';
+					}
+					if($scope.tueIn === 'N/A' || $scope.tueOut === 'N/A'){
+						$scope.tueTotal = 'N/A';
+					} else{
+						$scope.tueTotal = $scope.tueOut - $scope.tueIn;
+					}
+					// build wednesday Times
+					var wedDate = $scope.wedDate;
+					var wedInFound = false;
+					var wedOutFound = false;
+					for(i=0; i<punchesIn.length; i++){
+						if(punchesIn[i].getDate() === wedDate.getDate()){
+							if(punchesIn[i].getMonth() === wedDate.getMonth()){
+								if(punchesIn[i].getFullYear() === wedDate.getFullYear()){
+									$scope.wedIn = punchesIn[i];
+									wedInFound = true;
+								}
+							}
+						}
+					}
+					for(i=0; i<punchesOut.length; i++){
+						if(punchesOut[i].getDate() === wedDate.getDate()){
+							if(punchesOut[i].getMonth() === wedDate.getMonth()){
+								if(punchesOut[i].getFullYear() === wedDate.getFullYear()){
+									$scope.wedOut = punchesOut[i];
+									wedOutFound = true;
+								}
+							}
+						}
+					}
+					if(!wedInFound){
+						$scope.wedIn = 'N/A';
+					}
+					if(!wedOutFound){
+						$scope.wedOut = 'N/A';
+					}
+					if($scope.wedIn === 'N/A' || $scope.wedOut === 'N/A'){
+						$scope.wedTotal = 'N/A';
+					} else{
+						$scope.wedTotal = $scope.wedOut - $scope.wedIn;
+					}
+					// build thursday Times
+					var thuDate = $scope.thuDate;
+					var thuInFound = false;
+					var thuOutFound = false;
+					for(i=0; i<punchesIn.length; i++){
+						if(punchesIn[i].getDate() === thuDate.getDate()){
+							if(punchesIn[i].getMonth() === thuDate.getMonth()){
+								if(punchesIn[i].getFullYear() === thuDate.getFullYear()){
+									$scope.thuIn = punchesIn[i];
+									thuInFound = true;
+								}
+							}
+						}
+					}
+					for(i=0; i<punchesOut.length; i++){
+						if(punchesOut[i].getDate() === thuDate.getDate()){
+							if(punchesOut[i].getMonth() === thuDate.getMonth()){
+								if(punchesOut[i].getFullYear() === thuDate.getFullYear()){
+									$scope.thuOut = punchesOut[i];
+									thuOutFound = true;
+								}
+							}
+						}
+					}
+					if(!thuInFound){
+						$scope.thuIn = 'N/A';
+					}
+					if(!thuOutFound){
+						$scope.thuOut = 'N/A';
+					}
+					if($scope.thuIn === 'N/A' || $scope.thuOut === 'N/A'){
+						$scope.thuTotal = 'N/A';
+					} else{
+						$scope.thuTotal = $scope.thuOut - $scope.thuIn;
+					}
+					// build friday Times
+					var friDate = $scope.friDate;
+					var friInFound = false;
+					var friOutFound = false;
+					for(i=0; i<punchesIn.length; i++){
+						if(punchesIn[i].getDate() === friDate.getDate()){
+							if(punchesIn[i].getMonth() === friDate.getMonth()){
+								if(punchesIn[i].getFullYear() === friDate.getFullYear()){
+									$scope.friIn = punchesIn[i];
+									friInFound = true;
+								}
+							}
+						}
+					}
+					for(i=0; i<punchesOut.length; i++){
+						if(punchesOut[i].getDate() === friDate.getDate()){
+							if(punchesOut[i].getMonth() === friDate.getMonth()){
+								if(punchesOut[i].getFullYear() === friDate.getFullYear()){
+									$scope.friOut = punchesOut[i];
+									friOutFound = true;
+								}
+							}
+						}
+					}
+					if(!friInFound){
+						$scope.friIn = 'N/A';
+					}
+					if(!friOutFound){
+						$scope.friOut = 'N/A';
+					}
+					if($scope.friIn === 'N/A' || $scope.friOut === 'N/A'){
+						$scope.friTotal = 'N/A';
+					} else{
+						$scope.friTotal = $scope.friOut - $scope.friIn;
+					}
+					// build saturday Times
+					var satDate = $scope.satDate;
+					var satInFound = false;
+					var satOutFound = false;
+					for(i=0; i<punchesIn.length; i++){
+						if(punchesIn[i].getDate() === satDate.getDate()){
+							if(punchesIn[i].getMonth() === satDate.getMonth()){
+								if(punchesIn[i].getFullYear() === satDate.getFullYear()){
+									$scope.satIn = punchesIn[i];
+									satInFound = true;
+								}
+							}
+						}
+					}
+					for(i=0; i<punchesOut.length; i++){
+						if(punchesOut[i].getDate() === satDate.getDate()){
+							if(punchesOut[i].getMonth() === satDate.getMonth()){
+								if(punchesOut[i].getFullYear() === satDate.getFullYear()){
+									$scope.satOut = punchesOut[i];
+									satOutFound = true;
+								}
+							}
+						}
+					}
+					if(!satInFound){
+						$scope.satIn = 'N/A';
+					}
+					if(!satOutFound){
+						$scope.satOut = 'N/A';
+					}
+					if($scope.satIn === 'N/A' || $scope.satOut === 'N/A'){
+						$scope.satTotal = 'N/A';
+					} else{
+						$scope.satTotal = $scope.satOut - $scope.satIn;
+					}
+					// build sunday Times
+					var sunDate = $scope.sunDate;
+					var sunInFound = false;
+					var sunOutFound = false;
+					for(i=0; i<punchesIn.length; i++){
+						if(punchesIn[i].getDate() === sunDate.getDate()){
+							if(punchesIn[i].getMonth() === sunDate.getMonth()){
+								if(punchesIn[i].getFullYear() === sunDate.getFullYear()){
+									$scope.sunIn = punchesIn[i];
+									sunInFound = true;
+								}
+							}
+						}
+					}
+					for(i=0; i<punchesOut.length; i++){
+						if(punchesOut[i].getDate() === sunDate.getDate()){
+							if(punchesOut[i].getMonth() === sunDate.getMonth()){
+								if(punchesOut[i].getFullYear() === sunDate.getFullYear()){
+									$scope.sunOut = punchesOut[i];
+									sunOutFound = true;
+								}
+							}
+						}
+					}
+					if(!sunInFound){
+						$scope.sunIn = 'N/A';
+					}
+					if(!sunOutFound){
+						$scope.sunOut = 'N/A';
+					}
+					if($scope.sunIn === 'N/A' || $scope.sunOut === 'N/A'){
+						$scope.sunTotal = 'N/A';
+					} else{
+						$scope.sunTotal = $scope.sunOut - $scope.sunIn;
+					}
+
+					// if dates are equal, check if months are equal, then check if years, if so its the right one!!!!!!!
+					console.log('test');	
+				}
+			});
+		};
+
+		/*
+		// Use ng-click to call this on a week change
+		$scope.rebuildTimes = function(){
+	
+		};
+		*/
 
 		$scope.backOneWeek = function(){
 			$scope.scopeDiff -= 7;
