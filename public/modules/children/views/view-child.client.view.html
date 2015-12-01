@@ -7,7 +7,7 @@
 		<div class="col-xs-12 col-md-6">
 			<h4>
 				{{child.firstName}} {{child.lastName}}
-				<span ng-show="!parentIsActive(child)" class="text-muted"> - Inactive Parent</span>
+				<!--<span ng-show="!parentIsActive(child)" class="text-muted"> - Inactive Parent</span>-->
 			</h4>
 			<p class="userp" ng-show="isPunchedIn(child)" style="color: red"><strong>Checked In</strong></p>
 			<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>

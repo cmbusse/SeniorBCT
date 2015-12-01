@@ -141,9 +141,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			var d = new Date();
 			var day = d.getDay();
 			var diff = d.getDate() - day + (day === 0 ? -6:1);
-			$scope.weekOfDate = $scope.thisMonday = new Date(d.setDate(diff));
+			$scope.weekOfDate = $scope.thisMonday = $scope.monDate = new Date(d.setDate(diff));
 			$scope.scopeDiff = $scope.thisMonday.getDate();
-			$scope.monDate = new Date(d.setDate(diff));
 			$scope.tueDate = new Date(d.setDate(d.getDate()+1));
 			$scope.wedDate = new Date(d.setDate(d.getDate()+1));
 			$scope.thuDate = new Date(d.setDate(d.getDate()+1));
