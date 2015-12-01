@@ -418,6 +418,14 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			});
 		};
 
+		$scope.fixDate = function(){
+			$scope.$watch('child.$resolved',function(newValue, oldValue){
+				if(newValue === true){
+					$scope.child.dob = new Date($scope.child.dob);
+				}
+			});
+		};
+
 		/*
 		// Use ng-click to call this on a week change
 		$scope.rebuildTimes = function(){
@@ -454,7 +462,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		};
 		
 		// Copied from UI bootstrap example
-		/*
+		
 		$scope.today = function() {
 			$scope.dt = new Date();
 		};
@@ -466,9 +474,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 		// Disable weekend selection
 		$scope.disabled = function(date, mode) {
-			return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 
-				|| date.getDay() === 5 || date.getDay() === 4 || date.getDay() === 3 
-				|| date.getDay() === 2) );
+			return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 || date.getDay() === 5 || date.getDay() === 4 || date.getDay() === 3 || date.getDay() === 2) );
 		};
 
 		$scope.open = function($event) {
@@ -486,7 +492,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 		$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 		$scope.format = $scope.formats[0];
-		*/
+		
 
 	}
 
