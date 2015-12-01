@@ -7,19 +7,27 @@ angular.module('users').config(['$stateProvider',
 		$stateProvider.
 		state('success', {
 			url: '/success',
-			templateUrl: 'modules/users/views/success.client.view.html'
+			templateUrl: 'modules/users/views/authentication/success.client.view.html'
 		}).
 		state('edit-user', {
 			url: '/users/:userId/edit',
-			templateUrl: 'modules/users/views/edit-user.client.view.html'
+			templateUrl: 'modules/users/views/admin/edit-user.client.view.html'
 		}).
 		state('childview', {
 			url: '/checkin/:userId',
-			templateUrl: 'modules/users/views/childview.client.view.html'
+			templateUrl: 'modules/users/views/checkin/childview.client.view.html'
+		}).
+		state('checkinstatus', {
+			url: '/checkin/:userId/status',
+			templateUrl: 'modules/users/views/checkin/status.client.view.html'
 		}).
 		state('view-user', {
 			url: '/users/:userId',
-			templateUrl: 'modules/users/views/view-user.client.view.html'
+			templateUrl: 'modules/users/views/admin/view-user.client.view.html'
+		}).
+		state('user-view-children', {
+			url: '/mychildren',
+			templateUrl: 'modules/users/views/user-view-children.client.view.html'
 		}).
 		state('profile', {
 			url: '/settings/profile',
@@ -47,7 +55,7 @@ angular.module('users').config(['$stateProvider',
 		}).
 		state('checkin', {
 			url: '/checkin',
-			templateUrl: 'modules/users/views/authentication/customersignin.client.view.html'
+			templateUrl: 'modules/users/views/checkin/customersignin.client.view.html'
 		}).
 		state('forgot', {
 			url: '/password/forgot',

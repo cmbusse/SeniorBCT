@@ -51,6 +51,24 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
         	});
 		};
 
+		//Retrieve an array of children that are associated with a user
+		$scope.findThisUsersChildren = function(){
+			var usersChildren = [];
+
+			var allChildren = Children.query({}, function(){
+				var userid = $scope.currentuser._id;
+				for(var i=0; i < allChildren.length; i++)
+	       		{
+	       			var currChild = allChildren[i];
+	       			if(currChild.user._id === userid)
+	       			{
+	       				usersChildren.push(currChild);
+	       			}
+	       		}
+	       		$scope.usersChildren = usersChildren;
+        	});
+		};
+
 		$scope.seedOrderBy = function(){
 			$scope.orderByUsers = 'lastName';
 			$scope.orderByChildren = 'lastName';

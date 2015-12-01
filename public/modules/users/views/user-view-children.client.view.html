@@ -1,0 +1,28 @@
+<section data-ng-controller="UsersController" data-ng-init="findOneUser(); findThisUsersChildren()">
+<!--  TODO:  Style this page, maybe add border around the two md-6 divs -->
+	<div class="container">
+		<div class="row" style="margin-top: 20px">
+			<div class="col-md-12">
+				<h4>Your Children</h4>
+				<ul class="list-group">
+					<li class="list-group-item" ng-repeat="child in usersChildren">
+						<div class="row">
+							<div class="col-xs-12 col-md-6">
+								<h4>
+									<a data-ng-href="#!/children/{{child._id}}">
+										{{child.firstName}} {{child.lastName}}
+									</a>
+								</h4>
+								<p class="userp" ng-show="isPunchedIn(child)" style="color: red"><strong>Checked In</strong></p>
+								<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>
+							</div>
+							<div class="col-xs-12 col-md-6">
+								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-default btn-md">Click Here to Edit this Child</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>		
+	</div>
+</section>
