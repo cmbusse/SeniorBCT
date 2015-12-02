@@ -139,6 +139,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 		$scope.seedWeekView = function(){
 			var d = new Date();
+			$scope.monTimeIn = $scope.monTimeOut = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
 			var day = d.getDay();
 			var diff = d.getDate() - day + (day === 0 ? -6:1);
 			$scope.weekOfDate = $scope.thisMonday = $scope.monDate = new Date(d.setDate(diff));
@@ -149,9 +150,12 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			$scope.friDate = new Date(d.setDate(d.getDate()+1));
 			$scope.satDate = new Date(d.setDate(d.getDate()+1));
 			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
+			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
+
 		};
 
 		function timeBuilder(){
+			//TODO:  Update monTimeIn and others here when times are built
 			var punchesIn = [];
 			var punchesOut = [];
 			for(var i=0; i<$scope.child.punchesIn.length; i++){
@@ -459,6 +463,99 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
 			timeBuilder();
 		};
+
+		$scope.editMonday = function(){
+			$scope.monEdit = true;
+			if($scope.monIn === 'N/A'){
+				var d = new Date();
+				$scope.monTimeIn = new Date($scope.monDate.getFullYear(), $scope.monDate.getMonth(), $scope.monDate.getDate(), d.getHours(), d.getMinutes());
+			} else{
+				$scope.monTimeIn = new Date($scope.monIn.getFullYear(), $scope.monIn.getMonth(), $scope.monIn.getDate(), $scope.monIn.getHours(), $scope.monIn.getMinutes());
+			}
+			if($scope.monOut === 'N/A'){
+				var d2 = new Date();
+				$scope.monTimeOut = new Date($scope.monDate.getFullYear(), $scope.monDate.getMonth(), $scope.monDate.getDate(), d2.getHours(), d2.getMinutes());
+			} else{
+				$scope.monTimeOut = new Date($scope.monOut.getFullYear(), $scope.monOut.getMonth(), $scope.monOut.getDate(), $scope.monOut.getHours(), $scope.monOut.getMinutes());
+			}
+		};
+
+		$scope.cancelEditMonday = function(){
+			$scope.monEdit = false;
+		};
+
+		$scope.editMondayTimes = function(isValid){
+			if(isValid){
+				var punchesIn = $scope.child.punchesIn;
+				var punchesOut = $scope.child.punchesOut;
+				var dateFoundIn = false;
+				var dateFoundOut = false;
+				for(var i=0; i<punchesIn.length; i++){
+					var d = new Date(punchesIn[i].punch);
+					if(d.getDate() === $scope.monTimeIn.getDate()){
+						if(d.getMonth() === $scope.monTimeIn.getMonth()){
+							if(d.getFullYear() === $scope.monTimeIn.getFullYear()){
+								dateFoundIn = true;
+								punchesIn[i].punch = $scope.monTimeIn.toISOString();
+								console.log('test');
+							}
+						}
+					}
+				}
+				if(!dateFoundIn){
+					punchesIn.push($scope.monTimeIn);
+				}
+				for(i=0; i<punchesOut.length; i++){
+					var d2 = new Date(punchesOut[i].punch);
+					if(d2.getDate() === $scope.monTimeOut.getDate()){
+						if(d2.getMonth() === $scope.monTimeOut.getMonth()){
+							if(d2.getFullYear() === $scope.monTimeOut.getFullYear()){
+								dateFoundOut = true;
+								punchesOut[i].punch = $scope.monTimeOut.toISOString();
+								console.log('test');
+							}
+						}
+					}
+				}
+				if(!dateFoundOut){
+					punchesOut.push($scope.monTimeOut);
+				}
+				if(dateFoundIn){
+					if(!dateFoundOut){
+						$scope.child.isPunchedIn = false;
+					}
+				}
+				$scope.success1 = $scope.error1 = null;
+				$scope.child.$update(function(response) {
+					$scope.success1 = true;
+					$scope.child = response;
+					}, function(response) {
+						$scope.error1 = response.data.message;
+				});
+				$scope.monEdit = false;
+				timeBuilder();
+				// TODO:  Morning, check why timeBuilder isn't updating non this week views, add in success message on html, extend to other days
+			}
+		};
+
+		/*
+
+		$scope.updateChild = function(isValid) {
+			if (isValid) {
+				$scope.success = $scope.error = null;
+				$scope.child.$update(function(response) {
+					$scope.success = true;
+					$scope.child = response;
+					}, function(response) {
+						$scope.error = response.data.message;
+				});
+				console.log('test');
+			} else {
+				$scope.submitted = true;
+			}
+		};
+
+		*/
 		
 		// Copied from UI bootstrap example
 		
@@ -469,11 +566,6 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 		$scope.clear = function () {
 			$scope.dt = null;
-		};
-
-		// Disable weekend selection
-		$scope.disabled = function(date, mode) {
-			return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 || date.getDay() === 5 || date.getDay() === 4 || date.getDay() === 3 || date.getDay() === 2) );
 		};
 
 		$scope.open = function($event) {
