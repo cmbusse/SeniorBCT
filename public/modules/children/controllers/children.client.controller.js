@@ -466,6 +466,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 		$scope.editMonday = function(){
 			$scope.monEdit = true;
+			$scope.success1 = $scope.success2 = $scope.success3 = $scope.success4 = $scope.success5 = $scope.success6 = $scope.success7 = null; 
 			if($scope.monIn === 'N/A'){
 				var d = new Date();
 				$scope.monTimeIn = new Date($scope.monDate.getFullYear(), $scope.monDate.getMonth(), $scope.monDate.getDate(), d.getHours(), d.getMinutes());
@@ -483,6 +484,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.cancelEditMonday = function(){
 			$scope.monEdit = false;
 			$scope.error1 = null;
+			$scope.success1 = null;
 		};
 
 		$scope.editMondayTimes = function(isValid){
@@ -545,14 +547,14 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					}
 					$scope.success1 = $scope.error1 = null;
 					$scope.child.$update(function(response) {
-						$scope.success1 = true;
+						$scope.success1 = 'Date Updated';
 						$scope.child = response;
 						}, function(response) {
 							$scope.error1 = response.data.message;
 					});
 					$scope.monEdit = false;
 					$scope.$watch('success1',function(newValue, oldValue){
-						if(newValue === true){
+						if(newValue === 'Date Updated'){
 							timeBuilder();
 						}
 					});

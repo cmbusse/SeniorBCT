@@ -37,12 +37,12 @@
 .dateBoxDiv{
 	padding: 0px;
 	width: 64px;
-	height: 90px;
+	height: 80px;
 	border-style: solid;
 	border-width: 0px 1px 1px 1px;
 	border-color: black;
 	text-align: center;
-	line-height: 60px;
+	line-height: 80px;
 }
 
 .dateBoxSpan{
@@ -57,9 +57,12 @@
 	border-color: black;
 	padding: 4px;
 	width: 256px;
-	height: 90px;
+	height: 80px;
 	text-align: center;
 	line-height: 53px;
+}
+
+.adminDayBarDiv{
 	cursor: pointer;
 }
 
@@ -69,7 +72,7 @@
 	border-color: black;
 	padding: 4px;
 	width: 256px;
-	height: 90px;
+	height: 80px;
 	text-align: center;
 	line-height: 53px;
 }
@@ -102,6 +105,15 @@
 }
 
 /* Space out the In, Out, Update Cancel, a bit better.  Space out error message properly */
+.responseDiv{
+	height: 80px;
+}
+
+.responseMsg{
+	position: relative;
+	top: -21px;
+	left: 20px;
+}
 
 .testCSSTop{
 	padding: 5px 4px 4px 4px;
