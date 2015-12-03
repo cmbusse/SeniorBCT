@@ -613,7 +613,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(var i=0; i<punchesIn.length; i++){
 						var d = new Date(punchesIn[i].punch);
 						if(d.getDate() === $scope.tueTimeIn.getDate()){
-							if(d.gettueth() === $scope.tueTimeIn.gettueth()){
+							if(d.getMonth() === $scope.tueTimeIn.getMonth()){
 								if(d.getFullYear() === $scope.tueTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.tueTimeIn.toISOString();
@@ -628,7 +628,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(i=0; i<punchesOut.length; i++){
 						var d2 = new Date(punchesOut[i].punch);
 						if(d2.getDate() === $scope.tueTimeOut.getDate()){
-							if(d2.gettueth() === $scope.tueTimeOut.gettueth()){
+							if(d2.getMonth() === $scope.tueTimeOut.getMonth()){
 								if(d2.getFullYear() === $scope.tueTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.tueTimeOut.toISOString();
@@ -713,7 +713,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(var i=0; i<punchesIn.length; i++){
 						var d = new Date(punchesIn[i].punch);
 						if(d.getDate() === $scope.wedTimeIn.getDate()){
-							if(d.getwedth() === $scope.wedTimeIn.getwedth()){
+							if(d.getMonth() === $scope.wedTimeIn.getMonth()){
 								if(d.getFullYear() === $scope.wedTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.wedTimeIn.toISOString();
@@ -728,7 +728,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(i=0; i<punchesOut.length; i++){
 						var d2 = new Date(punchesOut[i].punch);
 						if(d2.getDate() === $scope.wedTimeOut.getDate()){
-							if(d2.getwedth() === $scope.wedTimeOut.getwedth()){
+							if(d2.getMonth() === $scope.wedTimeOut.getMonth()){
 								if(d2.getFullYear() === $scope.wedTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.wedTimeOut.toISOString();
@@ -813,7 +813,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(var i=0; i<punchesIn.length; i++){
 						var d = new Date(punchesIn[i].punch);
 						if(d.getDate() === $scope.thuTimeIn.getDate()){
-							if(d.getthuth() === $scope.thuTimeIn.getthuth()){
+							if(d.getMonth() === $scope.thuTimeIn.getMonth()){
 								if(d.getFullYear() === $scope.thuTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.thuTimeIn.toISOString();
@@ -828,7 +828,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(i=0; i<punchesOut.length; i++){
 						var d2 = new Date(punchesOut[i].punch);
 						if(d2.getDate() === $scope.thuTimeOut.getDate()){
-							if(d2.getthuth() === $scope.thuTimeOut.getthuth()){
+							if(d2.getMonth() === $scope.thuTimeOut.getMonth()){
 								if(d2.getFullYear() === $scope.thuTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.thuTimeOut.toISOString();
@@ -913,7 +913,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(var i=0; i<punchesIn.length; i++){
 						var d = new Date(punchesIn[i].punch);
 						if(d.getDate() === $scope.friTimeIn.getDate()){
-							if(d.getfrith() === $scope.friTimeIn.getfrith()){
+							if(d.getMonth() === $scope.friTimeIn.getMonth()){
 								if(d.getFullYear() === $scope.friTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.friTimeIn.toISOString();
@@ -928,7 +928,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(i=0; i<punchesOut.length; i++){
 						var d2 = new Date(punchesOut[i].punch);
 						if(d2.getDate() === $scope.friTimeOut.getDate()){
-							if(d2.getfrith() === $scope.friTimeOut.getfrith()){
+							if(d2.getMonth() === $scope.friTimeOut.getMonth()){
 								if(d2.getFullYear() === $scope.friTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.friTimeOut.toISOString();
@@ -1013,7 +1013,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(var i=0; i<punchesIn.length; i++){
 						var d = new Date(punchesIn[i].punch);
 						if(d.getDate() === $scope.satTimeIn.getDate()){
-							if(d.getsatth() === $scope.satTimeIn.getsatth()){
+							if(d.getMonth() === $scope.satTimeIn.getMonth()){
 								if(d.getFullYear() === $scope.satTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.satTimeIn.toISOString();
@@ -1028,7 +1028,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(i=0; i<punchesOut.length; i++){
 						var d2 = new Date(punchesOut[i].punch);
 						if(d2.getDate() === $scope.satTimeOut.getDate()){
-							if(d2.getsatth() === $scope.satTimeOut.getsatth()){
+							if(d2.getMonth() === $scope.satTimeOut.getMonth()){
 								if(d2.getFullYear() === $scope.satTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.satTimeOut.toISOString();
@@ -1113,7 +1113,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(var i=0; i<punchesIn.length; i++){
 						var d = new Date(punchesIn[i].punch);
 						if(d.getDate() === $scope.sunTimeIn.getDate()){
-							if(d.getsunth() === $scope.sunTimeIn.getsunth()){
+							if(d.getMonth() === $scope.sunTimeIn.getMonth()){
 								if(d.getFullYear() === $scope.sunTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.sunTimeIn.toISOString();
@@ -1128,7 +1128,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					for(i=0; i<punchesOut.length; i++){
 						var d2 = new Date(punchesOut[i].punch);
 						if(d2.getDate() === $scope.sunTimeOut.getDate()){
-							if(d2.getsunth() === $scope.sunTimeOut.getsunth()){
+							if(d2.getMonth() === $scope.sunTimeOut.getMonth()){
 								if(d2.getFullYear() === $scope.sunTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.sunTimeOut.toISOString();
