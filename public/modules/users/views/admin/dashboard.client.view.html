@@ -12,14 +12,14 @@
 					</div>
 					<div class="col-xs-12 col-md-6 sortByBar sort-user">
 						<span>Sort Users by:  </span>
-						<a href="" ng-click="setOrderByUsers('lastName')" style = "color:blue; font-style:oblique;">Last Name</a><span> | </span>
-						<a href="" ng-click="setOrderByUsers('roles')" style = "color:blue; font-style:oblique;">Account Type</a><span> | </span>
-						<a href="" ng-click="setOrderByUsers('-active')" style = "color:blue; font-style:oblique;">Active Users</a>
+						<a href="" ng-click="setOrderByUsers('lastName')">Last Name</a><span> | </span>
+						<a href="" ng-click="setOrderByUsers('roles')">Account Type</a><span> | </span>
+						<a href="" ng-click="setOrderByUsers('-active')">Active Users</a>
 					</div>
 				</div>
 				<div style="margin-top: 10px">
 					<ul class="list-group">
-						<li class="list-group-item" style = "background-color:white; border: 3px solid; border-radius:3px; border-color:gray;"ng-repeat="user in users | orderBy: orderByUsers">
+						<li class="list-group-item" style = "background-color:#667f99; border: 3px solid; border-radius:3px; border-color:green;"ng-repeat="user in users | orderBy: orderByUsers">
 							<div class="row">
 								<div class="col-xs-12 col-md-6">
 									<h2>
@@ -35,7 +35,7 @@
 									<p class="userp">Phone:  {{user.phone}}</p>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-6">
-									<a data-ng-href="#!/users/{{user._id}}/edit" class="btn btn-success text-center btn-lg btn-block " style="margin-top:50px;">Edit User</a>
+									<a data-ng-href="#!/users/{{user._id}}/edit" class="btn btn-info text-center btn-lg btn-block ">Edit User</a>
 								</div>
 							</div>
 						</li>
@@ -51,27 +51,27 @@
 					</div>
 					<div class="col-xs-12 col-md-6 sortByBar">
 						<span>Sort Children by:  </span>
-						<a href="" ng-click="setOrderByChildren('lastName')" style = "color:blue; font-style:oblique;">Last Name (A-Z)</a>
+						<a href="" ng-click="setOrderByChildren('lastName')">Last Name (A-Z)</a>
 						<span> | </span>
-						<a href="" ng-click="setOrderByChildren('-isPunchedIn')" style = "color:blue; font-style:oblique;">Checked In</a>
+						<a href="" ng-click="setOrderByChildren('-isPunchedIn')">Checked In</a>
 					</div>
 				</div>
 				<ul class="list-group">
-					<li class="list-group-item" style = "background-color:white; border: 3px solid; border-radius:3px; border-color:gray;" ng-repeat="child in children | orderBy: orderByChildren">
+					<li class="list-group-item" style = "background-color:#667f99; border: 3px solid; border-radius:3px; border-color:green;" ng-repeat="child in children | orderBy: orderByChildren">
 						<div class="row">
 							<div class="col-xs-12 col-md-6">
-								<h2>
+								<h4>
 									<a data-ng-href="#!/children/{{child._id}}">
 										{{child.firstName}} {{child.lastName}}
-										<span ng-show="!parentIsActive(child)" class = "text-muted"> - Inactive Parent</span>
+										<span ng-show="!parentIsActive(child)"> - Inactive Parent</span>
 									</a>
-								</h2>
+								</h4>
 								<p class="userp" ng-show="isPunchedIn(child)" style="color: red"><strong>Checked In</strong></p>
 								<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>
 								<p class="userp">Parent:  {{child.parentFirstName}} {{child.parentLastName}}</p>
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-6">
-								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn col-md-6 col-sm-6 btn-success text-center btn-lg btn-block ">Edit Child</a>
+								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-info text-center btn-lg btn-block ">Edit Child</a>
 							</div>
 						</div>
 					</li>
