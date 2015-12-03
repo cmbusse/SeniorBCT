@@ -80,11 +80,41 @@
 					{{tueDate | date: 'MM/dd'}}
 				</span>	
 			</div>
-			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-hide="tueEdit">
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{tueIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{tueOut | date: 'hh:mm:ss a'}}<br>
 					Total:  {{tueTotal | millSecondsToTimeString}} 
 				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="tueEdit || !loggedInIsAdmin()" ng-click="editTuesday()">
+				<span class="dayBarSpan">
+					<strong>In:</strong>  {{tueIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{tueOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{tueTotal | millSecondsToTimeString}} 
+				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="tueEdit">
+				<form name="editTuesdayForm" data-ng-submit="editTuesdayTimes(editTuesdayForm.$valid)">
+					<fieldset>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpTen">In:</span><input required type="time" name="tueTimeIn" class="form-control timePicker shiftUpTen" ng-model="tueTimeIn" placeholder="HH:mm:ss" style="margin-left: 15px">
+							</div>
+							<button type="submit" class="btn btn-xs btn-default shiftUpTen" style="top: -12px">Update</button>
+						</div>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpX">Out: </span><input required type="time" name="tueTimeOut" class="form-control timePicker shiftUpX" ng-model="tueTimeOut" placeholder="HH:mm:ss">
+							</div>
+							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditTuesday()" style="top: -39px">Cancel</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div data-ng-show="error2" class="text-center text-danger responseDiv">
+				<strong data-ng-bind="error2" class="responseMsg"></strong>
+			</div>
+			<div data-ng-show="success2" class="text-center text-success responseDiv">
+				<strong data-ng-bind="success2" class="responseMsg"></strong>
 			</div>
 		</div>
 		<div class="row" style="padding-left: 15px">
@@ -94,11 +124,41 @@
 					{{wedDate | date: 'MM/dd'}}
 				</span>	
 			</div>
-			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-hide="wedEdit">
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{wedIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{wedOut | date: 'hh:mm:ss a'}}<br>
 					Total:  {{wedTotal | millSecondsToTimeString}} 
 				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="wedEdit || !loggedInIsAdmin()" ng-click="editWednesday()">
+				<span class="dayBarSpan">
+					<strong>In:</strong>  {{wedIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{wedOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{wedTotal | millSecondsToTimeString}} 
+				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="wedEdit">
+				<form name="editWednesdayForm" data-ng-submit="editWednesdayTimes(editWednesdayForm.$valid)">
+					<fieldset>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpTen">In:</span><input required type="time" name="wedTimeIn" class="form-control timePicker shiftUpTen" ng-model="wedTimeIn" placeholder="HH:mm:ss" style="margin-left: 15px">
+							</div>
+							<button type="submit" class="btn btn-xs btn-default shiftUpTen" style="top: -12px">Update</button>
+						</div>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpX">Out: </span><input required type="time" name="wedTimeOut" class="form-control timePicker shiftUpX" ng-model="wedTimeOut" placeholder="HH:mm:ss">
+							</div>
+							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditWednesday()" style="top: -39px">Cancel</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div data-ng-show="error3" class="text-center text-danger responseDiv">
+				<strong data-ng-bind="error3" class="responseMsg"></strong>
+			</div>
+			<div data-ng-show="success3" class="text-center text-success responseDiv">
+				<strong data-ng-bind="success3" class="responseMsg"></strong>
 			</div>
 		</div>
 		<div class="row" style="padding-left: 15px">
@@ -108,11 +168,41 @@
 					{{thuDate | date: 'MM/dd'}}
 				</span>	
 			</div>
-			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-hide="thuEdit">
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{thuIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{thuOut | date: 'hh:mm:ss a'}}<br>
 					Total:  {{thuTotal | millSecondsToTimeString}} 
 				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="thuEdit || !loggedInIsAdmin()" ng-click="editThursday()">
+				<span class="dayBarSpan">
+					<strong>In:</strong>  {{thuIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{thuOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{thuTotal | millSecondsToTimeString}} 
+				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="thuEdit">
+				<form name="editThursdayForm" data-ng-submit="editThursdayTimes(editThursdayForm.$valid)">
+					<fieldset>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpTen">In:</span><input required type="time" name="thuTimeIn" class="form-control timePicker shiftUpTen" ng-model="thuTimeIn" placeholder="HH:mm:ss" style="margin-left: 15px">
+							</div>
+							<button type="submit" class="btn btn-xs btn-default shiftUpTen" style="top: -12px">Update</button>
+						</div>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpX">Out: </span><input required type="time" name="thuTimeOut" class="form-control timePicker shiftUpX" ng-model="thuTimeOut" placeholder="HH:mm:ss">
+							</div>
+							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditThursday()" style="top: -39px">Cancel</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div data-ng-show="error4" class="text-center text-danger responseDiv">
+				<strong data-ng-bind="error4" class="responseMsg"></strong>
+			</div>
+			<div data-ng-show="success4" class="text-center text-success responseDiv">
+				<strong data-ng-bind="success4" class="responseMsg"></strong>
 			</div>
 		</div>
 		<div class="row" style="padding-left: 15px">
@@ -122,11 +212,41 @@
 					{{friDate | date: 'MM/dd'}}
 				</span>	
 			</div>
-			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-hide="friEdit">
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{friIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{friOut | date: 'hh:mm:ss a'}}<br>
 					Total:  {{friTotal | millSecondsToTimeString}} 
 				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="friEdit || !loggedInIsAdmin()" ng-click="editFriday()">
+				<span class="dayBarSpan">
+					<strong>In:</strong>  {{friIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{friOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{friTotal | millSecondsToTimeString}} 
+				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="friEdit">
+				<form name="editFridayForm" data-ng-submit="editFridayTimes(editFridayForm.$valid)">
+					<fieldset>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpTen">In:</span><input required type="time" name="friTimeIn" class="form-control timePicker shiftUpTen" ng-model="friTimeIn" placeholder="HH:mm:ss" style="margin-left: 15px">
+							</div>
+							<button type="submit" class="btn btn-xs btn-default shiftUpTen" style="top: -12px">Update</button>
+						</div>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpX">Out: </span><input required type="time" name="friTimeOut" class="form-control timePicker shiftUpX" ng-model="friTimeOut" placeholder="HH:mm:ss">
+							</div>
+							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditFriday()" style="top: -39px">Cancel</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div data-ng-show="error5" class="text-center text-danger responseDiv">
+				<strong data-ng-bind="error5" class="responseMsg"></strong>
+			</div>
+			<div data-ng-show="success5" class="text-center text-success responseDiv">
+				<strong data-ng-bind="success5" class="responseMsg"></strong>
 			</div>
 		</div>
 		<div class="row" style="padding-left: 15px">
@@ -136,11 +256,41 @@
 					{{satDate | date: 'MM/dd'}}
 				</span>	
 			</div>
-			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-hide="satEdit">
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{satIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{satOut | date: 'hh:mm:ss a'}}<br>
 					Total:  {{satTotal | millSecondsToTimeString}} 
 				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="satEdit || !loggedInIsAdmin()" ng-click="editSaturday()">
+				<span class="dayBarSpan">
+					<strong>In:</strong>  {{satIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{satOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{satTotal | millSecondsToTimeString}} 
+				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="satEdit">
+				<form name="editSaturdayForm" data-ng-submit="editSaturdayTimes(editSaturdayForm.$valid)">
+					<fieldset>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpTen">In:</span><input required type="time" name="satTimeIn" class="form-control timePicker shiftUpTen" ng-model="satTimeIn" placeholder="HH:mm:ss" style="margin-left: 15px">
+							</div>
+							<button type="submit" class="btn btn-xs btn-default shiftUpTen" style="top: -12px">Update</button>
+						</div>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpX">Out: </span><input required type="time" name="satTimeOut" class="form-control timePicker shiftUpX" ng-model="satTimeOut" placeholder="HH:mm:ss">
+							</div>
+							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditSaturday()" style="top: -39px">Cancel</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div data-ng-show="error6" class="text-center text-danger responseDiv">
+				<strong data-ng-bind="error6" class="responseMsg"></strong>
+			</div>
+			<div data-ng-show="success6" class="text-center text-success responseDiv">
+				<strong data-ng-bind="success6" class="responseMsg"></strong>
 			</div>
 		</div>
 		<div class="row" style="padding-left: 15px">
@@ -150,11 +300,41 @@
 					{{sunDate | date: 'MM/dd'}}
 				</span>	
 			</div>
-			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-hide="sunEdit">
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{sunIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{sunOut | date: 'hh:mm:ss a'}}<br>
 					Total:  {{sunTotal | millSecondsToTimeString}} 
 				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="sunEdit || !loggedInIsAdmin()" ng-click="editSunday()">
+				<span class="dayBarSpan">
+					<strong>In:</strong>  {{sunIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{sunOut | date: 'hh:mm:ss a'}}<br>
+					Total:  {{sunTotal | millSecondsToTimeString}} 
+				</span>
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="sunEdit">
+				<form name="editSundayForm" data-ng-submit="editSundayTimes(editSundayForm.$valid)">
+					<fieldset>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpTen">In:</span><input required type="time" name="sunTimeIn" class="form-control timePicker shiftUpTen" ng-model="sunTimeIn" placeholder="HH:mm:ss" style="margin-left: 15px">
+							</div>
+							<button type="submit" class="btn btn-xs btn-default shiftUpTen" style="top: -12px">Update</button>
+						</div>
+						<div class="row" style="padding-left: 15px">
+							<div class="pull-left editDiv">
+								<span class="shiftUpX">Out: </span><input required type="time" name="sunTimeOut" class="form-control timePicker shiftUpX" ng-model="sunTimeOut" placeholder="HH:mm:ss">
+							</div>
+							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditSunday()" style="top: -39px">Cancel</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div data-ng-show="error7" class="text-center text-danger responseDiv">
+				<strong data-ng-bind="error7" class="responseMsg"></strong>
+			</div>
+			<div data-ng-show="success7" class="text-center text-success responseDiv">
+				<strong data-ng-bind="success7" class="responseMsg"></strong>
 			</div>
 		</div>
 
