@@ -5,19 +5,19 @@
 			<div class="col-md-12">
 				<h4>Your Children</h4>
 				<ul class="list-group">
-					<li class="list-group-item" ng-repeat="child in usersChildren">
+					<li class="list-group-item" style = "background-color:#667f99; border: 3px solid; border-radius:3px; border-color:green;"ng-repeat="child in usersChildren">
 						<div class="row">
 							<div class="col-xs-12 col-md-6">
-								<h4>
+								<h3>
 									<a data-ng-href="#!/children/{{child._id}}">
 										{{child.firstName}} {{child.lastName}}
 									</a>
-								</h4>
+								</h3>
 								<p class="userp" ng-show="isPunchedIn(child)" style="color: red"><strong>Checked In</strong></p>
 								<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>
 							</div>
 							<div class="col-xs-12 col-md-6">
-								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-default btn-md">Click Here to Edit this Child</a>
+								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-success btn-lg .buttons">Click Here to Edit this Child</a>
 							</div>
 						</div>
 					</li>

@@ -52,8 +52,10 @@
 				{% block content %}{% endblock %}
 			</section>
 		</section>
+		
+		<!-- Removed the footer...it served no purpose
 	<footer data-ng-include="'/modules/core/views/footer.client.view.html'" class="footer" style="border-width: 1px 0 0 0; border-style: solid; border-color: #eeeeee; background-color: #ffffff; position: absolute; bottom: 0; width: 100%; height: 81px"></footer>
-
+-->
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
 		var user = {{ user | json | safe }};
