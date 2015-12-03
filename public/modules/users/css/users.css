@@ -14,11 +14,8 @@
 	font-size: 16px;
 	color: black;
 }
-.userbtn{
+.btn{
 	margin-top: 27px;
-}
-.childbtn{
-	margin-top: 25px;
 }
 a{
 	color:black;
@@ -48,7 +45,7 @@ h2{
 }
 h3{
 	font-family: Arial, Helvetica, sans-serif;
-	font-style: none;
+	font-style: oblique;
 	margin-top: 15px;
 	font-size: 32px;
 	color: black;
