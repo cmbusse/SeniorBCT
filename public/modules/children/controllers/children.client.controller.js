@@ -482,6 +482,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 		$scope.cancelEditMonday = function(){
 			$scope.monEdit = false;
+			$scope.error1 = null;
 		};
 
 		$scope.editMondayTimes = function(isValid){
@@ -556,7 +557,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						}
 					});
 				} else{
-					$scope.error1 = 'Check that the entered times are correct';
+					$scope.error1 = 'Time In must be before Time Out';
 				}
 			}
 		};

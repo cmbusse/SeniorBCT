@@ -15,7 +15,8 @@
 					<span><button type="button" class="btn btn-default" ng-click="checkChildOut(child._id)" ng-disabled="child.isPunchedIn == false">Check Out</button></span>
 					<span ng-show="child.isPunchedIn == true">{{child.firstName}} checked in at {{child.lastCheckIn | date: 'shortTime'}} </span>
 					<!-- TODO:  Add in on back end a response that enables a success, so that a success message can be displayed 
-						 TODO:  Change the button to take to a success page with X children checked in by Y, that then redirects to sign in-->
+						 TODO:  Change the button to take to a success page with X children checked in by Y, that then redirects to sign in
+						 With back end returning child, check for something idk-->
 				</li>
 			</ul>
 		</div>

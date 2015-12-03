@@ -53,16 +53,19 @@
 							<div class="pull-left editDiv">
 								<span class="shiftUpTen">In:</span><input required type="time" name="monTimeIn" class="form-control timePicker shiftUpTen" ng-model="monTimeIn" placeholder="HH:mm:ss" style="margin-left: 15px">
 							</div>
-							<button type="submit" class="btn btn-xs btn-default shiftUpTen">Update</button>
+							<button type="submit" class="btn btn-xs btn-default shiftUpTen" style="top: -12px">Update</button>
 						</div>
 						<div class="row" style="padding-left: 15px">
 							<div class="pull-left editDiv">
 								<span class="shiftUpX">Out: </span><input required type="time" name="monTimeOut" class="form-control timePicker shiftUpX" ng-model="monTimeOut" placeholder="HH:mm:ss">
 							</div>
-							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditMonday()">Cancel</button>
+							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditMonday()" style="top: -39px">Cancel</button>
 						</div>
 					</fieldset>
 				</form>
+			</div>
+			<div data-ng-show="error1" class="text-center text-danger">
+				<strong data-ng-bind="error1"></strong>
 			</div>
 		</div>
 		<div class="row" style="padding-left: 15px">
@@ -153,6 +156,30 @@
 
 		
 	</div>
+	<!--
+	<div data-ng-show="error1" class="testCSSTop text-danger">
+		<strong data-ng-bind="error1"></strong>
+	</div>
+	<div class="testCSS">
+		<strong>Time In must be before Time Out<strong>
+	</div>
+	<div class="testCSS">
+		<strong>Time In must be before Time Out<strong>
+	</div>
+	<div class="testCSS">
+		<strong>Time In must be before Time Out<strong>
+	</div>
+	<div class="testCSS">
+		<strong>Time In must be before Time Out<strong>
+	</div>
+	<div class="testCSS">
+		<strong>Time In must be before Time Out<strong>
+	</div>
+	<div class="testCSS">
+		<strong>Time In must be before Time Out<strong>
+	</div>
+	-->
+
 		
 		<!--TODO:  Add in datepicker support for changing the week-->
 		<div class="col-md-12">
