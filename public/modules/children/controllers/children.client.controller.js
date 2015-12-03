@@ -486,55 +486,78 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 		$scope.editMondayTimes = function(isValid){
 			if(isValid){
-				var punchesIn = $scope.child.punchesIn;
-				var punchesOut = $scope.child.punchesOut;
-				var dateFoundIn = false;
-				var dateFoundOut = false;
-				for(var i=0; i<punchesIn.length; i++){
-					var d = new Date(punchesIn[i].punch);
-					if(d.getDate() === $scope.monTimeIn.getDate()){
-						if(d.getMonth() === $scope.monTimeIn.getMonth()){
-							if(d.getFullYear() === $scope.monTimeIn.getFullYear()){
-								dateFoundIn = true;
-								punchesIn[i].punch = $scope.monTimeIn.toISOString();
-								console.log('test');
-							}
+				var timesValid = false;
+				if($scope.monTimeIn.getHours() < $scope.monTimeOut.getHours()){
+					timesValid = true;
+				}
+				if(!timesValid){
+					if($scope.monTimeIn.getHours() === $scope.monTimeOut.getHours()){
+						if($scope.monTimeIn.getMinutes() < $scope.monTimeOut.getMinutes()){
+							timesValid = true;
 						}
 					}
 				}
-				if(!dateFoundIn){
-					punchesIn.push($scope.monTimeIn);
+				if($scope.monTimeIn.getHours() === $scope.monTimeOut.getHours()){
+					if($scope.monTimeIn.getMinutes() === $scope.monTimeOut.getMinutes()){
+						timesValid = false;
+					}
 				}
-				for(i=0; i<punchesOut.length; i++){
-					var d2 = new Date(punchesOut[i].punch);
-					if(d2.getDate() === $scope.monTimeOut.getDate()){
-						if(d2.getMonth() === $scope.monTimeOut.getMonth()){
-							if(d2.getFullYear() === $scope.monTimeOut.getFullYear()){
-								dateFoundOut = true;
-								punchesOut[i].punch = $scope.monTimeOut.toISOString();
-								console.log('test');
+				if(timesValid){
+					var punchesIn = $scope.child.punchesIn;
+					var punchesOut = $scope.child.punchesOut;
+					var dateFoundIn = false;
+					var dateFoundOut = false;
+					for(var i=0; i<punchesIn.length; i++){
+						var d = new Date(punchesIn[i].punch);
+						if(d.getDate() === $scope.monTimeIn.getDate()){
+							if(d.getMonth() === $scope.monTimeIn.getMonth()){
+								if(d.getFullYear() === $scope.monTimeIn.getFullYear()){
+									dateFoundIn = true;
+									punchesIn[i].punch = $scope.monTimeIn.toISOString();
+									console.log('test');
+								}
 							}
 						}
 					}
-				}
-				if(!dateFoundOut){
-					punchesOut.push($scope.monTimeOut);
-				}
-				if(dateFoundIn){
+					if(!dateFoundIn){
+						punchesIn.push($scope.monTimeIn);
+					}
+					for(i=0; i<punchesOut.length; i++){
+						var d2 = new Date(punchesOut[i].punch);
+						if(d2.getDate() === $scope.monTimeOut.getDate()){
+							if(d2.getMonth() === $scope.monTimeOut.getMonth()){
+								if(d2.getFullYear() === $scope.monTimeOut.getFullYear()){
+									dateFoundOut = true;
+									punchesOut[i].punch = $scope.monTimeOut.toISOString();
+									console.log('test');
+								}
+							}
+						}
+					}
 					if(!dateFoundOut){
-						$scope.child.isPunchedIn = false;
+						punchesOut.push($scope.monTimeOut);
 					}
+					if(dateFoundIn){
+						if(!dateFoundOut){
+							$scope.child.isPunchedIn = false;
+						}
+					}
+					$scope.success1 = $scope.error1 = null;
+					$scope.child.$update(function(response) {
+						$scope.success1 = true;
+						$scope.child = response;
+						}, function(response) {
+							$scope.error1 = response.data.message;
+					});
+					$scope.monEdit = false;
+					$scope.$watch('success1',function(newValue, oldValue){
+						if(newValue === true){
+							timeBuilder();
+						}
+					});
+				} else{
+					$scope.error1 = 'Check that the entered times are correct';
 				}
-				$scope.success1 = $scope.error1 = null;
-				$scope.child.$update(function(response) {
-					$scope.success1 = true;
-					$scope.child = response;
-					}, function(response) {
-						$scope.error1 = response.data.message;
-				});
-				$scope.monEdit = false;
-				timeBuilder();
-				// TODO:  Morning, check why timeBuilder isn't updating non this week views, add in success message on html, extend to other days
 			}
 		};
 
