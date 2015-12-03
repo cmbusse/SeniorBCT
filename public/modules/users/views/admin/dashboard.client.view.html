@@ -10,7 +10,7 @@
 	    			<div class="col-xs-12 col-sm-6 col-md-6">
 						<h3>Manage Users Dashboard</h3>
 					</div>
-					<div class="col-xs-12 col-md-6 sortByBar sort-user">
+					<div class="col-xs-12 col-md-6 sortByBar">
 						<span>Sort Users by:  </span>
 						<a href="" ng-click="setOrderByUsers('lastName')">Last Name</a><span> | </span>
 						<a href="" ng-click="setOrderByUsers('roles')">Account Type</a><span> | </span>
@@ -19,15 +19,15 @@
 				</div>
 				<div style="margin-top: 10px">
 					<ul class="list-group">
-						<li class="list-group-item" style = "background-color:#667f99; border: 3px solid; border-radius:3px; border-color:green;"ng-repeat="user in users | orderBy: orderByUsers">
+						<li class="list-group-item" ng-repeat="user in users | orderBy: orderByUsers">
 							<div class="row">
 								<div class="col-xs-12 col-md-6">
-									<h2>
+									<h4>
 										<a data-ng-href="#!/users/{{user._id}}">
 											{{user.firstName}} {{user.lastName}}
 											<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
 										</a>
-									</h2>							
+									</h4>							
 									<p class="userp" ng-show="isAdmin(user)" style="color: red"><strong>Admin Account</strong></p>
 									<p class="userp">PIN:  {{user.PIN}}</p>
 									<p class="userp">Username:  {{user.username}}</p>
@@ -35,7 +35,7 @@
 									<p class="userp">Phone:  {{user.phone}}</p>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-6">
-									<a data-ng-href="#!/users/{{user._id}}/edit" class="btn btn-info text-center btn-lg btn-block ">Edit User</a>
+									<a data-ng-href="#!/users/{{user._id}}/edit" class="btn btn-default btn-md">Click Here to Edit this User</a>
 								</div>
 							</div>
 						</li>
@@ -57,13 +57,13 @@
 					</div>
 				</div>
 				<ul class="list-group">
-					<li class="list-group-item" style = "background-color:#667f99; border: 3px solid; border-radius:3px; border-color:green;" ng-repeat="child in children | orderBy: orderByChildren">
+					<li class="list-group-item" ng-repeat="child in children | orderBy: orderByChildren">
 						<div class="row">
 							<div class="col-xs-12 col-md-6">
 								<h4>
 									<a data-ng-href="#!/children/{{child._id}}">
 										{{child.firstName}} {{child.lastName}}
-										<span ng-show="!parentIsActive(child)"> - Inactive Parent</span>
+										<span ng-show="!parentIsActive(child)" class="text-muted"> - Inactive Parent</span>
 									</a>
 								</h4>
 								<p class="userp" ng-show="isPunchedIn(child)" style="color: red"><strong>Checked In</strong></p>
@@ -71,7 +71,7 @@
 								<p class="userp">Parent:  {{child.parentFirstName}} {{child.parentLastName}}</p>
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-6">
-								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-info text-center btn-lg btn-block ">Edit Child</a>
+								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-default btn-md">Click Here to Edit this Child</a>
 							</div>
 						</div>
 					</li>
