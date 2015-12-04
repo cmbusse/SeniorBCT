@@ -82,7 +82,9 @@ exports.update = function(req, res) {
 							isPunchedIn: currChild.isPunchedIn,
 							lastCheckIn: currChild.lastCheckIn,
 							parentFirstName: currChild.parentFirstName,
-							parentLastName: currChild.parentLastName
+							parentLastName: currChild.parentLastName,
+							inToOut: currChild.inToOut,
+							outToIn: currChild.outToIn
 						},
 					 };
 		var options = { new: true };

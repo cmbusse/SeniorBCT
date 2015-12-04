@@ -111,7 +111,8 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 		       		$scope.child.lastCheckIn = dateNow;
 	        		console.log('test');
 	        		$scope.child.$update(function(response) {
-	        			
+	        			console.log('bing');
+	        			$scope.child = response;
 	        			}, function(response) {
 	        				$scope.error = response.data.message;
 	        			});
@@ -142,7 +143,8 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 		       		$scope.child.isPunchedIn = false;
 	        		console.log('test');
 	        		$scope.child.$update(function(response) {
-	        			
+	        			console.log('bing');
+	        			$scope.child = response;
 	        			}, function(response) {
 	        				$scope.error = response.data.message;
 	        			});
@@ -150,9 +152,7 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       			// TODO:  Error handling
 	       			console.log('bing');
 	       		}
-
         	});
 		};
-		
 	}
 ]);

@@ -55,7 +55,16 @@ var ChildSchema = new Schema({
 	parentLastName: {
 		type: String,
 		default: ''
+	},
+	inToOut: {
+		type: Boolean,
+		default: false
+	},
+	outToIn: {
+		type: Boolean,
+		default: false
 	}
+
 });
 
 mongoose.model('Child', ChildSchema);
