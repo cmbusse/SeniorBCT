@@ -29,7 +29,10 @@
 .userOp:hover{
 	cursor: pointer;
 }
-
+body{
+	
+	background-color: aliceblue;
+}
 
 
 /* Media Queries */
