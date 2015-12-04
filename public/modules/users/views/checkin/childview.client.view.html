@@ -11,7 +11,7 @@
 			<ul class="list-group">
 				<li class="list-group-item" style = "font-size:18px;" ng-repeat="child in usersChildren">
 					{{child.firstName}} {{child.lastName}}
-					<span><button type="button" class="btn btn-info" ng-click="checkChildIn(child._id)" ng-disabled="child.isPunchedIn == true">Check In</button></span>
+					<span><button type="button" class="btn col-md-offset-1 btn-info" ng-click="checkChildIn(child._id)" ng-disabled="child.isPunchedIn == true">Check In</button></span>
 					<span><button type="button" class="btn btn-info" ng-click="checkChildOut(child._id)" ng-disabled="child.isPunchedIn == false">Check Out</button></span>
 					<span ng-show="child.isPunchedIn == true">{{child.firstName}} checked in at {{child.lastCheckIn | date: 'shortTime'}} </span>
 					<span ng-show="inToOutTrue(child)">Child Checked In</span>

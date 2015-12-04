@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <h3>Edit Child</h3>
         </div>
-        <div class="col-md-4" style="margin-left: 15px">
+        <div class="col-md-6 col-sm-6 col-xs-12" style="margin-left: 15px">
             <form name="childForm" data-ng-submit="updateChild(childForm.$valid)" class="signin form-horizontal" autocomplete="off">
                 <fieldset>
                     <div class="form-group">
@@ -22,7 +22,7 @@ http://stackoverflow.com/questions/11486779/formatting-isodate-from-mongodb
                         <input type="date" id="dob" name="dob" class="form-control" data-ng-model="child.dob" ng-model-options="{ updateOn: 'blur' }" placeholder="Date of Birth">
                     </div>
                     <div class="text-center form-group">
-                        <button type="submit" class="btn btn-large btn-primary">Update</button>
+                        <button type="submit" class="btn btn-lg btn-primary">Update</button>
                     </div>
                     <div data-ng-show="success" class="text-center text-success">
                         <strong>Child Saved Successfully</strong>
@@ -33,5 +33,6 @@ http://stackoverflow.com/questions/11486779/formatting-isodate-from-mongodb
                 </fieldset>
             </form>
         </div>
+        
     </div>
 </section>

@@ -3,18 +3,18 @@
 			<div class="col-md-12 text-center">
 				<h3>Edit your profile</h3>
 			</div>
-			<div class="col-md-offset-1 col-md-4">
+			<div class="col-md-offset-1 col-md-4 col-sm-4 col-sm-offset-1 col-xs-12">
 				<form name="userForm1" data-ng-submit="updateGeneralInfo(userForm1.$valid)" class="signin form-horizontal" autocomplete="off">
 					<fieldset>
 						<div class="form-group">
 							<label for="firstName">First Name</label>
 							<input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="user.firstName" ng-model-options="{ updateOn: 'blur' }" placeholder="First Name">
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="margin-top:65px;">
 							<label for="lastName">Last Name</label>
 							<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="user.lastName" ng-model-options="{ updateOn: 'blur' }" placeholder="Last Name">
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="margin-top:65px;">
 							<label for="phone">Phone Number</label>
 							<input type="text" id="phone" name="phone" class="form-control" data-ng-model="user.phone" ng-model-options="{ updateOn: 'blur' }" placeholder="Phone Number">
 						</div>
@@ -31,7 +31,7 @@
 				</form>
 			</div>
 
-			<div class="col-md-offset-1 col-md-4">
+			<div class="col-md-offset-1 col-md-4 col-sm-4 col-sm-offset-1 col-xs-12">
 				<!-- Username Editing -->
 				<form name="userForm2" data-ng-submit="updateUsername(userForm2.$valid)" class="signin form-horizontal" autocomplete="off">
 					<fieldset>

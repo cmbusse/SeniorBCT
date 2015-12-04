@@ -21,7 +21,7 @@
 					<ul class="list-group">
 						<li class="list-group-item" ng-repeat="user in users | orderBy: orderByUsers">
 							<div class="row">
-								<div class="col-xs-12 col-md-6">
+								<div class="col-xs-12 col-md-6 col-sm-6">
 									<h4>
 										<a data-ng-href="#!/users/{{user._id}}">
 											{{user.firstName}} {{user.lastName}}
@@ -34,8 +34,8 @@
 									<p class="userp">Email:  {{user.email}}</p>
 									<p class="userp">Phone:  {{user.phone}}</p>
 								</div>
-								<div class="col-xs-12 col-sm-6 col-md-6">
-									<a data-ng-href="#!/users/{{user._id}}/edit" class="btn btn-info btn-md">Click Here to Edit this User</a>
+								<div class="col-xs-12 col-sm-6 col-md-3">
+									<a data-ng-href="#!/users/{{user._id}}/edit" class="btn btn-info userbut btn-lg">Edit User</a>
 								</div>
 							</div>
 						</li>
@@ -49,7 +49,7 @@
 	    			<div class="col-xs-12 col-sm-6 col-md-6">
 						<h3>Manage Children Dashboard</h3>
 					</div>
-					<div class="col-xs-12 col-md-6 sortByBar">
+					<div class="col-xs-12 col-md-6 col-sm-6 sortByBar">
 						<span>Sort Children by:  </span>
 						<a href="" ng-click="setOrderByChildren('lastName')">Last Name (A-Z)</a>
 						<span> | </span>
@@ -59,7 +59,7 @@
 				<ul class="list-group">
 					<li class="list-group-item" ng-repeat="child in children | orderBy: orderByChildren">
 						<div class="row">
-							<div class="col-xs-12 col-md-6">
+							<div class="col-xs-12 col-md-6 col-sm-6">
 								<h4>
 									<a data-ng-href="#!/children/{{child._id}}">
 										{{child.firstName}} {{child.lastName}}
@@ -70,8 +70,8 @@
 								<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>
 								<p class="userp">Parent:  {{child.parentFirstName}} {{child.parentLastName}}</p>
 							</div>
-							<div class="col-xs-12 col-sm-6 col-md-6">
-								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-info btn-md">Click Here to Edit this Child</a>
+							<div class="col-xs-12 col-sm-6 col-md-3">
+								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn childbut btn-info btn-lg">Edit Child</a>
 							</div>
 						</div>
 					</li>

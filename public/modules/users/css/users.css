@@ -12,6 +12,17 @@
 	right: 10px;
 	position: absolute;
 }
+.childbut
+{
+	margin-top: 20px;
+}
+.userbut
+{
+	margin-top: 45px;
+}
+label{
+	font-size: 16px
+}
 
 /* ========================================
 ** Custom Styling
@@ -30,8 +41,11 @@
 	cursor: pointer;
 }
 body{
-	
+
 	background-color: aliceblue;
+}
+p{
+	font-size: 16px;
 }
 
 

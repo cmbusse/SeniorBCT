@@ -7,7 +7,7 @@
 				<ul class="list-group">
 					<li class="list-group-item" ng-repeat="child in usersChildren">
 						<div class="row">
-							<div class="col-xs-12 col-md-6">
+							<div class="col-xs-12 col-md-6 col-sm-6 col-xs-6">
 								<h4>
 									<a data-ng-href="#!/children/{{child._id}}">
 										{{child.firstName}} {{child.lastName}}
@@ -16,8 +16,8 @@
 								<p class="userp" ng-show="isPunchedIn(child)" style="color: red"><strong>Checked In</strong></p>
 								<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>
 							</div>
-							<div class="col-xs-12 col-md-6">
-								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-info btn-md">Click Here to Edit this Child</a>
+							<div class="col-xs-12 col-md-6 col-sm-6 col-xs-6">
+								<a data-ng-href="#!/children/{{child._id}}/edit" style = "margin-top:10px;" class="btn btn-info btn-lg">Edit Child</a>
 							</div>
 						</div>
 					</li>
