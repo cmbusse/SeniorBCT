@@ -1,5 +1,4 @@
-<section class="row" data-ng-controller="SettingsController">
-	<div class="row" style="margin-top: 30px">
+<section class="row" data-ng-controller="SettingsController" style="margin-top: 30px">
 			<div class="col-md-12 text-center">
 				<h3>Edit your profile</h3>
 			</div>
@@ -10,11 +9,11 @@
 							<label for="firstName">First Name</label>
 							<input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="user.firstName" ng-model-options="{ updateOn: 'blur' }" placeholder="First Name">
 						</div>
-						<div class="form-group" style="margin-top:65px;">
+						<div class="form-group marginEdit">
 							<label for="lastName">Last Name</label>
 							<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="user.lastName" ng-model-options="{ updateOn: 'blur' }" placeholder="Last Name">
 						</div>
-						<div class="form-group" style="margin-top:65px;">
+						<div class="form-group marginEdit">
 							<label for="phone">Phone Number</label>
 							<input type="text" id="phone" name="phone" class="form-control" data-ng-model="user.phone" ng-model-options="{ updateOn: 'blur' }" placeholder="Phone Number">
 						</div>
@@ -90,5 +89,4 @@
 					</fieldset>
 				</form>
 			</div>
-		</div>
 </section>
