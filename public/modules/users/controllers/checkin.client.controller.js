@@ -110,6 +110,7 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 		       		$scope.child.isPunchedIn = true;
 		       		$scope.child.lastCheckIn = dateNow;
 	        		console.log('test');
+	        		$scope.child.inToOut = true;
 	        		$scope.child.$update(function(response) {
 	        			console.log('bing');
 	        			$scope.child = response;
@@ -153,6 +154,10 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       			console.log('bing');
 	       		}
         	});
+		};
+
+		$scope.inToOutTrue = function(passedchild){
+			return passedchild.inToOut;
 		};
 	}
 ]);
