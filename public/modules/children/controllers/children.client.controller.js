@@ -151,7 +151,6 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			$scope.satDate = new Date(d.setDate(d.getDate()+1));
 			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
 			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
-
 		};
 
 		function timeBuilder(){
@@ -1281,36 +1280,6 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					}
 				}
 			}
-		};
-		
-		// Copied from UI bootstrap example
-		/*
-		$scope.today = function() {
-			$scope.dt = new Date();
-		};
-		$scope.today();
-
-		$scope.clear = function () {
-			$scope.dt = null;
-		};
-
-		$scope.open = function($event) {
-			$event.preventDefault();
-			$event.stopPropagation();
-
-			$scope.opened = true;
-		};
-
-		$scope.dateOptions = {
-			formatYear: 'yy',
-			startingDay: 1,
-			showWeeks: false
-		};
-
-		$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-		$scope.format = $scope.formats[0];
-		*/
-
+		};	
 	}
-
 ]);
