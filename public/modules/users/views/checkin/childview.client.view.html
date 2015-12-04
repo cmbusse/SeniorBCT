@@ -9,23 +9,21 @@
 	<div class="row">
 		<div class="col-md-12">
 			<ul class="list-group">
-				<li class="list-group-item" ng-repeat="child in usersChildren">
+				<li class="list-group-item" style = "font-size:18px;" ng-repeat="child in usersChildren">
 					{{child.firstName}} {{child.lastName}}
-					<span><button type="button" class="btn btn-default" ng-click="checkChildIn(child._id); setInToOut()" ng-disabled="child.isPunchedIn == true">Check In</button></span>
-					<span><button type="button" class="btn btn-default" ng-click="checkChildOut(child._id)" ng-disabled="child.isPunchedIn == false">Check Out</button></span>
-					<span ng-show="child.isPunchedIn">{{child.firstName}} checked in at {{child.lastCheckIn | date: 'shortTime'}} </span>
+					<span><button type="button" class="btn btn-info" ng-click="checkChildIn(child._id)" ng-disabled="child.isPunchedIn == true">Check In</button></span>
+					<span><button type="button" class="btn btn-info" ng-click="checkChildOut(child._id)" ng-disabled="child.isPunchedIn == false">Check Out</button></span>
+					<span ng-show="child.isPunchedIn == true">{{child.firstName}} checked in at {{child.lastCheckIn | date: 'shortTime'}} </span>
 					<!-- TODO:  Add in on back end a response that enables a success, so that a success message can be displayed 
 						 TODO:  Change the button to take to a success page with X children checked in by Y, that then redirects to sign in
-						 With back end returning child, check for something idk
-http://stackoverflow.com/questions/31553102/how-do-i-only-show-one-element-on-click-within-an-ng-repeat
-						 -->
+						 With back end returning child, check for something idk-->
 				</li>
 			</ul>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<a href='#!/' class="btn btn-default" role="button">Done</a>
+			<a href='#!/' class="btn btn-lg btn-primary" role="button">Done</a>
 		</div>
 	</div>
 </section>
