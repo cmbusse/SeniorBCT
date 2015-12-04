@@ -490,6 +490,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.editMondayTimes = function(isValid){
 			if(isValid){
 				var timesValid = false;
+				var isFuture = false;
+				var today = new Date();
 				if($scope.monTimeIn.getHours() < $scope.monTimeOut.getHours()){
 					timesValid = true;
 				}
@@ -505,7 +507,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						timesValid = false;
 					}
 				}
-				if(timesValid){
+				if($scope.TmonimeIn.getFullYear() > today.getFullYear()){
+					isFuture = true;
+				} else if($scope.monTimeIn.getFullYear() === today.getFullYear()){
+					if($scope.monTimeIn.getMonth() > today.getMonth()){
+						isFuture = true;
+					} else if($scope.monTimeIn.getMonth() === today.getMonth()){
+						if($scope.monTimeIn.getDate() > today.getDate()){
+							isFuture = true;
+						}
+					}
+				}
+				if(timesValid && !isFuture){
 					var punchesIn = $scope.child.punchesIn;
 					var punchesOut = $scope.child.punchesOut;
 					var dateFoundIn = false;
@@ -559,7 +572,11 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						}
 					});
 				} else{
-					$scope.error1 = 'Time In must be before Time Out';
+					if(!timesValid){
+						$scope.error1 = 'Time In must be before Time Out';
+					} else if(isFuture){
+						$scope.error1 = 'Cannot edit dates in the future';
+					}
 				}
 			}
 		};
@@ -590,6 +607,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.editTuesdayTimes = function(isValid){
 			if(isValid){
 				var timesValid = false;
+				var isFuture = false;
+				var today = new Date();
 				if($scope.tueTimeIn.getHours() < $scope.tueTimeOut.getHours()){
 					timesValid = true;
 				}
@@ -605,7 +624,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						timesValid = false;
 					}
 				}
-				if(timesValid){
+				if($scope.tueTimeIn.getFullYear() > today.getFullYear()){
+					isFuture = true;
+				} else if($scope.tueTimeIn.getFullYear() === today.getFullYear()){
+					if($scope.tueTimeIn.getMonth() > today.getMonth()){
+						isFuture = true;
+					} else if($scope.tueTimeIn.getMonth() === today.getMonth()){
+						if($scope.tueTimeIn.getDate() > today.getDate()){
+							isFuture = true;
+						}
+					}
+				}
+				if(timesValid && !isFuture){
 					var punchesIn = $scope.child.punchesIn;
 					var punchesOut = $scope.child.punchesOut;
 					var dateFoundIn = false;
@@ -659,7 +689,11 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						}
 					});
 				} else{
-					$scope.error2 = 'Time In must be before Time Out';
+					if(!timesValid){
+						$scope.error2 = 'Time In must be before Time Out';
+					} else if(isFuture){
+						$scope.error2 = 'Cannot edit dates in the future';
+					}
 				}
 			}
 		};
@@ -690,6 +724,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.editWednesdayTimes = function(isValid){
 			if(isValid){
 				var timesValid = false;
+				var isFuture = false;
+				var today = new Date();
 				if($scope.wedTimeIn.getHours() < $scope.wedTimeOut.getHours()){
 					timesValid = true;
 				}
@@ -705,7 +741,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						timesValid = false;
 					}
 				}
-				if(timesValid){
+				if($scope.wedTimeIn.getFullYear() > today.getFullYear()){
+					isFuture = true;
+				} else if($scope.wedTimeIn.getFullYear() === today.getFullYear()){
+					if($scope.wedTimeIn.getMonth() > today.getMonth()){
+						isFuture = true;
+					} else if($scope.wedTimeIn.getMonth() === today.getMonth()){
+						if($scope.wedTimeIn.getDate() > today.getDate()){
+							isFuture = true;
+						}
+					}
+				}
+				if(timesValid && !isFuture){
 					var punchesIn = $scope.child.punchesIn;
 					var punchesOut = $scope.child.punchesOut;
 					var dateFoundIn = false;
@@ -759,7 +806,11 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						}
 					});
 				} else{
-					$scope.error3 = 'Time In must be before Time Out';
+					if(!timesValid){
+						$scope.error3 = 'Time In must be before Time Out';
+					} else if(isFuture){
+						$scope.error3 = 'Cannot edit dates in the future';
+					}
 				}
 			}
 		};
@@ -790,6 +841,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.editThursdayTimes = function(isValid){
 			if(isValid){
 				var timesValid = false;
+				var isFuture = false;
+				var today = new Date();
 				if($scope.thuTimeIn.getHours() < $scope.thuTimeOut.getHours()){
 					timesValid = true;
 				}
@@ -805,7 +858,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						timesValid = false;
 					}
 				}
-				if(timesValid){
+				if($scope.thuTimeIn.getFullYear() > today.getFullYear()){
+					isFuture = true;
+				} else if($scope.thuTimeIn.getFullYear() === today.getFullYear()){
+					if($scope.thuTimeIn.getMonth() > today.getMonth()){
+						isFuture = true;
+					} else if($scope.thuTimeIn.getMonth() === today.getMonth()){
+						if($scope.thuTimeIn.getDate() > today.getDate()){
+							isFuture = true;
+						}
+					}
+				}
+				if(timesValid && !isFuture){
 					var punchesIn = $scope.child.punchesIn;
 					var punchesOut = $scope.child.punchesOut;
 					var dateFoundIn = false;
@@ -859,7 +923,11 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						}
 					});
 				} else{
-					$scope.error4 = 'Time In must be before Time Out';
+					if(!timesValid){
+						$scope.error4 = 'Time In must be before Time Out';
+					} else if(isFuture){
+						$scope.error4 = 'Cannot edit dates in the future';
+					}
 				}
 			}
 		};
@@ -890,6 +958,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.editFridayTimes = function(isValid){
 			if(isValid){
 				var timesValid = false;
+				var isFuture = false;
+				var today = new Date();
 				if($scope.friTimeIn.getHours() < $scope.friTimeOut.getHours()){
 					timesValid = true;
 				}
@@ -905,7 +975,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						timesValid = false;
 					}
 				}
-				if(timesValid){
+				if($scope.friTimeIn.getFullYear() > today.getFullYear()){
+					isFuture = true;
+				} else if($scope.friTimeIn.getFullYear() === today.getFullYear()){
+					if($scope.friTimeIn.getMonth() > today.getMonth()){
+						isFuture = true;
+					} else if($scope.friTimeIn.getMonth() === today.getMonth()){
+						if($scope.friTimeIn.getDate() > today.getDate()){
+							isFuture = true;
+						}
+					}
+				}
+				if(timesValid && !isFuture){
 					var punchesIn = $scope.child.punchesIn;
 					var punchesOut = $scope.child.punchesOut;
 					var dateFoundIn = false;
@@ -959,7 +1040,11 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						}
 					});
 				} else{
-					$scope.error5 = 'Time In must be before Time Out';
+					if(!timesValid){
+						$scope.error5 = 'Time In must be before Time Out';
+					} else if(isFuture){
+						$scope.error5 = 'Cannot edit dates in the future';
+					}
 				}
 			}
 		};
@@ -990,6 +1075,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.editSaturdayTimes = function(isValid){
 			if(isValid){
 				var timesValid = false;
+				var isFuture = false;
+				var today = new Date();
 				if($scope.satTimeIn.getHours() < $scope.satTimeOut.getHours()){
 					timesValid = true;
 				}
@@ -1005,7 +1092,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						timesValid = false;
 					}
 				}
-				if(timesValid){
+				if($scope.satTimeIn.getFullYear() > today.getFullYear()){
+					isFuture = true;
+				} else if($scope.satTimeIn.getFullYear() === today.getFullYear()){
+					if($scope.satTimeIn.getMonth() > today.getMonth()){
+						isFuture = true;
+					} else if($scope.satTimeIn.getMonth() === today.getMonth()){
+						if($scope.satTimeIn.getDate() > today.getDate()){
+							isFuture = true;
+						}
+					}
+				}
+				if(timesValid && !isFuture){
 					var punchesIn = $scope.child.punchesIn;
 					var punchesOut = $scope.child.punchesOut;
 					var dateFoundIn = false;
@@ -1059,7 +1157,11 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						}
 					});
 				} else{
-					$scope.error6 = 'Time In must be before Time Out';
+					if(!timesValid){
+						$scope.error6 = 'Time In must be before Time Out';
+					} else if(isFuture){
+						$scope.error6 = 'Cannot edit dates in the future';
+					}
 				}
 			}
 		};
@@ -1090,6 +1192,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.editSundayTimes = function(isValid){
 			if(isValid){
 				var timesValid = false;
+				var isFuture = false;
+				var today = new Date();
 				if($scope.sunTimeIn.getHours() < $scope.sunTimeOut.getHours()){
 					timesValid = true;
 				}
@@ -1105,7 +1209,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						timesValid = false;
 					}
 				}
-				if(timesValid){
+				if($scope.sunTimeIn.getFullYear() > today.getFullYear()){
+					isFuture = true;
+				} else if($scope.sunTimeIn.getFullYear() === today.getFullYear()){
+					if($scope.sunTimeIn.getMonth() > today.getMonth()){
+						isFuture = true;
+					} else if($scope.sunTimeIn.getMonth() === today.getMonth()){
+						if($scope.sunTimeIn.getDate() > today.getDate()){
+							isFuture = true;
+						}
+					}
+				}
+				if(timesValid && !isFuture){
 					var punchesIn = $scope.child.punchesIn;
 					var punchesOut = $scope.child.punchesOut;
 					var dateFoundIn = false;
@@ -1159,7 +1274,11 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						}
 					});
 				} else{
-					$scope.error7 = 'Time In must be before Time Out';
+					if(!timesValid){
+						$scope.error7 = 'Time In must be before Time Out';
+					} else if(isFuture){
+						$scope.error7 = 'Cannot edit dates in the future';
+					}
 				}
 			}
 		};
