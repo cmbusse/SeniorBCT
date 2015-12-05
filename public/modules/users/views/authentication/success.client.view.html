@@ -3,18 +3,20 @@
 <section data-ng-controller="UsersController" data-ng-init="findOneUser()">
 	<div class="container" ng-show="isLoggedIn()" style="margin-top: 15px">
 		<div class="row">
-			<div class="col-md-12">
-				<h5>Thanks for signing up for DayCamp!</h5>
-				<h5>Here is some information that you're going to want to take note of:</h5>
-				<h5 class="text-muted">The following pieces of information will be all be useful in accessing your account on this website.</h5>
-				<h5 class="text-muted">All of these fields can be edited later by clicking on your name at the top right, and hitting Edit Profile</h5>
-				<p><strong>{{currentuser.firstName}} {{currentuser.lastName}}'s Account</strong></p>
+			<div class="col-md-12 text-center">
+				<h1>Thanks for signing up for DayCamp!</h1>
+				<h2>Here is some information that you're going to want to take note of :</h2>
+				<h5 class="text-muted" style = "color:red;">The following information has been assigned to you.</h5>
+				<h4></h4>
+				<h5>Feel free to edit this information at any time. Simply click your profile name in the top right corner of the website and press the Edit Profile button.</h5>
+				<p class = "userp"><strong>{{currentuser.firstName}} {{currentuser.lastName}}'s Account</strong></p>
 				<p class="userp">PIN:  {{currentuser.PIN}}</p>
 				<p class="userp">Username:  {{currentuser.username}}</p>
 				<p class="userp">Email:  {{currentuser.email}}</p>
 				<p class="userp">Phone:  {{currentuser.phone}}</p>
+				<h5>Hint: feel free to take a picture. It can help you recall this information at any time!</h5>
 				<h5>Now that you've got your account set up and your important info noted, let's go ahead and add your children into our records</h5>
-				<h5><a href="#!/children/create">Click Here</a> to add a child</h5>
+				<h5><a href="#!/children/create" style="font-size:24px;">Add a Child</a> </h5>
 			</div>
 		</div>
 	</div>

@@ -51,6 +51,9 @@ body{
 p{
 	font-size: 16px;
 }
+.userp{
+	font-size:20px; 
+}
 /* Media Queries */
 /* Custom, iPhone Retina */ 
     @media only screen and (min-width : 320px) {
