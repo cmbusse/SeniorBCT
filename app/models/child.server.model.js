@@ -14,6 +14,9 @@ var mongoose = require('mongoose'),
 /**
  * Child Schema
  */
+ // TODO: 	Implement a boolean called DayCamp.  True for DayCamp pricing model, False for Latch key pricing model.  
+ //			Manage Payment Plan dashboard will go through all children and set the pricing model appropriately for All Children
+ //			Upon child creation, look up another child and see what their DayCamp value is and copy it
 var ChildSchema = new Schema({
 	firstName: {
 		type: String,
