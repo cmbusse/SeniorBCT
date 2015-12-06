@@ -506,7 +506,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 						timesValid = false;
 					}
 				}
-				if($scope.TmonimeIn.getFullYear() > today.getFullYear()){
+				if($scope.monTimeIn.getFullYear() > today.getFullYear()){
 					isFuture = true;
 				} else if($scope.monTimeIn.getFullYear() === today.getFullYear()){
 					if($scope.monTimeIn.getMonth() > today.getMonth()){

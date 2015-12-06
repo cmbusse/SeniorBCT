@@ -84,6 +84,7 @@ exports.read = function(req, res) {
 */
 exports.updateUser = function(req, res) { 
 	var currUser = req.body;
+	currUser.displayName = currUser.firstName + ' ' + currUser.lastName;
 	User.findById(currUser._id, function(err, user) {
 		var query = {'_id': currUser._id };
 		var update = { 	roles: currUser.roles, 
