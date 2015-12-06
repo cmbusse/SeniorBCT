@@ -70,6 +70,9 @@ exports.update = function(req, res) {
 		newPunchesOut.push(punch2);
 	}
 	
+	if(typeof currChild.lastCheckIn === 'undefined'){
+		currChild.lastCheckIn = new Date(0);
+	}
 	
 	Child.findById(currChild._id, function(err, child) {
 		var query = {'_id': currChild._id };
