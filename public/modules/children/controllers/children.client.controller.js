@@ -91,9 +91,13 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			if($scope.child){
 				if($scope.currentuser.roles === 'admin'){
 					return true;
+				}
+				if($scope.currentuser.roles === 'employee'){
+					return true;
 				} else if($scope.currentuser._id === $scope.child.user._id){
 					return true;
-				} else{
+				} 
+				else{
 					return false;
 				}
 			}

@@ -26,18 +26,14 @@
 										<a data-ng-href="#!/users/{{user._id}}">
 											{{user.firstName}} {{user.lastName}}
 											<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
-											<span ng-show="isEmployee(user)" class="text-muted"> - Employee</span>
-											<span ng-show="isAdmin(user)" class="text-muted"> - Administrator</span>
 										</a>
 									</h4>							
 									<p class="userp" ng-show="isAdmin(user)" style="color: red"><strong>Admin Account</strong></p>
+									<p class="userp" ng-show="isEmployee(user)" style="color: #00BFFF"><strong>Employee Account</strong></p>
 									<p class="userp">PIN:  {{user.PIN}}</p>
 									<p class="userp">Username:  {{user.username}}</p>
 									<p class="userp">Email:  {{user.email}}</p>
 									<p class="userp">Phone:  {{user.phone}}</p>
-								</div>
-								<div class="col-xs-12 col-sm-6 col-md-3">
-									<a data-ng-href="#!/users/{{user._id}}/employeeEdit" class="btn btn-info userbut btn-lg">Edit User</a>
 								</div>
 							</div>
 						</li>

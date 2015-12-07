@@ -62,7 +62,7 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 			}
 		};
 		// Is logged in user an employee
-		$scope.loggedInIsAdmin = function(){
+		$scope.loggedInIsEmployee = function(){
 			if($scope.currentuser){
 				return $scope.currentuser.roles === 'employee';	
 			}

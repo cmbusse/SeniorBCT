@@ -17,6 +17,10 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.loggedInIsAdmin = function(){
 			return $scope.authentication.user.roles === 'admin';
 		};
+
+		$scope.loggedInIsEmployee = function(){
+			return $scope.authentication.user.roles === 'employee';
+		};
 		
 		$scope.toggleCollapsibleMenu = function() {
 			$scope.isCollapsed = !$scope.isCollapsed;
