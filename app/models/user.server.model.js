@@ -86,6 +86,7 @@ var UserSchema = new Schema({
 	additionalProvidersData: {},
 	roles: {
 		type: String,
+		enum: ['user' , 'employee'],
 		trim: true,
 		default: 'user'
 	},

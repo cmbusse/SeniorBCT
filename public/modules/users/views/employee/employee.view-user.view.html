@@ -1,0 +1,43 @@
+<section data-ng-controller="UsersController" data-ng-init="findOneUser(); findUsersChildren()">
+	<div class="container" ng-show="!loggedInIsEmployee()">
+		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
+		<h3 class="text-center text-danger"><strong>Please click <a href="/">here</a> to go home</strong></h3>
+	</div>
+
+<!--  TODO:  Style this page, maybe add border around the two md-6 divs -->
+	<div class="container" ng-show="loggedInIsEmployee()">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>{{user.firstName}} {{user.lastName}}'s Account 
+				<span ng-show="isActive(user)" class="text-muted"> - Active User</span>
+				<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
+				</h3>
+				<p class="userp" ng-show="isAdmin(user)" style="color: red"><strong>Admin Account</strong></p>
+				<!--<p class="userp" ng-show="!isAdmin(user)">User Account</p>-->
+				<p class="userp">PIN:  {{user.PIN}}</p>
+				<p class="userp">Username:  {{user.username}}</p>
+				<p class="userp">Email:  {{user.email}}</p>
+				<p class="userp">Phone:  {{user.phone}}</p>
+				<h4>{{user.firstName}} {{user.lastName}}'s Children</h4>
+				<ul class="list-group">
+					<li class="list-group-item" ng-repeat="child in usersChildren">
+						<div class="row">
+							<div class="col-xs-6 col-md-6 col-sm-6">
+								<h4>
+									<a data-ng-href="#!/children/{{child._id}}">
+										{{child.firstName}} {{child.lastName}}
+									</a>
+								</h4>
+								<p class="userp" ng-show="isPunchedIn(child)" style="color: red"><strong>Checked In</strong></p>
+								<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>
+							</div>
+							<div class="col-xs-6 col-md-6 col-sm-6">
+								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-info btn-lg" style="margin-top:8px;">Edit Child</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>		
+	</div>
+</section>

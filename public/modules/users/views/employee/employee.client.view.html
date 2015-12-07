@@ -1,11 +1,11 @@
 <section data-ng-controller="UsersController" data-ng-init="findAllUsers(); findAllChildren(); seedOrderBy()">
-	<div class="container" ng-show="!loggedInIsAdmin()">
+	<div class="container" ng-show="!loggedInIsEmployee">
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
 		<h3 class="text-center text-danger"><strong>Please click <a href="/">here</a> to go home</strong></h3>
 	</div>	    
 	<tabset style="margin-top: 20px">
     	<tab heading="Manage Users">
-	    		<div class="container" ng-show="loggedInIsAdmin()">
+	    		<div class="container" ng-show="loggedInIsEmployee()">
 	    		<div class="row">
 	    			<div class="col-xs-12 col-sm-6 col-md-6">
 						<h3>Manage Users Dashboard</h3>
@@ -37,7 +37,7 @@
 									<p class="userp">Phone:  {{user.phone}}</p>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-3">
-									<a data-ng-href="#!/users/{{user._id}}/edit" class="btn btn-info userbut btn-lg">Edit User</a>
+									<a data-ng-href="#!/users/{{user._id}}/employeeEdit" class="btn btn-info userbut btn-lg">Edit User</a>
 								</div>
 							</div>
 						</li>
@@ -46,7 +46,7 @@
 			</div>
 		</tab>
     	<tab heading="Manage Children">
-    			<div class="container" ng-show="loggedInIsAdmin()">
+    			<div class="container" ng-show="loggedInIsEmployee()">
 				<div class="row">
 	    			<div class="col-xs-12 col-sm-6 col-md-6">
 						<h3>Manage Children Dashboard</h3>

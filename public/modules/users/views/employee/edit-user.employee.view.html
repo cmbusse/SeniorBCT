@@ -1,10 +1,10 @@
 <section data-ng-controller="UsersController" data-ng-init="findOneUser()">
-	<div class="container" ng-show="!loggedInIsAdmin()">
+	<div class="container" ng-show="!loggedInIsEmployee()">
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
 		<h3 class="text-center text-danger"><strong>Please click <a href="/">here</a> to go home</strong></h3>
 	</div>
 <!--  TODO:  Style this page -->
-	<div class="container" ng-show="loggedInIsAdmin()">
+	<div class="container" ng-show="loggedInIsEmployee()">
 		<div class="row">
 			<div class="col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 text-left">
 				<h3>{{::user.firstName}} {{::user.lastName}}'s Account 
@@ -26,18 +26,6 @@
 					</li>
 					<li ng-show="isActive(user)" class="editUserList">
 						<a ng-show="isActive(user)" ng-click="deactivateUser()" class="userOp" title="Make Inactive"><img src="modules/users/img/forbidden15.svg" alt="x'ed" style="width: 30px"> Deactivate User</a>
-					</li>
-					<li ng-show="isEmployee(user)" class="editUserList">
-						<a ng-show="isEmployee(user)" ng-click="makeUserAdmin()" class="userOp" title="Make Admin"><img src="modules/users/img/administrator1.svg" alt="admin" style="width: 30px"> Promote Employee to Admin</a>
-					</li>
-					<li ng-show="isAdmin(user)" class="editUserList">
-						<a ng-show="isAdmin(user)" ng-click="makeAdminUser()" class="userOp" title="Make User"><img src="modules/users/img/plus-sign1.svg" alt="admin" style="width: 30px"> Demote Admin to Employee</a>
-					</li>
-					<li ng-show="!isEmployee(user)" class="editUserList">
-						<a ng-show="!isEmployee(user)" ng-click="makeUserEmployee()" class="userOp" title="Make Employee"><img src="modules/users/img/administrator1.svg" alt="admin" style="width: 30px"> Promote User to Employee</a>
-					</li>
-					<li ng-show="isEmployee(user)" class="editUserList">
-						<a ng-show="isEmployee(user)" ng-click="makeEmployeeUser()" class="userOp" title="Demote Employee"><img src="modules/users/img/administrator1.svg" alt="admin" style="width: 30px"> Demote Employee to User</a>
 					</li>
 					<!--
 					<li ng-show="!isCurrentUser(user)" class="editUserList">

@@ -92,6 +92,16 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			}
 		};
 
+		// Is logged in user an employee
+		$scope.loggedInIsEmployee = function(){
+			if($scope.currentuser){
+				return $scope.currentuser.roles === 'employee';	
+			}
+			else{
+				return false;
+			}
+		};
+
 		// Is there a user logged in
 		$scope.isLoggedIn = function(){
 			if($scope.currentuser){
@@ -110,6 +120,16 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 				return false;
 			}
 		};
+		// Checks to see if a user is an employee
+		$scope.isEmployee = function(passeduser){
+			if('roles' in passeduser){
+				return passeduser.roles === 'employee';
+			}
+			else{
+				return false;
+			}
+		};
+        
         
 		// Checks to see if user is currently logged in
 		$scope.isCurrentUser = function(passeduser){
@@ -145,8 +165,26 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			});
 		};
 
-		// Make Admin User
+		// Make Admin Employee
 		$scope.makeAdminUser = function(){
+			$scope.user.roles = 'employee';
+			$scope.user.$updateUser(function(response) {
+
+				}, function(response) {
+					$scope.error = response.data.message;
+			});
+		};
+		//Make Active User Employee
+		$scope.makeUserEmployee = function(){
+			$scope.user.roles = 'employee';
+			$scope.user.$updateUser(function(response) {
+
+				}, function(response) {
+					$scope.error = response.data.message;
+			});
+		};
+		//Make Employee User
+		$scope.makeEmployeeUser = function(){
 			$scope.user.roles = 'user';
 			$scope.user.$updateUser(function(response) {
 
