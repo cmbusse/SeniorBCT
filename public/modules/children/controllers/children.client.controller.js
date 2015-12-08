@@ -19,8 +19,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				dob: this.dob,
 				timePunches: this.timePunches,
 				parentLastName: $scope.currentuser.lastName,
-				parentFirstName: $scope.currentuser.firstName
-
+				parentFirstName: $scope.currentuser.firstName,
+				dayCampMode: $scope.children[0].dayCampMode
 			});
 
 			// Redirect after save

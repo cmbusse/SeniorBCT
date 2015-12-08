@@ -87,7 +87,8 @@ exports.update = function(req, res) {
 							parentFirstName: currChild.parentFirstName,
 							parentLastName: currChild.parentLastName,
 							inToOut: currChild.inToOut,
-							outToIn: currChild.outToIn
+							outToIn: currChild.outToIn,
+							dayCampMode: currChild.dayCampMode
 						},
 					 };
 		var options = { new: true };

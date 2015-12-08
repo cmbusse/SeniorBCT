@@ -66,8 +66,11 @@ var ChildSchema = new Schema({
 	outToIn: {
 		type: Boolean,
 		default: false
+	},
+	dayCampMode: {
+		type: Boolean,
+		default: false
 	}
-
 });
 
 mongoose.model('Child', ChildSchema);
