@@ -167,7 +167,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 
 		// Make Admin Employee
 		$scope.makeAdminUser = function(){
-			$scope.user.roles = 'employee';
+			$scope.user.roles = 'user';
 			$scope.user.$updateUser(function(response) {
 
 				}, function(response) {
