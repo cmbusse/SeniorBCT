@@ -1,11 +1,11 @@
 <section data-ng-controller="UsersController" data-ng-init="findAllUsers(); findAllChildren(); seedOrderBy()">
-	<div class="container" ng-show="!loggedInIsAdmin()">
+	<div class="container" ng-show="!loggedInIsAdmin() && !loggedInIsEmployee()">
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
-		<h3 class="text-center text-danger"><strong>Please click <a href="/">here</a> to go home</strong></h3>
+		<h3 class="text-center text-danger"><strong>Please click <a href="/#!/">here</a> to go home</strong></h3>
 	</div>	    
-	<tabset style="margin-top: 20px">
+	<tabset style="margin-top: 20px" ng-show="loggedInIsAdmin() || loggedInIsEmployee()">
     	<tab heading="Manage Users">
-	    		<div class="container" ng-show="loggedInIsAdmin()">
+	    		<div class="container">
 	    		<div class="row">
 	    			<div class="col-xs-12 col-sm-6 col-md-6">
 						<h3>Manage Users Dashboard</h3>
@@ -26,17 +26,16 @@
 										<a data-ng-href="#!/users/{{user._id}}">
 											{{user.firstName}} {{user.lastName}}
 											<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
-											<span ng-show="isEmployee(user)" class="text-muted"> - Employee</span>
-											<span ng-show="isAdmin(user)" class="text-muted"> - Administrator</span>
 										</a>
-									</h4>							
+									</h4>
+									<p class="userp" ng-show="isEmployee(user)" style="color: red"><strong>Employee Account</strong></p>
 									<p class="userp" ng-show="isAdmin(user)" style="color: red"><strong>Admin Account</strong></p>
 									<p class="userp">PIN:  {{user.PIN}}</p>
 									<p class="userp">Username:  {{user.username}}</p>
 									<p class="userp">Email:  {{user.email}}</p>
 									<p class="userp">Phone:  {{user.phone}}</p>
 								</div>
-								<div class="col-xs-12 col-sm-6 col-md-3">
+								<div class="col-xs-12 col-sm-6 col-md-3" ng-show="loggedInIsAdmin()">
 									<a data-ng-href="#!/users/{{user._id}}/edit" class="btn btn-info userbut btn-lg">Edit User</a>
 								</div>
 							</div>
@@ -46,7 +45,7 @@
 			</div>
 		</tab>
     	<tab heading="Manage Children">
-    			<div class="container" ng-show="loggedInIsAdmin()">
+    		<div class="container">
 				<div class="row">
 	    			<div class="col-xs-12 col-sm-6 col-md-6">
 						<h3>Manage Children Dashboard</h3>
@@ -72,7 +71,7 @@
 								<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>
 								<p class="userp">Parent:  {{child.parentFirstName}} {{child.parentLastName}}</p>
 							</div>
-							<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="col-xs-12 col-sm-6 col-md-3" ng-show="loggedInIsAdmin()">
 								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn childbut btn-info btn-lg">Edit Child</a>
 							</div>
 						</div>

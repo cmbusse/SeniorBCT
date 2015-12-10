@@ -1,11 +1,11 @@
 <section data-ng-controller="UsersController" data-ng-init="findOneUser(); findUsersChildren()">
-	<div class="container" ng-show="!loggedInIsAdmin()">
+	<div class="container" ng-show="!loggedInIsAdmin() && !loggedInIsEmployee()">
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
 		<h3 class="text-center text-danger"><strong>Please click <a href="/">here</a> to go home</strong></h3>
 	</div>
 
 <!--  TODO:  Style this page, maybe add border around the two md-6 divs -->
-	<div class="container" ng-show="loggedInIsAdmin()">
+	<div class="container" ng-show="loggedInIsAdmin() || loggedInIsEmployee()">
 		<div class="row">
 			<div class="col-md-12">
 				<h3>{{user.firstName}} {{user.lastName}}'s Account 
@@ -31,7 +31,7 @@
 								<p class="userp" ng-show="isPunchedIn(child)" style="color: red"><strong>Checked In</strong></p>
 								<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>
 							</div>
-							<div class="col-xs-6 col-md-6 col-sm-6">
+							<div class="col-xs-6 col-md-6 col-sm-6" ng-show="loggedInIsAdmin()">
 								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-info btn-lg" style="margin-top:8px;">Edit Child</a>
 							</div>
 						</div>
