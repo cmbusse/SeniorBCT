@@ -9,7 +9,15 @@
  */
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
-	var punchSchema = new Schema({punch: Date});
+	var punchSchema = new Schema({
+		punch: {
+			type: Date
+		},
+		dayCampMode: {
+			type: Boolean,
+			default: false
+		}
+	});
 	
 /**
  * Child Schema

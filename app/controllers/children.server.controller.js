@@ -46,26 +46,34 @@ exports.update = function(req, res) {
 	var newPunchesOut = [];
 	for (var i=0; i<punchListIn.length; i++){
 		var d;
+		var dayCampMode;
 		if(typeof punchListIn[i] === 'string'){
-			d = new Date(punchListIn[i]);	
+			d = new Date(punchListIn[i]);
+			dayCampMode = currChild.dayCampMode;
 		} else{
 			d = punchListIn[i].punch;
+			dayCampMode = punchListIn[i].dayCampMode;
 		}
 		var punch = new Punch({
-			punch: d
+			punch: d,
+			dayCampMode: dayCampMode
 		});
 		newPunchesIn.push(punch);
 	}
 
 	for (var j=0; j<punchListOut.length; j++){
 		var d2;
+		var dayCampMode2;
 		if(typeof punchListOut[j] === 'string'){
 			d2 = new Date(punchListOut[j]);	
+			dayCampMode2 = currChild.dayCampMode;
 		} else{
 			d2 = punchListOut[j].punch;
+			dayCampMode2 = punchListOut[j].dayCampMode;
 		}
 		var punch2 = new Punch({
-			punch: d2
+			punch: d2,
+			dayCampMode: dayCampMode2
 		});
 		newPunchesOut.push(punch2);
 	}
