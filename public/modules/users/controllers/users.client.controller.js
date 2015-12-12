@@ -274,5 +274,32 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 				$scope.submitted4 = true;
 			}
 		};
+
+		$scope.determineBillingMode = function(){
+			$scope.$watch('children.$resolved',function(newValue, oldValue){
+				if(newValue === true){
+					$scope.dayCampMode = $scope.children[0].dayCampMode;
+				}
+			});
+		};
+
+		$scope.setToDayCamp = function(){
+			$scope.dayCampMode = true;
+			for(var i=0; i<$scope.children.length; i++){
+				$scope.children[i].dayCampMode = true;
+				$scope.children[i].$update();
+				console.log('test');
+			}
+		};
+
+		$scope.setToLatchKey = function(){
+			$scope.dayCampMode = false;
+			for(var i=0; i<$scope.children.length; i++){
+				$scope.children[i].dayCampMode = false;
+				$scope.children[i].$update();
+				console.log('test');
+			}
+		};
+		
 	}
 ]);

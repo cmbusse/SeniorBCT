@@ -61,6 +61,14 @@ p{
 	color: #515151; 
 }
 
+#paymentDiv{
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #ddd;
+	border-radius: 4px;
+}
+
 /* Media Queries */
 /* Custom, iPhone Retina */ 
     @media only screen and (min-width : 320px) {

@@ -1,8 +1,9 @@
-<section data-ng-controller="UsersController" data-ng-init="findAllUsers(); findAllChildren(); seedOrderBy()">
+<section data-ng-controller="UsersController" data-ng-init="findAllUsers(); findAllChildren(); seedOrderBy(); determineBillingMode()">
+	<!-- TODO:  change btn-lg to btn-md across all -->
 	<div class="container" ng-show="!loggedInIsAdmin() && !loggedInIsEmployee()">
 		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
 		<h3 class="text-center text-danger"><strong>Please click <a href="/#!/">here</a> to go home</strong></h3>
-	</div>	    
+	</div>
 	<tabset style="margin-top: 20px" ng-show="loggedInIsAdmin() || loggedInIsEmployee()">
     	<tab heading="Manage Users">
 	    		<div class="container">
@@ -80,7 +81,15 @@
 			</div>
     	</tab>
     	<tab heading="Manage Payment Plans">
-    		TODO:  Talk to Kaitlin about payment plan's and how they should be set up and manipulated
+    		<div class="col-xs-12 col-sm-12 col-md-12">
+	    		<h3>Payment Plan Dashboard<h3>
+	    		<div id="paymentDiv">
+		    		<h4 ng-show="dayCampMode" style="padding: 10px 0px 10px 15px">The website is currently using the DayCamp Pricing Model</h4>
+		    		<h4 ng-hide="dayCampMode" style="padding: 10px 0px 10px 15px">The website is currently using the Latch Key Pricing Model</h4>
+		    		<button ng-hide="dayCampMode" ng-click="setToDayCamp()" style="margin: 0px 0px 20px 15px; font-size: 14px" class="btn btn-info btn-md">Set to Day Camp Billing</button>
+		    		<button ng-show="dayCampMode" ng-click="setToLatchKey()" style="margin: 0px 0px 20px 15px; font-size: 14px" class="btn btn-info btn-md">Set to Latch Key Billing</button>
+		    	</div>
+	    	</div>
     	</tab>
     </tabset>
 </section>
