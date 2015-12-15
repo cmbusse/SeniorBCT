@@ -103,6 +103,7 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 		};
 
 		$scope.checkChildIn = function(childId){
+			// TODO:  Set up checks for daycamp mode and auto setting in time as 3:15
 			var allChildren = Children.query({}, function(){
 				for(var i=0; i < allChildren.length; i++)
 	       		{
@@ -135,6 +136,7 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 		};
 
 		$scope.checkChildOut = function(childId){
+			// TODO:  Set up checks for daycamp mode and auto setting in time as 3:15
 			var allChildren = Children.query({}, function(){
 				for(var i=0; i < allChildren.length; i++)
 	       		{
@@ -163,6 +165,20 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       			console.log('bing');
 	       		}
         	});
+		};
+
+		$scope.inBtnControl = function(passedchild){
+			if(!passedchild.dayCampMode){
+				return true;
+			}
+			return passedchild.isPunchedIn;
+		};
+
+		$scope.outBtnControl = function(passedchild){
+			if(!passedchild.dayCampMode){
+				return true;
+			}
+			return passedchild.isPunchedIn;
 		};
 
 		$scope.inToOutTrue = function(passedchild){
