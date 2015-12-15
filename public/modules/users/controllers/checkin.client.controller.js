@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO:  Determine time zone issues, possibly how to save dates as the correc time zone, or whether its actually an issue or not
+
 angular.module('users').controller('CheckinController', ['$scope', '$http', '$location', 'Authentication', 'Users', 'Children',
 	function($scope, $http, $location, Authentication, Users, Children) {
 		
@@ -126,7 +128,7 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	        			$scope.child = response;
 	        			}, function(response) {
 	        				$scope.error = response.data.message;
-	        			});
+	        		});
 	       		} else{
 	       			// TODO:  Error handling
 	       			console.log('bing');
@@ -146,24 +148,38 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       				$scope.child = currChild;
 	       			}
 	       		}
-	       		var punchesIn = $scope.child.punchesIn;
-	       		var punchesOut = $scope.child.punchesOut;
-	       		// If the child has an even number of check ins as check outs, they are good to check in
-	       		if(punchesIn.length === (punchesOut.length+1)){
-					var dateNow = new Date();
-		       		punchesOut[punchesOut.length] = dateNow;
-		       		$scope.child.isPunchedIn = false;
-	        		console.log('test');
-	        		$scope.child.$update(function(response) {
+	       		if(!$scope.child.dayCampMode){
+	       			var dateNow = new Date();
+	       			var dateNow2 = new Date();
+	       			dateNow.setHours(15);
+	       			dateNow.setMinutes(15);
+	       			dateNow.setSeconds(0);
+	       			$scope.child.punchesIn.push(dateNow);
+	       			$scope.child.punchesOut.push(dateNow2);
+	       			$scope.child.$update(function(response) {
 	        			console.log('bing');
 	        			$scope.child = response;
 	        			}, function(response) {
 	        				$scope.error = response.data.message;
-	        			});
+	        		});
 	       		} else{
-	       			// TODO:  Error handling
-	       			console.log('bing');
-	       		}
+	       			// If the child has an even number of check ins as check outs, they are good to check in
+		       		if($scope.child.punchesIn.length === ($scope.child.punchesOut.length+1)){
+						var dateNow3 = new Date();
+			       		$scope.child.punchesOut.push(dateNow3);
+			       		$scope.child.isPunchedIn = false;
+		        		console.log('test');
+		        		$scope.child.$update(function(response) {
+		        			console.log('bing');
+		        			$scope.child = response;
+		        			}, function(response) {
+		        				$scope.error = response.data.message;
+		        		});
+		       		} else{
+		       			// TODO:  Error handling
+		       			console.log('bing');
+		       		}
+		       	}
         	});
 		};
 
@@ -182,7 +198,13 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 		};
 
 		$scope.inToOutTrue = function(passedchild){
+			/* For latchkey mode
+			Watch the passedchild.isPunchedIn
+			When old value === false, newvalue === true
+			return true for "displayCheckInSuccess(passedchild)"
+			*/
 			return passedchild.inToOut;
+
 		};
 	}
 ]);

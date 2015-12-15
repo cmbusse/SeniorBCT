@@ -1,6 +1,7 @@
 'use strict';
 
 // TODO:  Make it so if a child has been checked in already that day, they can't be checked in again, should be one of the last we do so we can keep testing
+// TODO:  Make it so that the admin editing the time punch should select a billing mode for that day when editing, have it default to the child's current dayCampMode, but changeable
 
 // Children controller
 angular.module('children').controller('ChildrenController', ['$scope', '$stateParams', '$location', 'Authentication', 'Children', 'Users',
