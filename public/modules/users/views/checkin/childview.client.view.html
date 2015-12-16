@@ -1,4 +1,4 @@
-<section class="row" data-ng-controller="CheckinController" data-ng-init="extractUser(); findUsersChildren(); seedChild()">
+<section class="row" data-ng-controller="CheckinController" data-ng-init="extractUser(); findUsersChildren(); seedChildren()">
 	<h2 class="col-md-12 text-center">Welcome {{user.firstName}}</h2>
 	<h3 class="col-md-12 text-center">Press the Button next to your child's name</h3>
 	<h3 class="col-md-12 text-center">
@@ -12,14 +12,13 @@
 				<li class="list-group-item" style = "font-size:18px;" ng-repeat="child in usersChildren">
 				<!-- TODO:  Space this out such that the child's name length doesn't affect where the buttons are -->
 					{{child.firstName}} {{child.lastName}}
-					<span><button type="button" class="btn col-md-offset-1 btn-info" ng-click="checkChildIn(child._id)" ng-disabled="inBtnControl(child)">Check In</button></span>
-					<span><button type="button" class="btn btn-info" ng-click="checkChildOut(child._id)" ng-disabled="!outBtnControl(child)">Check Out</button></span>
-					<span ng-show="child.dayCampMode == true && child.isPunchedIn == true">{{child.firstName}} checked in at {{child.lastCheckIn | date: 'shortTime'}} </span>
+					<span><button type="button" class="btn col-md-offset-1 btn-info" ng-click="checkChildIn($index)" ng-disabled="inBtnControl(child)">Check In</button></span>
+					<span><button type="button" class="btn btn-info" ng-click="checkChildOut($index)" ng-disabled="!outBtnControl(child)">Check Out</button></span>
+					<span ng-show="child.dayCampMode == true && child.isPunchedIn == true && child.justCheckedIn == false">{{child.firstName}} checked in at {{child.lastCheckIn | date: 'shortTime'}} </span>
 					<span ng-show="child.dayCampMode == false">{{child.firstName}} checked in at 3:15 PM</span>
-					<!--<span ng-show="inToOutTrue(child)">Child Checked In</span>
-					 TODO:  Add in on back end a response that enables a success, so that a success message can be displayed 
-						 TODO:  Change the button to take to a success page with X children checked in by Y, that then redirects to sign in
-						 With back end returning child, check for something idk-->
+					<span ng-show="justCheckedIn(child)" class="text-success"><strong>Child Checked In</strong></span>
+					<span ng-show="justCheckedOut(child)" class="text-success"><strong>Child Checked Out</strong></span>
+
 				</li>
 			</ul>
 		</div>

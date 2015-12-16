@@ -94,8 +94,8 @@ exports.update = function(req, res) {
 							lastCheckIn: currChild.lastCheckIn,
 							parentFirstName: currChild.parentFirstName,
 							parentLastName: currChild.parentLastName,
-							inToOut: currChild.inToOut,
-							outToIn: currChild.outToIn,
+							justCheckedIn: currChild.justCheckedIn,
+							justCheckedOut: currChild.justCheckedOut,
 							dayCampMode: currChild.dayCampMode
 						},
 					 };

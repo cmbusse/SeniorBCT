@@ -51,6 +51,7 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 	       			}
 	       		}
 	       		$scope.usersChildren = usersChildren;
+				console.log('poop');
         	});
 		};
 
@@ -104,87 +105,64 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 			}
 		};
 
-		$scope.checkChildIn = function(childId){
+		$scope.checkChildIn = function(index){
 			// TODO:  Set up checks for daycamp mode and auto setting in time as 3:15
-			var allChildren = Children.query({}, function(){
-				for(var i=0; i < allChildren.length; i++)
-	       		{
-	       			var currChild = allChildren[i];
-	       			if(currChild._id === childId)
-	       			{
-	       				$scope.child = currChild;
-	       			}
-	       		}
-	       		// If the child has an even number of check ins as check outs, they are good to check in
-	       		if($scope.child.punchesIn.length === $scope.child.punchesOut.length){
-					var dateNow = new Date();
-		       		$scope.child.punchesIn[$scope.child.punchesIn.length] = dateNow;
-		       		$scope.child.isPunchedIn = true;
-		       		$scope.child.lastCheckIn = dateNow;
-	        		console.log('test');
-	        		$scope.child.inToOut = true;
-	        		$scope.child.$update(function(response) {
-	        			console.log('bing');
-	        			$scope.child = response;
-	        			}, function(response) {
-	        				$scope.error = response.data.message;
-	        		});
-	       		} else{
-	       			// TODO:  Error handling
-	       			console.log('bing');
-	       		}
-
-        	});
+			if($scope.usersChildren[index].punchesIn.length === $scope.usersChildren[index].punchesOut.length){
+				var dateNow = new Date();
+				$scope.usersChildren[index].isPunchedIn = true;
+				$scope.usersChildren[index].justCheckedIn = true;
+				$scope.usersChildren[index].lastCheckIn = dateNow;
+				$scope.usersChildren[index].punchesIn.push(dateNow);
+				$scope.usersChildren[index].$update(function(response){
+					$scope.usersChildren[index] = response;
+				}, function(response){
+					$scope.error = response.data.message;
+				});
+			} else{
+				// TODO:  Error Handling
+				console.log('bing');
+			}
 		};
 
-		$scope.checkChildOut = function(childId){
+		$scope.checkChildOut = function(index){
 			// TODO:  Set up checks for daycamp mode and auto setting in time as 3:15
-			var allChildren = Children.query({}, function(){
-				for(var i=0; i < allChildren.length; i++)
-	       		{
-	       			var currChild = allChildren[i];
-	       			if(currChild._id === childId)
-	       			{
-	       				$scope.child = currChild;
-	       			}
-	       		}
-	       		if(!$scope.child.dayCampMode){
-	       			var dateNow = new Date();
-	       			var dateNow2 = new Date();
-	       			dateNow.setHours(15);
-	       			dateNow.setMinutes(15);
-	       			dateNow.setSeconds(0);
-	       			$scope.child.punchesIn.push(dateNow);
-	       			$scope.child.punchesOut.push(dateNow2);
-	       			$scope.child.$update(function(response) {
-	        			console.log('bing');
-	        			$scope.child = response;
-	        			}, function(response) {
-	        				$scope.error = response.data.message;
-	        		});
-	       		} else{
-	       			// If the child has an even number of check ins as check outs, they are good to check in
-		       		if($scope.child.punchesIn.length === ($scope.child.punchesOut.length+1)){
-						var dateNow3 = new Date();
-			       		$scope.child.punchesOut.push(dateNow3);
-			       		$scope.child.isPunchedIn = false;
-		        		console.log('test');
-		        		$scope.child.$update(function(response) {
-		        			console.log('bing');
-		        			$scope.child = response;
-		        			}, function(response) {
-		        				$scope.error = response.data.message;
-		        		});
-		       		} else{
-		       			// TODO:  Error handling
-		       			console.log('bing');
-		       		}
-		       	}
-        	});
+			if(!$scope.usersChildren[index].dayCampMode){
+				var dateNow = new Date();
+				var dateNow2 = new Date();
+				dateNow.setHours(15);
+				dateNow.setMinutes(15);
+				dateNow.setSeconds(0);
+				$scope.usersChildren[index].punchesIn.push(dateNow);
+				$scope.usersChildren[index].punchesOut.push(dateNow2);
+				$scope.usersChildren[index].justCheckedOut = true;
+				$scope.usersChildren[index].$update(function(response) {
+					$scope.usersChildren[index] = response;
+					}, function(response) {
+						$scope.error = response.data.message;
+				});
+			} else{
+				if($scope.usersChildren[index].punchesIn.length === $scope.usersChildren[index].punchesOut.length+1){
+					var dateNow3 = new Date();
+					$scope.usersChildren[index].punchesOut.push(dateNow3);
+					$scope.usersChildren[index].isPunchedIn = false;
+					$scope.usersChildren[index].justCheckedOut = true;
+					$scope.usersChildren[index].$update(function(response) {
+						$scope.usersChildren[index] = response;
+						}, function(response) {
+							$scope.error = response.data.message;
+					});
+				} else{
+					// TODO:  Error Handling
+					console.log('bing');
+				}
+			}
 		};
 
 		$scope.inBtnControl = function(passedchild){
 			if(!passedchild.dayCampMode){
+				return true;
+			}
+			if(passedchild.justCheckedIn || passedchild.justCheckedOut){
 				return true;
 			}
 			return passedchild.isPunchedIn;
@@ -194,17 +172,41 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 			if(!passedchild.dayCampMode){
 				return true;
 			}
+			if(passedchild.justCheckedIn || passedchild.justCheckedOut){
+				return false;
+			}
 			return passedchild.isPunchedIn;
 		};
+		
+		$scope.seedChildren = function(){
+			$scope.$watch('usersChildren.length',function(newValue, oldValue){
+				if(newValue > 0){
+					for(var i=0; i<$scope.usersChildren.length; i++){
+						$scope.usersChildren[i].justCheckedIn = false;
+						$scope.usersChildren[i].justCheckedOut = false;
+						$scope.usersChildren[i].$update();
+					}
+				}
+			});
+		};
 
-		$scope.inToOutTrue = function(passedchild){
-			/* For latchkey mode
-			Watch the passedchild.isPunchedIn
-			When old value === false, newvalue === true
-			return true for "displayCheckInSuccess(passedchild)"
-			*/
-			return passedchild.inToOut;
-
+		$scope.justCheckedOut = function(passedchild){
+			if(passedchild.justCheckedOut){
+				return true;
+			}
+			return false;
+		};
+		
+		$scope.justCheckedIn = function(passedchild){
+			if(passedchild.justCheckedIn){
+				return true;
+			}
+			return false;
 		};
 	}
 ]);
+
+/*
+On page load call a thing that updates each child's justCheckedIn and justCheckedOut to false
+on update change them to what we need to display the successes or failures
+*/

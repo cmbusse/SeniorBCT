@@ -67,11 +67,11 @@ var ChildSchema = new Schema({
 		type: String,
 		default: ''
 	},
-	inToOut: {
+	justCheckedIn: {
 		type: Boolean,
 		default: false
 	},
-	outToIn: {
+	justCheckedOut: {
 		type: Boolean,
 		default: false
 	},
