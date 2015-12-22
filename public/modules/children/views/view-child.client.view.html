@@ -52,13 +52,19 @@
 							<div class="pull-left editDiv">
 								<span class="shiftUpTen">In:</span><input required type="time" name="monTimeIn" class="form-control timePicker shiftUpTen" ng-model="monTimeIn" placeholder="HH:mm:ss" style="margin-left: 15px">
 							</div>
-							<button type="submit" class="btn btn-xs btn-default shiftUpTen" style="top: -12px">Update</button>
+							<button type="submit" class="btn btn-xs btn-default shiftUpTen" style="top: -18px">Update</button>
 						</div>
 						<div class="row" style="padding-left: 15px">
 							<div class="pull-left editDiv">
 								<span class="shiftUpX">Out: </span><input required type="time" name="monTimeOut" class="form-control timePicker shiftUpX" ng-model="monTimeOut" placeholder="HH:mm:ss">
 							</div>
-							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditMonday()" style="top: -39px">Cancel</button>
+							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditMonday()" style="top: -45px">Cancel</button>
+						</div>
+						<div class="row" style="padding-left: 15px" ng-show="monBillingMode()">
+							<div class="pull-left editDiv">
+								<span class="shiftUpX">Billing: </span><input required type="time" name="monTimeOut" class="form-control timePicker shiftUpX" ng-model="monTimeOut" placeholder="HH:mm:ss">
+							</div>
+							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditMonday()" style="top: -45px">Cancel</button>
 						</div>
 					</fieldset>
 				</form>

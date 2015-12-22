@@ -10,14 +10,21 @@
 		<div class="col-md-12">
 			<ul class="list-group">
 				<li class="list-group-item" style = "font-size:18px;" ng-repeat="child in usersChildren">
-				<!-- TODO:  Space this out such that the child's name length doesn't affect where the buttons are -->
-					{{child.firstName}} {{child.lastName}}
-					<span><button type="button" class="btn col-md-offset-1 btn-info" ng-click="checkChildIn($index)" ng-disabled="inBtnControl(child)">Check In</button></span>
-					<span><button type="button" class="btn btn-info" ng-click="checkChildOut($index)" ng-disabled="!outBtnControl(child)">Check Out</button></span>
-					<span ng-show="child.dayCampMode == true && child.isPunchedIn == true && child.justCheckedIn == false">{{child.firstName}} checked in at {{child.lastCheckIn | date: 'shortTime'}} </span>
-					<span ng-show="child.dayCampMode == false">{{child.firstName}} checked in at 3:15 PM</span>
-					<span ng-show="justCheckedIn(child)" class="text-success"><strong>Child Checked In</strong></span>
-					<span ng-show="justCheckedOut(child)" class="text-success"><strong>Child Checked Out</strong></span>
+					<div class="row">
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div>{{child.firstName}} {{child.lastName}}</div>
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<span><button type="button" class="btn col-md-offset-1 btn-info" ng-click="checkChildIn($index)" ng-disabled="inBtnControl(child)">Check In</button></span>
+							<span><button type="button" class="btn btn-info" ng-click="checkChildOut($index)" ng-disabled="!outBtnControl(child)">Check Out</button></span>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<span ng-show="child.dayCampMode == true && child.isPunchedIn == true && child.justCheckedIn == false" class="text-muted">{{child.firstName}} checked in at {{child.lastCheckIn | date: 'shortTime'}} </span>
+							<span ng-show="child.dayCampMode == false" class="text-muted">{{child.firstName}} checked in at 3:15 PM</span>
+							<span ng-show="justCheckedIn(child)" class="text-success"><strong>Child Checked In</strong></span>
+							<span ng-show="justCheckedOut(child)" class="text-success"><strong>Child Checked Out</strong></span>
+						</div>
+					</div>
 
 				</li>
 			</ul>

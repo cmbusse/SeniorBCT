@@ -97,12 +97,12 @@ label{
 
 .shiftUpTen{
 	position: relative;
-	top: -10px;
+	top: -16px;
 }
 
 .shiftUpX{
 	position: relative;
-	top: -37px;
+	top: -43px;
 }
 
 .editDiv{
@@ -116,8 +116,8 @@ label{
 
 .responseMsg{
 	position: relative;
-	top: -21px;
-	left: 20px;
+	top: -47px;
+	left: 275px;
 }
 
 .testCSSTop{

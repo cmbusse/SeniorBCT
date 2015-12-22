@@ -433,13 +433,6 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			});
 		};
 
-		/*
-		// Use ng-click to call this on a week change
-		$scope.rebuildTimes = function(){
-	
-		};
-		*/
-
 		$scope.backOneWeek = function(){
 			$scope.scopeDiff -= 7;
 			var d = new Date($scope.thisMonday);
@@ -469,8 +462,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		};
 
 		$scope.editMonday = function(){
+			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
 			$scope.monEdit = true;
-			$scope.success1 = $scope.success2 = $scope.success3 = $scope.success4 = $scope.success5 = $scope.success6 = $scope.success7 = null; 
+			$scope.success1 = $scope.success2 = $scope.success3 = $scope.success4 = $scope.success5 = $scope.success6 = $scope.success7 = null;
+			$scope.error1 = $scope.error2 = $scope.error3 = $scope.error4 = $scope.error5 = $scope.error6 = $scope.error7 = null;
 			if($scope.monIn === 'N/A'){
 				var d = new Date();
 				$scope.monTimeIn = new Date($scope.monDate.getFullYear(), $scope.monDate.getMonth(), $scope.monDate.getDate(), d.getHours(), d.getMinutes());
@@ -586,8 +581,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		};
 
 		$scope.editTuesday = function(){
+			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
 			$scope.tueEdit = true;
 			$scope.success1 = $scope.success2 = $scope.success3 = $scope.success4 = $scope.success5 = $scope.success6 = $scope.success7 = null; 
+			$scope.error1 = $scope.error2 = $scope.error3 = $scope.error4 = $scope.error5 = $scope.error6 = $scope.error7 = null;
 			if($scope.tueIn === 'N/A'){
 				var d = new Date();
 				$scope.tueTimeIn = new Date($scope.tueDate.getFullYear(), $scope.tueDate.getMonth(), $scope.tueDate.getDate(), d.getHours(), d.getMinutes());
@@ -703,8 +700,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		};
 
 		$scope.editWednesday = function(){
+			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
 			$scope.wedEdit = true;
 			$scope.success1 = $scope.success2 = $scope.success3 = $scope.success4 = $scope.success5 = $scope.success6 = $scope.success7 = null; 
+			$scope.error1 = $scope.error2 = $scope.error3 = $scope.error4 = $scope.error5 = $scope.error6 = $scope.error7 = null;
 			if($scope.wedIn === 'N/A'){
 				var d = new Date();
 				$scope.wedTimeIn = new Date($scope.wedDate.getFullYear(), $scope.wedDate.getMonth(), $scope.wedDate.getDate(), d.getHours(), d.getMinutes());
@@ -820,8 +819,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		};
 
 		$scope.editThursday = function(){
+			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
 			$scope.thuEdit = true;
 			$scope.success1 = $scope.success2 = $scope.success3 = $scope.success4 = $scope.success5 = $scope.success6 = $scope.success7 = null; 
+			$scope.error1 = $scope.error2 = $scope.error3 = $scope.error4 = $scope.error5 = $scope.error6 = $scope.error7 = null;
 			if($scope.thuIn === 'N/A'){
 				var d = new Date();
 				$scope.thuTimeIn = new Date($scope.thuDate.getFullYear(), $scope.thuDate.getMonth(), $scope.thuDate.getDate(), d.getHours(), d.getMinutes());
@@ -937,8 +938,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		};
 
 		$scope.editFriday = function(){
+			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
 			$scope.friEdit = true;
 			$scope.success1 = $scope.success2 = $scope.success3 = $scope.success4 = $scope.success5 = $scope.success6 = $scope.success7 = null; 
+			$scope.error1 = $scope.error2 = $scope.error3 = $scope.error4 = $scope.error5 = $scope.error6 = $scope.error7 = null;
 			if($scope.friIn === 'N/A'){
 				var d = new Date();
 				$scope.friTimeIn = new Date($scope.friDate.getFullYear(), $scope.friDate.getMonth(), $scope.friDate.getDate(), d.getHours(), d.getMinutes());
@@ -1054,8 +1057,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		};
 
 		$scope.editSaturday = function(){
+			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
 			$scope.satEdit = true;
 			$scope.success1 = $scope.success2 = $scope.success3 = $scope.success4 = $scope.success5 = $scope.success6 = $scope.success7 = null; 
+			$scope.error1 = $scope.error2 = $scope.error3 = $scope.error4 = $scope.error5 = $scope.error6 = $scope.error7 = null;
 			if($scope.satIn === 'N/A'){
 				var d = new Date();
 				$scope.satTimeIn = new Date($scope.satDate.getFullYear(), $scope.satDate.getMonth(), $scope.satDate.getDate(), d.getHours(), d.getMinutes());
@@ -1171,8 +1176,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		};
 
 		$scope.editSunday = function(){
+			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
 			$scope.sunEdit = true;
 			$scope.success1 = $scope.success2 = $scope.success3 = $scope.success4 = $scope.success5 = $scope.success6 = $scope.success7 = null; 
+			$scope.error1 = $scope.error2 = $scope.error3 = $scope.error4 = $scope.error5 = $scope.error6 = $scope.error7 = null;
 			if($scope.sunIn === 'N/A'){
 				var d = new Date();
 				$scope.sunTimeIn = new Date($scope.sunDate.getFullYear(), $scope.sunDate.getMonth(), $scope.sunDate.getDate(), d.getHours(), d.getMinutes());
@@ -1285,6 +1292,11 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					}
 				}
 			}
-		};	
+		};
+
+		$scope.monBillingMode = function(){
+			console.log('bing');
+			return true;
+		}	
 	}
 ]);
