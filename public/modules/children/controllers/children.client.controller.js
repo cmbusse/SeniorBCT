@@ -145,6 +145,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		$scope.seedWeekView = function(){
 			var d = new Date();
 			$scope.monTimeIn = $scope.monTimeOut = $scope.tueTimeIn = $scope.tueTimeOut = $scope.wedTimeIn = $scope.wedTimeOut = $scope.thuTimeIn = $scope.thuTimeOut = $scope.friTimeIn = $scope.friTimeOut = $scope.satTimeIn = $scope.satTimeOut = $scope.sunTimeIn = $scope.sunTimeOut = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
+			$scope.monDayCampMode = $scope.tueDayCampMode = $scope.wedDayCampMode = $scope.thuDayCampMode = $scope.friDayCampMode = $scope.satDayCampMode = $scope.sunDayCampMode = null;
 			var day = d.getDay();
 			var diff = d.getDate() - day + (day === 0 ? -6:1);
 			$scope.weekOfDate = $scope.thisMonday = $scope.monDate = new Date(d.setDate(diff));
@@ -180,7 +181,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === monDate.getDate()){
 					if(d.getMonth() === monDate.getMonth()){
 						if(d.getFullYear() === monDate.getFullYear()){
-							$scope.monIn = d;
+							$scope.monInDisplay = d;
+							$scope.monIn = $scope.child.punchesIn[i];
 							$scope.monDayCampMode = $scope.child.punchesIn[i].dayCampMode;
 							monInFound = true;
 						}
@@ -192,7 +194,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === monDate.getDate()){
 					if(d.getMonth() === monDate.getMonth()){
 						if(d.getFullYear() === monDate.getFullYear()){
-							$scope.monOut = d;
+							$scope.monOutDisplay = d;
+							$scope.monOut = $scope.child.punchesOut[i];
 							monOutFound = true;
 						}
 					}
@@ -200,14 +203,16 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			}
 			if(!monInFound){
 				$scope.monIn = 'N/A';
+				$scope.monInDisplay = 'N/A';
 			}
 			if(!monOutFound){
 				$scope.monOut = 'N/A';
+				$scope.monOutDisplay = 'N/A';
 			}
-			if($scope.monIn === 'N/A' || $scope.monOut === 'N/A'){
+			if($scope.monInDisplay === 'N/A' || $scope.monOutDisplay === 'N/A'){
 				$scope.monTotal = 'N/A';
 			} else{
-				$scope.monTotal = $scope.monOut - $scope.monIn;
+				$scope.monTotal = $scope.monOutDisplay - $scope.monInDisplay;
 			}
 			// build tuesday Times
 			var tueDate = $scope.tueDate;
@@ -456,6 +461,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		};
 
 		$scope.backOneWeek = function(){
+			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
 			$scope.scopeDiff -= 7;
 			var d = new Date($scope.thisMonday);
 			d.setDate($scope.scopeDiff);
@@ -470,6 +476,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 		};
 
 		$scope.forwardOneWeek = function(){
+			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
 			$scope.scopeDiff += 7;
 			var d = new Date($scope.thisMonday);
 			d.setDate($scope.scopeDiff);
@@ -491,14 +498,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			if($scope.monIn === 'N/A'){
 				var d = new Date();
 				$scope.monTimeIn = new Date($scope.monDate.getFullYear(), $scope.monDate.getMonth(), $scope.monDate.getDate(), d.getHours(), d.getMinutes());
+				$scope.monDayCampMode = $scope.child.dayCampMode;
 			} else{
-				$scope.monTimeIn = new Date($scope.monIn.getFullYear(), $scope.monIn.getMonth(), $scope.monIn.getDate(), $scope.monIn.getHours(), $scope.monIn.getMinutes());
+				var d3 = new Date($scope.monIn.punch);
+				$scope.monTimeIn = new Date(d3.getFullYear(), d3.getMonth(), d3.getDate(), d3.getHours(), d3.getMinutes());
+				$scope.monDayCampMode = $scope.monIn.dayCampMode;
 			}
 			if($scope.monOut === 'N/A'){
 				var d2 = new Date();
 				$scope.monTimeOut = new Date($scope.monDate.getFullYear(), $scope.monDate.getMonth(), $scope.monDate.getDate(), d2.getHours(), d2.getMinutes());
 			} else{
-				$scope.monTimeOut = new Date($scope.monOut.getFullYear(), $scope.monOut.getMonth(), $scope.monOut.getDate(), $scope.monOut.getHours(), $scope.monOut.getMinutes());
+				var d4 = new Date($scope.monOut.punch);
+				$scope.monTimeOut = new Date(d4.getFullYear(), d4.getMonth(), d4.getDate(), d4.getHours(), d4.getMinutes());
 			}
 		};
 

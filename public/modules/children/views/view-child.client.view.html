@@ -35,13 +35,13 @@
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
-					<strong>In:</strong>  {{monIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{monOut | date: 'hh:mm:ss a'}}<br>
+					<strong>In:</strong>  {{monInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{monOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{monTotal | millSecondsToTimeString}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="monEdit || !loggedInIsAdmin()" ng-click="editMonday()">
 				<span class="dayBarSpan">
-					<strong>In:</strong>  {{monIn | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{monOut | date: 'hh:mm:ss a'}}<br>
+					<strong>In:</strong>  {{monInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{monOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{monTotal | millSecondsToTimeString}} 
 				</span>
 			</div>
