@@ -223,7 +223,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === tueDate.getDate()){
 					if(d.getMonth() === tueDate.getMonth()){
 						if(d.getFullYear() === tueDate.getFullYear()){
-							$scope.tueIn = d;
+							$scope.tueInDisplay = d;
+							$scope.tueIn = $scope.child.punchesIn[i];
 							$scope.tueDayCampMode = $scope.child.punchesIn[i].dayCampMode;
 							tueInFound = true;
 						}
@@ -235,7 +236,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === tueDate.getDate()){
 					if(d.getMonth() === tueDate.getMonth()){
 						if(d.getFullYear() === tueDate.getFullYear()){
-							$scope.tueOut = d;
+							$scope.tueOutDisplay = d;
+							$scope.tueOut = $scope.child.punchesOut[i];
 							tueOutFound = true;
 						}
 					}
@@ -243,14 +245,16 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			}
 			if(!tueInFound){
 				$scope.tueIn = 'N/A';
+				$scope.tueInDisplay = 'N/A';
 			}
 			if(!tueOutFound){
 				$scope.tueOut = 'N/A';
+				$scope.tueOutDisplay = 'N/A';
 			}
-			if($scope.tueIn === 'N/A' || $scope.tueOut === 'N/A'){
+			if($scope.tueInDisplay === 'N/A' || $scope.tueOutDisplay === 'N/A'){
 				$scope.tueTotal = 'N/A';
 			} else{
-				$scope.tueTotal = $scope.tueOut - $scope.tueIn;
+				$scope.tueTotal = $scope.tueOutDisplay - $scope.tueInDisplay;
 			}
 			// build wednesday Times
 			var wedDate = $scope.wedDate;
@@ -261,7 +265,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === wedDate.getDate()){
 					if(d.getMonth() === wedDate.getMonth()){
 						if(d.getFullYear() === wedDate.getFullYear()){
-							$scope.wedIn = d;
+							$scope.wedIn = $scope.child.punchesIn[i];
+							$scope.wedInDisplay = d;
 							$scope.wedDayCampMode = $scope.child.punchesIn[i].dayCampMode;
 							wedInFound = true;
 						}
@@ -273,22 +278,25 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === wedDate.getDate()){
 					if(d.getMonth() === wedDate.getMonth()){
 						if(d.getFullYear() === wedDate.getFullYear()){
-							$scope.wedOut = d;
+							$scope.wedOut = $scope.child.punchesOut[i];
+							$scope.wedOutDisplay = d;
 							wedOutFound = true;
 						}
 					}
 				}
 			}
 			if(!wedInFound){
+				$scope.wedInDisplay = 'N/A';
 				$scope.wedIn = 'N/A';
 			}
 			if(!wedOutFound){
+				$scope.wedOutDisplay = 'N/A';
 				$scope.wedOut = 'N/A';
 			}
-			if($scope.wedIn === 'N/A' || $scope.wedOut === 'N/A'){
+			if($scope.wedInDisplay === 'N/A' || $scope.wedOutDisplay === 'N/A'){
 				$scope.wedTotal = 'N/A';
 			} else{
-				$scope.wedTotal = $scope.wedOut - $scope.wedIn;
+				$scope.wedTotal = $scope.wedOutDisplay - $scope.wedInDisplay;
 			}
 			// build thursday Times
 			var thuDate = $scope.thuDate;
@@ -299,7 +307,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === thuDate.getDate()){
 					if(d.getMonth() === thuDate.getMonth()){
 						if(d.getFullYear() === thuDate.getFullYear()){
-							$scope.thuIn = d;
+							$scope.thuIn = $scope.child.punchesIn[i];
+							$scope.thuInDisplay = d;
 							$scope.thuDayCampMode = $scope.child.punchesIn[i].dayCampMode;
 							thuInFound = true;
 						}
@@ -311,22 +320,25 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === thuDate.getDate()){
 					if(d.getMonth() === thuDate.getMonth()){
 						if(d.getFullYear() === thuDate.getFullYear()){
-							$scope.thuOut = d;
+							$scope.thuOut = $scope.child.punchesOut[i];
+							$scope.thuOutDisplay = d;
 							thuOutFound = true;
 						}
 					}
 				}
 			}
 			if(!thuInFound){
+				$scope.thuInDisplay = 'N/A';
 				$scope.thuIn = 'N/A';
 			}
 			if(!thuOutFound){
+				$scope.thuOutDisplay = 'N/A';
 				$scope.thuOut = 'N/A';
 			}
-			if($scope.thuIn === 'N/A' || $scope.thuOut === 'N/A'){
+			if($scope.thuInDisplay === 'N/A' || $scope.thuOutDisplay === 'N/A'){
 				$scope.thuTotal = 'N/A';
 			} else{
-				$scope.thuTotal = $scope.thuOut - $scope.thuIn;
+				$scope.thuTotal = $scope.thuOutDisplay - $scope.thuInDisplay;
 			}
 			// build friday Times
 			var friDate = $scope.friDate;
@@ -337,7 +349,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === friDate.getDate()){
 					if(d.getMonth() === friDate.getMonth()){
 						if(d.getFullYear() === friDate.getFullYear()){
-							$scope.friIn = d;
+							$scope.friIn = $scope.child.punchesIn[i];
+							$scope.friInDisplay = d;
 							$scope.friDayCampMode = $scope.child.punchesIn[i].dayCampMode;
 							friInFound = true;
 						}
@@ -349,22 +362,25 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === friDate.getDate()){
 					if(d.getMonth() === friDate.getMonth()){
 						if(d.getFullYear() === friDate.getFullYear()){
-							$scope.friOut = d;
+							$scope.friOut = $scope.child.punchesOut[i];
+							$scope.friOutDisplay = d;
 							friOutFound = true;
 						}
 					}
 				}
 			}
 			if(!friInFound){
+				$scope.friInDisplay = 'N/A';
 				$scope.friIn = 'N/A';
 			}
 			if(!friOutFound){
+				$scope.friOutDisplay = 'N/A';
 				$scope.friOut = 'N/A';
 			}
-			if($scope.friIn === 'N/A' || $scope.friOut === 'N/A'){
+			if($scope.friInDisplay === 'N/A' || $scope.friOutDisplay === 'N/A'){
 				$scope.friTotal = 'N/A';
 			} else{
-				$scope.friTotal = $scope.friOut - $scope.friIn;
+				$scope.friTotal = $scope.friOutDisplay - $scope.friInDisplay;
 			}
 			// build saturday Times
 			var satDate = $scope.satDate;
@@ -375,7 +391,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === satDate.getDate()){
 					if(d.getMonth() === satDate.getMonth()){
 						if(d.getFullYear() === satDate.getFullYear()){
-							$scope.satIn = d;
+							$scope.satIn = $scope.child.punchesIn[i];
+							$scope.satInDisplay = d;
 							$scope.satDayCampMode = $scope.child.punchesIn[i].dayCampMode;
 							satInFound = true;
 						}
@@ -387,22 +404,25 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === satDate.getDate()){
 					if(d.getMonth() === satDate.getMonth()){
 						if(d.getFullYear() === satDate.getFullYear()){
-							$scope.satOut = d;
+							$scope.satOut = $scope.child.punchesOut[i];
+							$scope.satOutDisplay = d;
 							satOutFound = true;
 						}
 					}
 				}
 			}
 			if(!satInFound){
+				$scope.satInDisplay = 'N/A';
 				$scope.satIn = 'N/A';
 			}
 			if(!satOutFound){
+				$scope.satOutDisplay = 'N/A';
 				$scope.satOut = 'N/A';
 			}
-			if($scope.satIn === 'N/A' || $scope.satOut === 'N/A'){
+			if($scope.satInDisplay === 'N/A' || $scope.satOutDisplay === 'N/A'){
 				$scope.satTotal = 'N/A';
 			} else{
-				$scope.satTotal = $scope.satOut - $scope.satIn;
+				$scope.satTotal = $scope.satOutDisplay - $scope.satInDisplay;
 			}
 			// build sunday Times
 			var sunDate = $scope.sunDate;
@@ -413,7 +433,8 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === sunDate.getDate()){
 					if(d.getMonth() === sunDate.getMonth()){
 						if(d.getFullYear() === sunDate.getFullYear()){
-							$scope.sunIn = d;
+							$scope.sunIn = $scope.child.punchesIn[i];
+							$scope.sunInDisplay = d;
 							$scope.sunDayCampMode = $scope.child.punchesIn[i].dayCampMode;
 							sunInFound = true;
 						}
@@ -425,22 +446,25 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				if(d.getDate() === sunDate.getDate()){
 					if(d.getMonth() === sunDate.getMonth()){
 						if(d.getFullYear() === sunDate.getFullYear()){
-							$scope.sunOut = d;
+							$scope.sunOut = $scope.child.punchesOut[i];
+							$scope.sunOutDisplay = d;
 							sunOutFound = true;
 						}
 					}
 				}
 			}
 			if(!sunInFound){
+				$scope.sunInDisplay = 'N/A';
 				$scope.sunIn = 'N/A';
 			}
 			if(!sunOutFound){
+				$scope.sunOutDisplay = 'N/A';
 				$scope.sunOut = 'N/A';
 			}
-			if($scope.sunIn === 'N/A' || $scope.sunOut === 'N/A'){
+			if($scope.sunInDisplay === 'N/A' || $scope.sunOutDisplay === 'N/A'){
 				$scope.sunTotal = 'N/A';
 			} else{
-				$scope.sunTotal = $scope.sunOut - $scope.sunIn;
+				$scope.sunTotal = $scope.sunOutDisplay - $scope.sunInDisplay;
 			}
 		}
 
@@ -621,14 +645,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			if($scope.tueIn === 'N/A'){
 				var d = new Date();
 				$scope.tueTimeIn = new Date($scope.tueDate.getFullYear(), $scope.tueDate.getMonth(), $scope.tueDate.getDate(), d.getHours(), d.getMinutes());
+				$scope.tueDayCampMode = $scope.child.dayCampMode;
 			} else{
-				$scope.tueTimeIn = new Date($scope.tueIn.getFullYear(), $scope.tueIn.getMonth(), $scope.tueIn.getDate(), $scope.tueIn.getHours(), $scope.tueIn.getMinutes());
+				var d3 = new Date($scope.tueIn.punch);
+				$scope.tueTimeIn = new Date(d3.getFullYear(), d3.getMonth(), d3.getDate(), d3.getHours(), d3.getMinutes());
+				$scope.tueDayCampMode = $scope.tueIn.dayCampMode;
 			}
 			if($scope.tueOut === 'N/A'){
 				var d2 = new Date();
 				$scope.tueTimeOut = new Date($scope.tueDate.getFullYear(), $scope.tueDate.getMonth(), $scope.tueDate.getDate(), d2.getHours(), d2.getMinutes());
 			} else{
-				$scope.tueTimeOut = new Date($scope.tueOut.getFullYear(), $scope.tueOut.getMonth(), $scope.tueOut.getDate(), $scope.tueOut.getHours(), $scope.tueOut.getMinutes());
+				var d4 = new Date($scope.tueOut.punch);
+				$scope.tueTimeOut = new Date(d4.getFullYear(), d4.getMonth(), d4.getDate(), d4.getHours(), d4.getMinutes());
 			}
 		};
 
@@ -740,14 +768,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			if($scope.wedIn === 'N/A'){
 				var d = new Date();
 				$scope.wedTimeIn = new Date($scope.wedDate.getFullYear(), $scope.wedDate.getMonth(), $scope.wedDate.getDate(), d.getHours(), d.getMinutes());
+				$scope.wedDayCampMode = $scope.child.dayCampMode;
 			} else{
-				$scope.wedTimeIn = new Date($scope.wedIn.getFullYear(), $scope.wedIn.getMonth(), $scope.wedIn.getDate(), $scope.wedIn.getHours(), $scope.wedIn.getMinutes());
+				var d3 = new Date($scope.wedIn.punch);
+				$scope.wedTimeIn = new Date(d3.getFullYear(), d3.getMonth(), d3.getDate(), d3.getHours(), d3.getMinutes());
+				$scope.wedDayCampMode = $scope.wedIn.dayCampMode;
 			}
 			if($scope.wedOut === 'N/A'){
 				var d2 = new Date();
 				$scope.wedTimeOut = new Date($scope.wedDate.getFullYear(), $scope.wedDate.getMonth(), $scope.wedDate.getDate(), d2.getHours(), d2.getMinutes());
 			} else{
-				$scope.wedTimeOut = new Date($scope.wedOut.getFullYear(), $scope.wedOut.getMonth(), $scope.wedOut.getDate(), $scope.wedOut.getHours(), $scope.wedOut.getMinutes());
+				var d4 = new Date($scope.wedOut.punch);
+				$scope.wedTimeOut = new Date(d4.getFullYear(), d4.getMonth(), d4.getDate(), d4.getHours(), d4.getMinutes());
 			}
 		};
 
@@ -859,14 +891,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			if($scope.thuIn === 'N/A'){
 				var d = new Date();
 				$scope.thuTimeIn = new Date($scope.thuDate.getFullYear(), $scope.thuDate.getMonth(), $scope.thuDate.getDate(), d.getHours(), d.getMinutes());
+				$scope.thuDayCampMode = $scope.child.dayCampMode;
 			} else{
-				$scope.thuTimeIn = new Date($scope.thuIn.getFullYear(), $scope.thuIn.getMonth(), $scope.thuIn.getDate(), $scope.thuIn.getHours(), $scope.thuIn.getMinutes());
+				var d3 = new Date($scope.thuIn.punch);
+				$scope.thuTimeIn = new Date(d3.getFullYear(), d3.getMonth(), d3.getDate(), d3.getHours(), d3.getMinutes());
+				$scope.thuDayCampMode = $scope.thuIn.dayCampMode;
 			}
 			if($scope.thuOut === 'N/A'){
 				var d2 = new Date();
 				$scope.thuTimeOut = new Date($scope.thuDate.getFullYear(), $scope.thuDate.getMonth(), $scope.thuDate.getDate(), d2.getHours(), d2.getMinutes());
 			} else{
-				$scope.thuTimeOut = new Date($scope.thuOut.getFullYear(), $scope.thuOut.getMonth(), $scope.thuOut.getDate(), $scope.thuOut.getHours(), $scope.thuOut.getMinutes());
+				var d4 = new Date($scope.thuOut.punch);
+				$scope.thuTimeOut = new Date(d4.getFullYear(), d4.getMonth(), d4.getDate(), d4.getHours(), d4.getMinutes());
 			}
 		};
 
@@ -978,14 +1014,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			if($scope.friIn === 'N/A'){
 				var d = new Date();
 				$scope.friTimeIn = new Date($scope.friDate.getFullYear(), $scope.friDate.getMonth(), $scope.friDate.getDate(), d.getHours(), d.getMinutes());
+				$scope.friDayCampMode = $scope.child.dayCampMode;
 			} else{
-				$scope.friTimeIn = new Date($scope.friIn.getFullYear(), $scope.friIn.getMonth(), $scope.friIn.getDate(), $scope.friIn.getHours(), $scope.friIn.getMinutes());
+				var d3 = new Date($scope.friIn.punch);
+				$scope.friTimeIn = new Date(d3.getFullYear(), d3.getMonth(), d3.getDate(), d3.getHours(), d3.getMinutes());
+				$scope.friDayCampMode = $scope.friIn.dayCampMode;
 			}
 			if($scope.friOut === 'N/A'){
 				var d2 = new Date();
 				$scope.friTimeOut = new Date($scope.friDate.getFullYear(), $scope.friDate.getMonth(), $scope.friDate.getDate(), d2.getHours(), d2.getMinutes());
 			} else{
-				$scope.friTimeOut = new Date($scope.friOut.getFullYear(), $scope.friOut.getMonth(), $scope.friOut.getDate(), $scope.friOut.getHours(), $scope.friOut.getMinutes());
+				var d4 = new Date($scope.friOut.punch);
+				$scope.friTimeOut = new Date(d4.getFullYear(), d4.getMonth(), d4.getDate(), d4.getHours(), d4.getMinutes());
 			}
 		};
 
@@ -1097,14 +1137,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			if($scope.satIn === 'N/A'){
 				var d = new Date();
 				$scope.satTimeIn = new Date($scope.satDate.getFullYear(), $scope.satDate.getMonth(), $scope.satDate.getDate(), d.getHours(), d.getMinutes());
+				$scope.satDayCampMode = $scope.child.dayCampMode;
 			} else{
-				$scope.satTimeIn = new Date($scope.satIn.getFullYear(), $scope.satIn.getMonth(), $scope.satIn.getDate(), $scope.satIn.getHours(), $scope.satIn.getMinutes());
+				var d3 = new Date($scope.satIn.punch);
+				$scope.satTimeIn = new Date(d3.getFullYear(), d3.getMonth(), d3.getDate(), d3.getHours(), d3.getMinutes());
+				$scope.satDayCampMode = $scope.satIn.dayCampMode;
 			}
 			if($scope.satOut === 'N/A'){
 				var d2 = new Date();
 				$scope.satTimeOut = new Date($scope.satDate.getFullYear(), $scope.satDate.getMonth(), $scope.satDate.getDate(), d2.getHours(), d2.getMinutes());
 			} else{
-				$scope.satTimeOut = new Date($scope.satOut.getFullYear(), $scope.satOut.getMonth(), $scope.satOut.getDate(), $scope.satOut.getHours(), $scope.satOut.getMinutes());
+				var d4 = new Date($scope.satOut.punch);
+				$scope.satTimeOut = new Date(d4.getFullYear(), d4.getMonth(), d4.getDate(), d4.getHours(), d4.getMinutes());
 			}
 		};
 
@@ -1216,14 +1260,18 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			if($scope.sunIn === 'N/A'){
 				var d = new Date();
 				$scope.sunTimeIn = new Date($scope.sunDate.getFullYear(), $scope.sunDate.getMonth(), $scope.sunDate.getDate(), d.getHours(), d.getMinutes());
+				$scope.sunDayCampMode = $scope.child.dayCampMode;
 			} else{
-				$scope.sunTimeIn = new Date($scope.sunIn.getFullYear(), $scope.sunIn.getMonth(), $scope.sunIn.getDate(), $scope.sunIn.getHours(), $scope.sunIn.getMinutes());
+				var d3 = new Date($scope.sunIn.punch);
+				$scope.sunTimeIn = new Date(d3.getFullYear(), d3.getMonth(), d3.getDate(), d3.getHours(), d3.getMinutes());
+				$scope.sunDayCampMode = $scope.sunIn.dayCampMode;
 			}
 			if($scope.sunOut === 'N/A'){
 				var d2 = new Date();
 				$scope.sunTimeOut = new Date($scope.sunDate.getFullYear(), $scope.sunDate.getMonth(), $scope.sunDate.getDate(), d2.getHours(), d2.getMinutes());
 			} else{
-				$scope.sunTimeOut = new Date($scope.sunOut.getFullYear(), $scope.sunOut.getMonth(), $scope.sunOut.getDate(), $scope.sunOut.getHours(), $scope.sunOut.getMinutes());
+				var d4 = new Date($scope.sunOut.punch);
+				$scope.sunTimeOut = new Date(d4.getFullYear(), d4.getMonth(), d4.getDate(), d4.getHours(), d4.getMinutes());
 			}
 		};
 
