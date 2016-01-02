@@ -711,6 +711,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d.getFullYear() === $scope.tueTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.tueTimeIn.toISOString();
+									punchesIn[i].dayCampMode = $scope.tueDayCampMode;
 									console.log('test');
 								}
 							}
@@ -726,6 +727,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d2.getFullYear() === $scope.tueTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.tueTimeOut.toISOString();
+									punchesOut[i].dayCampMode = $scope.tueDayCampMode;
 									console.log('test');
 								}
 							}
@@ -834,6 +836,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d.getFullYear() === $scope.wedTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.wedTimeIn.toISOString();
+									punchesIn[i].dayCampMode = $scope.wedDayCampMode;
 									console.log('test');
 								}
 							}
@@ -849,6 +852,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d2.getFullYear() === $scope.wedTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.wedTimeOut.toISOString();
+									punchesOut[i].dayCampMode = $scope.wedDayCampMode;
 									console.log('test');
 								}
 							}
@@ -957,6 +961,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d.getFullYear() === $scope.thuTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.thuTimeIn.toISOString();
+									punchesIn[i].dayCampMode = $scope.thuDayCampMode;
 									console.log('test');
 								}
 							}
@@ -972,6 +977,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d2.getFullYear() === $scope.thuTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.thuTimeOut.toISOString();
+									punchesOut[i].dayCampMode = $scope.thuDayCampMode;
 									console.log('test');
 								}
 							}
@@ -1080,6 +1086,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d.getFullYear() === $scope.friTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.friTimeIn.toISOString();
+									punchesIn[i].dayCampMode = $scope.friDayCampMode;
 									console.log('test');
 								}
 							}
@@ -1095,6 +1102,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d2.getFullYear() === $scope.friTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.friTimeOut.toISOString();
+									punchesOut[i].dayCampMode = $scope.friDayCampMode;
 									console.log('test');
 								}
 							}
@@ -1203,6 +1211,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d.getFullYear() === $scope.satTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.satTimeIn.toISOString();
+									punchesIn[i].dayCampMode = $scope.satDayCampMode;
 									console.log('test');
 								}
 							}
@@ -1218,6 +1227,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d2.getFullYear() === $scope.satTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.satTimeOut.toISOString();
+									punchesOut[i].dayCampMode = $scope.satDayCampMode;
 									console.log('test');
 								}
 							}
@@ -1326,6 +1336,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d.getFullYear() === $scope.sunTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.sunTimeIn.toISOString();
+									punchesIn[i].dayCampMode = $scope.sunDayCampMode;
 									console.log('test');
 								}
 							}
@@ -1341,6 +1352,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d2.getFullYear() === $scope.sunTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.sunTimeOut.toISOString();
+									punchesOut[i].dayCampMode = $scope.sunDayCampMode;
 									console.log('test');
 								}
 							}
