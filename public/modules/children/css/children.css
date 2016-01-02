@@ -100,9 +100,19 @@ label{
 	top: -16px;
 }
 
-.shiftUpX{
+.shiftUpFortyThree{
 	position: relative;
 	top: -43px;
+}
+
+.shiftUpX{
+	position: relative;
+	top: -71px;
+}
+
+.shiftUpY{
+	position: relative;
+	top: -69px;
 }
 
 .editDiv{

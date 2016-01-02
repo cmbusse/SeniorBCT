@@ -56,15 +56,18 @@
 						</div>
 						<div class="row" style="padding-left: 15px">
 							<div class="pull-left editDiv">
-								<span class="shiftUpX">Out: </span><input required type="time" name="monTimeOut" class="form-control timePicker shiftUpX" ng-model="monTimeOut" placeholder="HH:mm:ss">
+								<span class="shiftUpFortyThree">Out: </span><input required type="time" name="monTimeOut" class="form-control timePicker shiftUpFortyThree" ng-model="monTimeOut" placeholder="HH:mm:ss">
 							</div>
-							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditMonday()" style="top: -45px">Cancel</button>
+							<button type="button" class="btn btn-xs btn-danger shiftUpFortyThree" ng-click="cancelEditMonday()" style="top: -45px">Cancel</button>
 						</div>
-						<div class="row" style="padding-left: 15px" ng-show="monBillingMode()">
+						<div class="row" style="padding-left: 15px">
 							<div class="pull-left editDiv">
-								<span class="shiftUpX">Billing: </span><input required type="time" name="monTimeOut" class="form-control timePicker shiftUpX" ng-model="monTimeOut" placeholder="HH:mm:ss">
+								<span class="shiftUpX">Billing: </span>
+								<input required type="radio" name="monDayCampMode" class="shiftUpY" ng-model="monDayCampMode" value="true">
+								<span class="shiftUpX">DayCamp</span>
+								<input required type="radio" name="monDayCampMode" class="shiftUpY" ng-model="monDayCampMode" value="false">
+								<span class="shiftUpX">Latch Key</span>
 							</div>
-							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditMonday()" style="top: -45px">Cancel</button>
 						</div>
 					</fieldset>
 				</form>
@@ -106,9 +109,9 @@
 						</div>
 						<div class="row" style="padding-left: 15px">
 							<div class="pull-left editDiv">
-								<span class="shiftUpX">Out: </span><input required type="time" name="tueTimeOut" class="form-control timePicker shiftUpX" ng-model="tueTimeOut" placeholder="HH:mm:ss">
+								<span class="shiftUpFortyThree">Out: </span><input required type="time" name="tueTimeOut" class="form-control timePicker shiftUpFortyThree" ng-model="tueTimeOut" placeholder="HH:mm:ss">
 							</div>
-							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditTuesday()" style="top: -39px">Cancel</button>
+							<button type="button" class="btn btn-xs btn-danger shiftUpFortyThree" ng-click="cancelEditTuesday()" style="top: -39px">Cancel</button>
 						</div>
 					</fieldset>
 				</form>
@@ -150,9 +153,9 @@
 						</div>
 						<div class="row" style="padding-left: 15px">
 							<div class="pull-left editDiv">
-								<span class="shiftUpX">Out: </span><input required type="time" name="wedTimeOut" class="form-control timePicker shiftUpX" ng-model="wedTimeOut" placeholder="HH:mm:ss">
+								<span class="shiftUpFortyThree">Out: </span><input required type="time" name="wedTimeOut" class="form-control timePicker shiftUpFortyThree" ng-model="wedTimeOut" placeholder="HH:mm:ss">
 							</div>
-							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditWednesday()" style="top: -39px">Cancel</button>
+							<button type="button" class="btn btn-xs btn-danger shiftUpFortyThree" ng-click="cancelEditWednesday()" style="top: -39px">Cancel</button>
 						</div>
 					</fieldset>
 				</form>
@@ -194,9 +197,9 @@
 						</div>
 						<div class="row" style="padding-left: 15px">
 							<div class="pull-left editDiv">
-								<span class="shiftUpX">Out: </span><input required type="time" name="thuTimeOut" class="form-control timePicker shiftUpX" ng-model="thuTimeOut" placeholder="HH:mm:ss">
+								<span class="shiftUpFortyThree">Out: </span><input required type="time" name="thuTimeOut" class="form-control timePicker shiftUpFortyThree" ng-model="thuTimeOut" placeholder="HH:mm:ss">
 							</div>
-							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditThursday()" style="top: -39px">Cancel</button>
+							<button type="button" class="btn btn-xs btn-danger shiftUpFortyThree" ng-click="cancelEditThursday()" style="top: -39px">Cancel</button>
 						</div>
 					</fieldset>
 				</form>
@@ -238,9 +241,9 @@
 						</div>
 						<div class="row" style="padding-left: 15px">
 							<div class="pull-left editDiv">
-								<span class="shiftUpX">Out: </span><input required type="time" name="friTimeOut" class="form-control timePicker shiftUpX" ng-model="friTimeOut" placeholder="HH:mm:ss">
+								<span class="shiftUpFortyThree">Out: </span><input required type="time" name="friTimeOut" class="form-control timePicker shiftUpFortyThree" ng-model="friTimeOut" placeholder="HH:mm:ss">
 							</div>
-							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditFriday()" style="top: -39px">Cancel</button>
+							<button type="button" class="btn btn-xs btn-danger shiftUpFortyThree" ng-click="cancelEditFriday()" style="top: -39px">Cancel</button>
 						</div>
 					</fieldset>
 				</form>
@@ -282,9 +285,9 @@
 						</div>
 						<div class="row" style="padding-left: 15px">
 							<div class="pull-left editDiv">
-								<span class="shiftUpX">Out: </span><input required type="time" name="satTimeOut" class="form-control timePicker shiftUpX" ng-model="satTimeOut" placeholder="HH:mm:ss">
+								<span class="shiftUpFortyThree">Out: </span><input required type="time" name="satTimeOut" class="form-control timePicker shiftUpFortyThree" ng-model="satTimeOut" placeholder="HH:mm:ss">
 							</div>
-							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditSaturday()" style="top: -39px">Cancel</button>
+							<button type="button" class="btn btn-xs btn-danger shiftUpFortyThree" ng-click="cancelEditSaturday()" style="top: -39px">Cancel</button>
 						</div>
 					</fieldset>
 				</form>
@@ -326,9 +329,9 @@
 						</div>
 						<div class="row" style="padding-left: 15px">
 							<div class="pull-left editDiv">
-								<span class="shiftUpX">Out: </span><input required type="time" name="sunTimeOut" class="form-control timePicker shiftUpX" ng-model="sunTimeOut" placeholder="HH:mm:ss">
+								<span class="shiftUpFortyThree">Out: </span><input required type="time" name="sunTimeOut" class="form-control timePicker shiftUpFortyThree" ng-model="sunTimeOut" placeholder="HH:mm:ss">
 							</div>
-							<button type="button" class="btn btn-xs btn-danger shiftUpX" ng-click="cancelEditSunday()" style="top: -39px">Cancel</button>
+							<button type="button" class="btn btn-xs btn-danger shiftUpFortyThree" ng-click="cancelEditSunday()" style="top: -39px">Cancel</button>
 						</div>
 					</fieldset>
 				</form>

@@ -586,6 +586,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d.getFullYear() === $scope.monTimeIn.getFullYear()){
 									dateFoundIn = true;
 									punchesIn[i].punch = $scope.monTimeIn.toISOString();
+									punchesIn[i].dayCampMode = $scope.monDayCampMode;
 									console.log('test');
 								}
 							}
@@ -601,6 +602,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 								if(d2.getFullYear() === $scope.monTimeOut.getFullYear()){
 									dateFoundOut = true;
 									punchesOut[i].punch = $scope.monTimeOut.toISOString();
+									punchesOut[i].dayCampMode = $scope.monDayCampMode;
 									console.log('test');
 								}
 							}
