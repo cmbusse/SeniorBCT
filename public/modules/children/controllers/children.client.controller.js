@@ -142,6 +142,30 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			}
 		};
 
+		$scope.inCity = function() {
+			return $scope.child.inCity;
+		};
+
+		// Make Child In City
+		$scope.makeInCity = function(){
+			$scope.child.inCity = 'true';
+			$scope.child.$update(function(response) {
+
+				}, function(response) {
+					$scope.error = response.data.message;
+			});
+		};
+
+		// Make Child Out of City
+		$scope.makeOutofCity = function(){
+			$scope.child.inCity = 'false';
+			$scope.child.$update(function(response) {
+
+				}, function(response) {
+					$scope.error = response.data.message;
+			});
+		};
+
 		$scope.seedWeekView = function(){
 			var d = new Date();
 			$scope.monTimeIn = $scope.monTimeOut = $scope.tueTimeIn = $scope.tueTimeOut = $scope.wedTimeIn = $scope.wedTimeOut = $scope.thuTimeIn = $scope.thuTimeOut = $scope.friTimeIn = $scope.friTimeOut = $scope.satTimeIn = $scope.satTimeOut = $scope.sunTimeIn = $scope.sunTimeOut = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());

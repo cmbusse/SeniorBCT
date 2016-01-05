@@ -26,7 +26,7 @@
 									<h4>
 										<a data-ng-href="#!/users/{{user._id}}">
 											{{user.firstName}} {{user.lastName}}
-											<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
+											<!--<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>-->
 										</a>
 									</h4>
 									<p class="userp" ng-show="isEmployee(user)" style="color: red"><strong>Employee Account</strong></p>
@@ -58,14 +58,14 @@
 						<a href="" ng-click="setOrderByChildren('-isPunchedIn')">Checked In</a>
 					</div>
 				</div>
-				<ul class="list-group">
-					<li class="list-group-item" ng-repeat="child in children | orderBy: orderByChildren">
+				<ul class="list-group" style="margin-top: 10px">
+					<li class="list-group-item" ng-repeat="child in children | filter: {rootChild: 'false'}| orderBy: orderByChildren">
 						<div class="row">
 							<div class="col-xs-12 col-md-6 col-sm-6">
 								<h4>
 									<a data-ng-href="#!/children/{{child._id}}">
 										{{child.firstName}} {{child.lastName}}
-										<span ng-show="!parentIsActive(child)" class="text-muted"> - Inactive Parent</span>
+										<!--<span ng-show="!parentIsActive(child)" class="text-muted"> - Inactive Parent</span>-->
 									</a>
 								</h4>
 								<p class="userp" ng-show="isPunchedIn(child)" style="color: red"><strong>Checked In</strong></p>

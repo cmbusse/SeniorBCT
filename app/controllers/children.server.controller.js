@@ -96,7 +96,8 @@ exports.update = function(req, res) {
 							parentLastName: currChild.parentLastName,
 							justCheckedIn: currChild.justCheckedIn,
 							justCheckedOut: currChild.justCheckedOut,
-							dayCampMode: currChild.dayCampMode
+							dayCampMode: currChild.dayCampMode,
+							inCity: currChild.inCity
 						},
 					 };
 		var options = { new: true };

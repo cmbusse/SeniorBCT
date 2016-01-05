@@ -153,3 +153,11 @@ label{
 	top: -449px;
 	left: 324px;
 }
+
+.editChildList{
+	padding-bottom: 10px;
+}
+
+.childOp:hover{
+	cursor: pointer;
+}

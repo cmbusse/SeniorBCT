@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <h3>Edit Child</h3>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-12" style="margin-left: 15px">
+        <div class="col-md-offset-1 col-md-4 col-sm-4 col-sm-offset-1" style="margin-left: 15px">
             <form name="childForm" data-ng-submit="updateChild(childForm.$valid)" class="signin form-horizontal" autocomplete="off">
                 <fieldset>
                     <div class="form-group">
@@ -14,9 +14,6 @@
                         <label for="lastName">Last Name</label>
                         <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="child.lastName" ng-model-options="{ updateOn: 'blur' }" placeholder="Last Name">
                     </div>
-                    <!-- Seems date is in ISO format, look here for how to work with it
-http://stackoverflow.com/questions/11486779/formatting-isodate-from-mongodb
-                     -->
                     <div class="form-group">
                         <label for="dob">Date of Birth</label>
                         <input type="date" id="dob" name="dob" class="form-control" data-ng-model="child.dob" ng-model-options="{ updateOn: 'blur' }" placeholder="Date of Birth">
@@ -32,6 +29,22 @@ http://stackoverflow.com/questions/11486779/formatting-isodate-from-mongodb
                     </div>
                 </fieldset>
             </form>
+        </div>
+        <div class="col-md-offset-1 col-md-4 col-sm-4 col-sm-offset-1">
+            <div class="row">
+                <h3>Child lives <strong ng-show="inCity()" style="color: red">In City</strong> <strong ng-show="!inCity()" style="color: red">Out of City</strong></h3>
+            </div>
+            <div class="row">
+                <h3>Quick Editing</h3>
+                <ul style="list-style-type: none; padding-left: 0px">
+                    <li ng-show="inCity()" class="editChildList">
+                        <a ng-click="makeOutofCity()" class="childOp" title="Make Out of City"><img src="modules/children/img/xcity.svg" alt="outcity" style="width: 30px"> Set Child as Out of City</a>
+                    </li>
+                    <li ng-show="!inCity()" class="editChildList">
+                        <a ng-click="makeInCity()" class="childOp" title="Make In City"><img src="modules/children/img/city33.svg" alt="incity" style="width: 30px"> Set Child as In City</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>

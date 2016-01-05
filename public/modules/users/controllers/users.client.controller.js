@@ -300,6 +300,9 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 				console.log('test');
 			}
 		};
-		
+		// Test to see if is root child so not displayed
+		$scope.isRootChild = function(passedchild){
+			return passedchild.rootChild;
+		};
 	}
 ]);
