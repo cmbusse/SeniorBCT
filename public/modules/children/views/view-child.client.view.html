@@ -14,7 +14,7 @@
 		</div>
 	</div>
 	<div style="margin-top: 20px; width: 320px">
-		<span ng-show="loggedInIsAdmin()" class="text-muted">Note:  Click an entry to edit that day's times</span>
+		<span ng-show="loggedInIsAdmin()" class="text-muted">Click an entry to edit that day's times</span>
 		<div class="row" style="padding-left: 15px">
 			<div class="col-xs-1 col-sm-1 col-md-1 arrowBox" style="padding: 0px; width: 32px; height: 32px" ng-click="backOneWeek()">
 				<img src="modules/children/img/play128.svg" id="leftarrow">
@@ -36,13 +36,15 @@
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{monInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{monOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{monTotal | millSecondsToTimeString}} 
+					Total:  {{monTotal | millSecondsToTimeString}}<br>
+					Charge:  {{monBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="monEdit || !loggedInIsAdmin()" ng-click="editMonday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{monInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{monOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{monTotal | millSecondsToTimeString}} 
+					Total:  {{monTotal | millSecondsToTimeString}}<br>
+					Charge:  {{monBill | currency}}  
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="monEdit">
@@ -398,6 +400,7 @@
 			</div>
 		</div>
 	</div>
+	<h4>Week Charges:  {{totalBill | currency}}</h4>
 		<!--TODO:  Add in datepicker support for changing the week
 		<div class="" style="margin: 10px 0px 290px 0px; padding: 0px; width: 320px">
 		    <h4>Popup</h4>

@@ -188,6 +188,15 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			var punchesOut = $scope.child.punchesOut;
 			var d;
 			var i;
+			var time = 1000 * 60 * 15;
+			// Temp date to hold todays date with day's in time
+			var tempOutTime = new Date();
+			// 3:15 PM constant start time for latch key
+			var lkStart = new Date();
+			lkStart.setHours(15);
+			lkStart.setMinutes(15);
+			lkStart.setSeconds(0);
+			// 7:45 AM 
 			$scope.monDayCampMode = null;
 			$scope.tueDayCampMode = null;
 			$scope.wedDayCampMode = null;
@@ -195,6 +204,14 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			$scope.friDayCampMode = null;
 			$scope.satDayCampMode = null;
 			$scope.sunDayCampMode = null;
+			$scope.monBill = 0;
+			$scope.tueBill = 0;
+			$scope.wedBill = 0;
+			$scope.thuBill = 0;
+			$scope.friBill = 0;
+			$scope.satBill = 0;
+			$scope.sunBill = 0;
+			$scope.totalBill = 0;
 
 			// build Monday Times
 			var monDate = $scope.monDate;
@@ -237,6 +254,20 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				$scope.monTotal = 'N/A';
 			} else{
 				$scope.monTotal = $scope.monOutDisplay - $scope.monInDisplay;
+				// If we are in latch key mode and properly checked in at 3:15PM
+				if($scope.monIn.dayCampMode === false && $scope.monInDisplay.getHours() === 15 && $scope.monInDisplay.getMinutes() === 15){
+					// tempOutTime and lkStart have same Dates but proper times
+					tempOutTime.setHours($scope.monOutDisplay.getHours());
+					tempOutTime.setMinutes($scope.monOutDisplay.getMinutes());
+					tempOutTime.setSeconds($scope.monOutDisplay.getSeconds());
+					// Calculate the number of minutes on clock, add 7 so that Math.round will properly round Up to the nearest quarter hour
+					var monMinutesAfter = (tempOutTime - lkStart)/1000/60 + 7;
+					// Round up to nearest quarter hour
+					var monRoundedUp = Math.round(monMinutesAfter/15);
+					// Store number of quarter hours times 50 cents as monBill
+					$scope.monBill = monRoundedUp * 0.5;
+					console.log('test');
+				}
 			}
 			// build tuesday Times
 			var tueDate = $scope.tueDate;
@@ -490,6 +521,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			} else{
 				$scope.sunTotal = $scope.sunOutDisplay - $scope.sunInDisplay;
 			}
+			$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill;
 		}
 
 		$scope.buildTimes = function(){
