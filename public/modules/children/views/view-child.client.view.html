@@ -91,13 +91,15 @@
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{tueInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{tueOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{tueTotal | millSecondsToTimeString}} 
+					Total:  {{tueTotal | millSecondsToTimeString}}<br>
+					Charge:  {{tueBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="tueEdit || !loggedInIsAdmin()" ng-click="editTuesday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{tueInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{tueOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{tueTotal | millSecondsToTimeString}} 
+					Total:  {{tueTotal | millSecondsToTimeString}} <br>
+					Charge:  {{tueBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="tueEdit">
@@ -144,13 +146,15 @@
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{wedInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{wedOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{wedTotal | millSecondsToTimeString}} 
+					Total:  {{wedTotal | millSecondsToTimeString}} <br>
+					Charge:  {{wedBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="wedEdit || !loggedInIsAdmin()" ng-click="editWednesday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{wedInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{wedOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{wedTotal | millSecondsToTimeString}} 
+					Total:  {{wedTotal | millSecondsToTimeString}} <br>
+					Charge:  {{wedBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="wedEdit">
@@ -197,13 +201,15 @@
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{thuInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{thuOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{thuTotal | millSecondsToTimeString}} 
+					Total:  {{thuTotal | millSecondsToTimeString}} <br>
+					Charge:  {{thuBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="thuEdit || !loggedInIsAdmin()" ng-click="editThursday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{thuInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{thuOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{thuTotal | millSecondsToTimeString}} 
+					Total:  {{thuTotal | millSecondsToTimeString}} <br>
+					Charge:  {{thuBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="thuEdit">
@@ -250,13 +256,15 @@
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{friInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{friOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{friTotal | millSecondsToTimeString}} 
+					Total:  {{friTotal | millSecondsToTimeString}} <br>
+					Charge:  {{friBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="friEdit || !loggedInIsAdmin()" ng-click="editFriday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{friInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{friOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{friTotal | millSecondsToTimeString}} 
+					Total:  {{friTotal | millSecondsToTimeString}} <br>
+					Charge:  {{friBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="friEdit">
@@ -303,13 +311,15 @@
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{satInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{satOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{satTotal | millSecondsToTimeString}} 
+					Total:  {{satTotal | millSecondsToTimeString}} <br>
+					Charge:  {{satBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="satEdit || !loggedInIsAdmin()" ng-click="editSaturday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{satInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{satOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{satTotal | millSecondsToTimeString}} 
+					Total:  {{satTotal | millSecondsToTimeString}} <br>
+					Charge:  {{satBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="satEdit">
@@ -356,13 +366,15 @@
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv" ng-show="!loggedInIsAdmin()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{sunInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{sunOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{sunTotal | millSecondsToTimeString}} 
+					Total:  {{sunTotal | millSecondsToTimeString}} <br>
+					Charge:  {{sunBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="sunEdit || !loggedInIsAdmin()" ng-click="editSunday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{sunInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{sunOutDisplay | date: 'hh:mm:ss a'}}<br>
-					Total:  {{sunTotal | millSecondsToTimeString}} 
+					Total:  {{sunTotal | millSecondsToTimeString}} <br>
+					Charge:  {{sunBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="sunEdit">
