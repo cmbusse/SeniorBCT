@@ -17,7 +17,25 @@
 					<img src="modules/children/img/play128.svg" id="rightarrow">
 				</div>
 			</div>
-			<h3>Bill:  {{usersBill | currency}}</h3>
+		</div>
+		<h3 style="margin-left: 100px">Bill:  {{usersBill | currency}}</h3>
+		<div class="row" style="margin-top: 20px">
+			<div class="col-md-4 col-sm-6 col-xs-12" style="padding: 0px">
+				<h4>Review Time Stamps</h4>
+				<ul class="list-group">
+					<li class="list-group-item" ng-repeat="child in usersChildren | filter: {rootChild: 'false'}">
+						<div class="row">
+							<div class="col-xs-12 col-md-6 col-sm-6 col-xs-6">
+								<h4>
+									<a data-ng-href="#!/children/{{child._id}}">
+										{{child.firstName}} {{child.lastName}}
+									</a>
+								</h4>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </section>

@@ -46,6 +46,9 @@
 			<li ui-route="/mychildren" ng-class="{active: $uiRoute}">
 				<a href="/#!/mychildren" class="loversgray">My Children</a>
 			</li>
+			<li ui-route="/bill" ng-class="{active: $uiRoute}">
+				<a data-ng-href="#!/users/{{currentUser._id}}/bill" class="loversgray">My Bill</a>
+			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
 			<li ui-route="/signup" ng-class="{active: $uiRoute}">
