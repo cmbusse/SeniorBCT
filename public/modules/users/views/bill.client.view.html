@@ -1,0 +1,23 @@
+<section data-ng-controller="UsersController" ng-init="seedBill(); findOneUser(); findThisUsersChildren(); buildBill()">
+	<div class="container" ng-show="!authToViewBill()">
+		<h3 class="text-center text-danger"><strong>You do not have access to this page!</strong></h3>
+		<h3 class="text-center text-danger"><strong>Please click <a href="/#!/">here</a> to go home</strong></h3>
+	</div>
+	<div ng-show="authToViewBill()" class="col-md-12">
+		<div class="row">
+			<h3>Your Bill</h3>
+			<div class="row" style="padding-left: 15px">
+				<div class="col-xs-1 col-sm-1 col-md-1 arrowBox" style="padding: 0px; width: 32px; height: 32px" ng-click="backOneWeek()">
+					<img src="modules/children/img/play128.svg" id="leftarrow">
+				</div>
+				<div class="col-xs-10 col-sm-10 col-md-10 weekbar">
+						Week of {{weekOfDate | date: 'MM/dd/yy'}}
+				</div>
+				<div class="col-xs-1 col-sm-1 col-md-1 arrowBox" style="padding: 0px; width: 32px; height: 32px" ng-click="forwardOneWeek()">
+					<img src="modules/children/img/play128.svg" id="rightarrow">
+				</div>
+			</div>
+			<h3>Bill:  {{usersBill | currency}}</h3>
+		</div>
+	</div>
+</section>

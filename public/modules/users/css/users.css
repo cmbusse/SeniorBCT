@@ -137,3 +137,44 @@ p{
 		    background-color: yellow;
 		}
     }
+
+#leftarrow{
+	-moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    max-width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    padding: 5px;
+}
+h4{
+	font-size: 20px;
+}
+label{
+	font-size: 16px
+}
+.arrowBox:hover{
+	cursor: pointer;
+}
+
+.weekbar{
+	border-style: solid;
+	border-width: 1px 0px;
+	border-color: black;
+	padding: 4px;
+	width: 256px;
+	height: 32px;
+	text-align: center;
+}
+
+#rightarrow{
+	max-width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    padding: 5px;
+}
