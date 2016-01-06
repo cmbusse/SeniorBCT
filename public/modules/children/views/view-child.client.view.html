@@ -37,14 +37,14 @@
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{monInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{monOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{monTotal | millSecondsToTimeString}}<br>
-					Charge:  {{monBill | currency}} 
+					Hourly Charge:  {{monBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="monEdit || !loggedInIsAdmin()" ng-click="editMonday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{monInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{monOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{monTotal | millSecondsToTimeString}}<br>
-					Charge:  {{monBill | currency}}  
+					Hourly Charge:  {{monBill | currency}}  
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="monEdit">
@@ -92,14 +92,14 @@
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{tueInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{tueOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{tueTotal | millSecondsToTimeString}}<br>
-					Charge:  {{tueBill | currency}} 
+					Hourly Charge:  {{tueBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="tueEdit || !loggedInIsAdmin()" ng-click="editTuesday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{tueInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{tueOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{tueTotal | millSecondsToTimeString}} <br>
-					Charge:  {{tueBill | currency}} 
+					Hourly Charge:  {{tueBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="tueEdit">
@@ -147,14 +147,14 @@
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{wedInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{wedOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{wedTotal | millSecondsToTimeString}} <br>
-					Charge:  {{wedBill | currency}} 
+					Hourly Charge:  {{wedBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="wedEdit || !loggedInIsAdmin()" ng-click="editWednesday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{wedInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{wedOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{wedTotal | millSecondsToTimeString}} <br>
-					Charge:  {{wedBill | currency}} 
+					Hourly Charge:  {{wedBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="wedEdit">
@@ -202,14 +202,14 @@
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{thuInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{thuOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{thuTotal | millSecondsToTimeString}} <br>
-					Charge:  {{thuBill | currency}} 
+					Hourly Charge:  {{thuBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="thuEdit || !loggedInIsAdmin()" ng-click="editThursday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{thuInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{thuOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{thuTotal | millSecondsToTimeString}} <br>
-					Charge:  {{thuBill | currency}} 
+					Hourly Charge:  {{thuBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="thuEdit">
@@ -257,14 +257,14 @@
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{friInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{friOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{friTotal | millSecondsToTimeString}} <br>
-					Charge:  {{friBill | currency}} 
+					Hourly Charge:  {{friBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="friEdit || !loggedInIsAdmin()" ng-click="editFriday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{friInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{friOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{friTotal | millSecondsToTimeString}} <br>
-					Charge:  {{friBill | currency}} 
+					Hourly Charge:  {{friBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="friEdit">
@@ -312,14 +312,14 @@
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{satInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{satOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{satTotal | millSecondsToTimeString}} <br>
-					Charge:  {{satBill | currency}} 
+					Hourly Charge:  {{satBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="satEdit || !loggedInIsAdmin()" ng-click="editSaturday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{satInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{satOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{satTotal | millSecondsToTimeString}} <br>
-					Charge:  {{satBill | currency}} 
+					Hourly Charge:  {{satBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="satEdit">
@@ -367,14 +367,14 @@
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{sunInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{sunOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{sunTotal | millSecondsToTimeString}} <br>
-					Charge:  {{sunBill | currency}} 
+					Hourly Charge:  {{sunBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDiv adminDayBarDiv" ng-hide="sunEdit || !loggedInIsAdmin()" ng-click="editSunday()">
 				<span class="dayBarSpan">
 					<strong>In:</strong>  {{sunInDisplay | date: 'hh:mm:ss a'}}  <strong>Out:</strong>  {{sunOutDisplay | date: 'hh:mm:ss a'}}<br>
 					Total:  {{sunTotal | millSecondsToTimeString}} <br>
-					Charge:  {{sunBill | currency}} 
+					Hourly Charge:  {{sunBill | currency}} 
 				</span>
 			</div>
 			<div class="col-xs-10 col-sm-10 col-md-10 dayBarDivEditing" ng-show="sunEdit">
@@ -412,7 +412,7 @@
 			</div>
 		</div>
 	</div>
-	<h4>Week Charges:  {{totalBill | currency}}</h4>
+	<h4>Week Hourly Charges:  {{totalBill | currency}}</h4>
 		<!--TODO:  Add in datepicker support for changing the week
 		<div class="" style="margin: 10px 0px 290px 0px; padding: 0px; width: 320px">
 		    <h4>Popup</h4>

@@ -189,14 +189,25 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			var d;
 			var i;
 			var time = 1000 * 60 * 15;
-			// Temp date to hold todays date with day's in time
+			// Temp date to hold todays date with day's in / out time
+			var tempInTime = new Date();
 			var tempOutTime = new Date();
 			// 3:15 PM constant start time for latch key
 			var lkStart = new Date();
 			lkStart.setHours(15);
 			lkStart.setMinutes(15);
 			lkStart.setSeconds(0);
-			// 7:45 AM 
+			// 9:00 AM 
+			var dcStart = new Date();
+			dcStart.setHours(9);
+			dcStart.setMinutes(0);
+			dcStart.setSeconds(0);
+			// 3:00 PM 
+			var dcEnd = new Date();
+			dcEnd.setHours(15);
+			dcEnd.setMinutes(0);
+			dcEnd.setSeconds(0);
+
 			$scope.monDayCampMode = null;
 			$scope.tueDayCampMode = null;
 			$scope.wedDayCampMode = null;
@@ -268,6 +279,24 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					$scope.monBill = monRoundedUp * 0.5;
 					console.log('test');
 				}
+				else if($scope.monIn.dayCampMode === true){
+					// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
+					tempInTime.setHours($scope.monInDisplay.getHours());
+					tempInTime.setMinutes($scope.monInDisplay.getMinutes());
+					tempInTime.setSeconds($scope.monInDisplay.getSeconds());
+					tempOutTime.setHours($scope.monOutDisplay.getHours());
+					tempOutTime.setMinutes($scope.monOutDisplay.getMinutes());
+					tempOutTime.setSeconds($scope.monOutDisplay.getSeconds());
+					// Calculate the numbers of minutes on clock
+					var monMinutesBefore = (dcStart - tempInTime)/1000/60 + 7;
+					var monMinutesAfter2 = (tempOutTime - dcEnd)/1000/60 + 7;
+					// Round time before down to nearest 1/4 hour
+					var monRoundedDown = Math.round(monMinutesBefore/15);
+					var monRoundedUp2 = Math.round(monMinutesAfter2/15);
+					// Add hourly charges to hourly scope variable
+					$scope.monBill = monRoundedDown * 0.5 + monRoundedUp2 * 0.5;
+					console.log('test');
+				}
 			}
 			// build tuesday Times
 			var tueDate = $scope.tueDate;
@@ -321,6 +350,24 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					var tueRoundedUp = Math.round(tueMinutesAfter/15);
 					// Store number of quarter hours times 50 cents as monBill
 					$scope.tueBill = tueRoundedUp * 0.5;
+					console.log('test');
+				}
+				else if($scope.tueIn.dayCampMode === true){
+					// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
+					tempInTime.setHours($scope.tueInDisplay.getHours());
+					tempInTime.setMinutes($scope.tueInDisplay.getMinutes());
+					tempInTime.setSeconds($scope.tueInDisplay.getSeconds());
+					tempOutTime.setHours($scope.tueOutDisplay.getHours());
+					tempOutTime.setMinutes($scope.tueOutDisplay.getMinutes());
+					tempOutTime.setSeconds($scope.tueOutDisplay.getSeconds());
+					// Calculate the numbers of minutes on clock
+					var tueMinutesBefore = (dcStart - tempInTime)/1000/60 + 7;
+					var tueMinutesAfter2 = (tempOutTime - dcEnd)/1000/60 + 7;
+					// Round time before down to nearest 1/4 hour
+					var tueRoundedDown = Math.round(tueMinutesBefore/15);
+					var tueRoundedUp2 = Math.round(tueMinutesAfter2/15);
+					// Add hourly charges to hourly scope variable
+					$scope.tueBill = tueRoundedDown * 0.5 + tueRoundedUp2 * 0.5;
 					console.log('test');
 				}
 			}
@@ -379,6 +426,24 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					$scope.wedBill = wedRoundedUp * 0.5;
 					console.log('test');
 				}
+				else if($scope.wedIn.dayCampMode === true){
+					// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
+					tempInTime.setHours($scope.wedInDisplay.getHours());
+					tempInTime.setMinutes($scope.wedInDisplay.getMinutes());
+					tempInTime.setSeconds($scope.wedInDisplay.getSeconds());
+					tempOutTime.setHours($scope.wedOutDisplay.getHours());
+					tempOutTime.setMinutes($scope.wedOutDisplay.getMinutes());
+					tempOutTime.setSeconds($scope.wedOutDisplay.getSeconds());
+					// Calculate the numbers of minutes on clock
+					var wedMinutesBefore = (dcStart - tempInTime)/1000/60 + 7;
+					var wedMinutesAfter2 = (tempOutTime - dcEnd)/1000/60 + 7;
+					// Round time before down to nearest 1/4 hour
+					var wedRoundedDown = Math.round(wedMinutesBefore/15);
+					var wedRoundedUp2 = Math.round(wedMinutesAfter2/15);
+					// Add hourly charges to hourly scope variable
+					$scope.wedBill = wedRoundedDown * 0.5 + wedRoundedUp2 * 0.5;
+					console.log('test');
+				}
 			}
 			// build thursday Times
 			var thuDate = $scope.thuDate;
@@ -433,6 +498,24 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					var thuRoundedUp = Math.round(thuMinutesAfter/15);
 					// Store number of quarter hours times 50 cents as monBill
 					$scope.thuBill = thuRoundedUp * 0.5;
+					console.log('test');
+				}
+				else if($scope.thuIn.dayCampMode === true){
+					// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
+					tempInTime.setHours($scope.thuInDisplay.getHours());
+					tempInTime.setMinutes($scope.thuInDisplay.getMinutes());
+					tempInTime.setSeconds($scope.thuInDisplay.getSeconds());
+					tempOutTime.setHours($scope.thuOutDisplay.getHours());
+					tempOutTime.setMinutes($scope.thuOutDisplay.getMinutes());
+					tempOutTime.setSeconds($scope.thuOutDisplay.getSeconds());
+					// Calculate the numbers of minutes on clock
+					var thuMinutesBefore = (dcStart - tempInTime)/1000/60 + 7;
+					var thuMinutesAfter2 = (tempOutTime - dcEnd)/1000/60 + 7;
+					// Round time before down to nearest 1/4 hour
+					var thuRoundedDown = Math.round(thuMinutesBefore/15);
+					var thuRoundedUp2 = Math.round(thuMinutesAfter2/15);
+					// Add hourly charges to hourly scope variable
+					$scope.thuBill = thuRoundedDown * 0.5 + thuRoundedUp2 * 0.5;
 					console.log('test');
 				}
 			}
@@ -491,6 +574,24 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					$scope.friBill = friRoundedUp * 0.5;
 					console.log('test');
 				}
+				else if($scope.friIn.dayCampMode === true){
+					// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
+					tempInTime.setHours($scope.friInDisplay.getHours());
+					tempInTime.setMinutes($scope.friInDisplay.getMinutes());
+					tempInTime.setSeconds($scope.friInDisplay.getSeconds());
+					tempOutTime.setHours($scope.friOutDisplay.getHours());
+					tempOutTime.setMinutes($scope.friOutDisplay.getMinutes());
+					tempOutTime.setSeconds($scope.friOutDisplay.getSeconds());
+					// Calculate the numbers of minutes on clock
+					var friMinutesBefore = (dcStart - tempInTime)/1000/60 + 7;
+					var friMinutesAfter2 = (tempOutTime - dcEnd)/1000/60 + 7;
+					// Round time before down to nearest 1/4 hour
+					var friRoundedDown = Math.round(friMinutesBefore/15);
+					var friRoundedUp2 = Math.round(friMinutesAfter2/15);
+					// Add hourly charges to hourly scope variable
+					$scope.friBill = friRoundedDown * 0.5 + friRoundedUp2 * 0.5;
+					console.log('test');
+				}
 			}
 			// build saturday Times
 			var satDate = $scope.satDate;
@@ -545,6 +646,24 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					var satRoundedUp = Math.round(satMinutesAfter/15);
 					// Store number of quarter hours times 50 cents as monBill
 					$scope.satBill = satRoundedUp * 0.5;
+					console.log('test');
+				}
+				else if($scope.satIn.dayCampMode === true){
+					// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
+					tempInTime.setHours($scope.satInDisplay.getHours());
+					tempInTime.setMinutes($scope.satInDisplay.getMinutes());
+					tempInTime.setSeconds($scope.satInDisplay.getSeconds());
+					tempOutTime.setHours($scope.satOutDisplay.getHours());
+					tempOutTime.setMinutes($scope.satOutDisplay.getMinutes());
+					tempOutTime.setSeconds($scope.satOutDisplay.getSeconds());
+					// Calculate the numbers of minutes on clock
+					var satMinutesBefore = (dcStart - tempInTime)/1000/60 + 7;
+					var satMinutesAfter2 = (tempOutTime - dcEnd)/1000/60 + 7;
+					// Round time before down to nearest 1/4 hour
+					var satRoundedDown = Math.round(satMinutesBefore/15);
+					var satRoundedUp2 = Math.round(satMinutesAfter2/15);
+					// Add hourly charges to hourly scope variable
+					$scope.satBill = satRoundedDown * 0.5 + satRoundedUp2 * 0.5;
 					console.log('test');
 				}
 			}
@@ -603,8 +722,86 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					$scope.sunBill = sunRoundedUp * 0.5;
 					console.log('test');
 				}
+				else if($scope.sunIn.dayCampMode === true){
+					// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
+					tempInTime.setHours($scope.sunInDisplay.getHours());
+					tempInTime.setMinutes($scope.sunInDisplay.getMinutes());
+					tempInTime.setSeconds($scope.sunInDisplay.getSeconds());
+					tempOutTime.setHours($scope.sunOutDisplay.getHours());
+					tempOutTime.setMinutes($scope.sunOutDisplay.getMinutes());
+					tempOutTime.setSeconds($scope.sunOutDisplay.getSeconds());
+					// Calculate the numbers of minutes on clock
+					var sunMinutesBefore = (dcStart - tempInTime)/1000/60 + 7;
+					var sunMinutesAfter2 = (tempOutTime - dcEnd)/1000/60 + 7;
+					// Round time before down to nearest 1/4 hour
+					var sunRoundedDown = Math.round(sunMinutesBefore/15);
+					var sunRoundedUp2 = Math.round(sunMinutesAfter2/15);
+					// Add hourly charges to hourly scope variable
+					$scope.sunBill = sunRoundedDown * 0.5 + sunRoundedUp2 * 0.5;
+					console.log('test');
+				}
 			}
-			$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill;
+			// If one day is on day camp mode, use the day camp feature, otherwise use latch key pricing
+			var useLatchKey = true;
+			if($scope.monInDisplay !== 'N/A' && $scope.monIn.dayCampMode === true){
+				useLatchKey = false;
+			}
+			if($scope.tueInDisplay !== 'N/A' && $scope.tueIn.dayCampMode === true){
+				useLatchKey = false;
+			}
+			if($scope.wedInDisplay !== 'N/A' && $scope.wedIn.dayCampMode === true){
+				useLatchKey = false;
+			}
+			if($scope.thuInDisplay !== 'N/A' && $scope.thuIn.dayCampMode === true){
+				useLatchKey = false;
+			}
+			if($scope.friInDisplay !== 'N/A' && $scope.friIn.dayCampMode === true){
+				useLatchKey = false;
+			}
+			// Latchkey pricing for total bill
+			if(useLatchKey){
+				$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill;
+			}
+			// Figure out number of days attended to see if getting the weekly rate discount
+			else {
+				var dayCount = 0;
+				if($scope.monInDisplay !== 'N/A'){
+					dayCount++;
+				}
+				if($scope.tueInDisplay !== 'N/A'){
+					dayCount++;
+				}
+				if($scope.wedInDisplay !== 'N/A'){
+					dayCount++;
+				}
+				if($scope.thuInDisplay !== 'N/A'){
+					dayCount++;
+				}
+				if($scope.friInDisplay !== 'N/A'){
+					dayCount++;
+				}
+				// If child attended every day in the week use weekly pricing model
+				if(dayCount === 5){
+					// If the child applies for the in city rate
+					if($scope.child.inCity){
+						$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill + 45;
+					}
+					// If the child doesn't apply for the in city rate
+					if(!$scope.child.inCity){
+						$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill + 50;
+					}
+				}
+				// If child attended less than 5 days use daily pricing model
+				else{
+					if($scope.child.inCity){
+						$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill + dayCount * 11;
+					}
+					// If the child doesn't apply for the in city rate
+					if(!$scope.child.inCity){
+						$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill + dayCount * 13;
+					}
+				}
+			}
 		}
 
 		$scope.buildTimes = function(){
