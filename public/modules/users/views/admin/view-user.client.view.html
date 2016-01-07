@@ -20,7 +20,7 @@
 				<p class="userp">Phone:  {{user.phone}}</p>
 				<h4>{{user.firstName}} {{user.lastName}}'s Children</h4>
 				<ul class="list-group">
-					<li class="list-group-item" ng-repeat="child in usersChildren">
+					<li class="list-group-item" ng-repeat="child in usersChildren | filter: {rootChild: 'false'}">
 						<div class="row">
 							<div class="col-xs-6 col-md-6 col-sm-6">
 								<h4>
@@ -32,7 +32,7 @@
 								<p class="userp">DOB:  {{child.dob | date: 'mediumDate'}}</p>
 							</div>
 							<div class="col-xs-6 col-md-6 col-sm-6" ng-show="loggedInIsAdmin()">
-								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-info btn-lg" style="margin-top:8px;">Edit Child</a>
+								<a data-ng-href="#!/children/{{child._id}}/edit" class="btn btn-primary btn-md" style="margin-top:8px;">Edit Child</a>
 							</div>
 						</div>
 					</li>

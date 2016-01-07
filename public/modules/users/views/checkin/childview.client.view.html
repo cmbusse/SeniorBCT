@@ -15,8 +15,8 @@
 							<div>{{child.firstName}} {{child.lastName}}</div>
 						</div>
 						<div class="col-md-3 col-sm-6 col-xs-6">
-							<span><button type="button" class="btn col-md-offset-1 btn-info" ng-click="checkChildIn($index)" ng-disabled="inBtnControl(child)">Check In</button></span>
-							<span><button type="button" class="btn btn-info" ng-click="checkChildOut($index)" ng-disabled="!outBtnControl(child)">Check Out</button></span>
+							<span><button type="button" class="btn col-md-offset-1 btn-primary" ng-click="checkChildIn($index)" ng-disabled="inBtnControl(child)">Check In</button></span>
+							<span><button type="button" class="btn btn-primary" ng-click="checkChildOut($index)" ng-disabled="!outBtnControl(child)">Check Out</button></span>
 						</div>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<span ng-show="child.dayCampMode == true && child.isPunchedIn == true && child.justCheckedIn == false" class="text-muted">{{child.firstName}} checked in at {{child.lastCheckIn | date: 'shortTime'}} </span>
@@ -32,7 +32,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<a href='#!/checkin' class="btn btn-lg btn-primary" role="button">Done</a>
+			<a href='#!/checkin' class="btn btn-md btn-primary" role="button">Done</a>
 		</div>
 	</div>
 </section>
