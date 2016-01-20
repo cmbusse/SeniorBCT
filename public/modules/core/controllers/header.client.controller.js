@@ -10,10 +10,15 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.currentUser = Authentication.user;
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
+		$scope.billHref = '/#!/mychildren';
 
 		$scope.findCurrentUser = function(){
 			$scope.currentUser = Authentication.user;
 		};
+
+		$scope.$watch('currentUser',function(newValue, oldValue){
+			$scope.billHref = '/#!/users/' + $scope.currentUser._id + '/bill';
+		});
 		
 		$scope.loggedInIsAdmin = function(){
 			return $scope.authentication.user.roles === 'admin';
@@ -29,7 +34,6 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 
 		// Collapsing the menu after navigation
 		$scope.$on('$stateChangeSuccess', function() {
-			$scope.isCollapsed = false;
 		});
 	}
 ]);

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication', 'Users',
-	function($scope, $http, $location, Authentication, Users) {
+angular.module('users').controller('AuthenticationController', ['$scope', '$rootScope', '$http', '$location', 'Authentication', 'Users', '$window',
+	function($scope, $rootScope, $http, $location, Authentication, Users, $window) {
 		$scope.authentication = Authentication;
 		$scope.users = {};
 
@@ -59,6 +59,10 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 
 				// And redirect to the index page
 				$location.path('/');
+				// HERE IS THE "SOLUTION"
+                $rootScope.$on('$stateChangeSuccess', function(){
+                    $window.location.reload();
+                });
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
