@@ -7,6 +7,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		//			Probably not that big of an issue, but throw in some checks so the user.roles[0] isn't 
 		//			accessed when not logged in, something like if(user), do the check, etc.
 		$scope.authentication = Authentication;
+		$scope.currentUser = Authentication.user;
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
 
