@@ -13,6 +13,11 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 		// Create new Child
 		$scope.create = function() {
+			if($scope.children[0]){
+				$scope.dayCampMode = $scope.children[0].dayCampMode;
+			} else{
+				$scope.dayCampMode = false;
+			}
 			// Create new Child object
 			var child = new Children ({
 				firstName: this.firstName,
@@ -21,7 +26,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				timePunches: this.timePunches,
 				parentLastName: $scope.currentuser.lastName,
 				parentFirstName: $scope.currentuser.firstName,
-				dayCampMode: $scope.children[0].dayCampMode
+				dayCampMode: $scope.dayCampMode
 			});
 
 			// Redirect after save
