@@ -230,6 +230,10 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			$scope.totalBill = 0;
 
 			// build Monday Times
+			// TODO
+			// THe problem is that the $scope.monIn is being set to the punchesIn[i] below. Need to find a way
+			// to determine if this has been set properly, needs to either be set to the value from
+			// punchesIn OR be set from the selector in editMondayForm
 			var monDate = $scope.monDate;
 			var monInFound = false;
 			var monOutFound = false;
@@ -920,6 +924,12 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 					}
 				}
 				if(timesValid && !isFuture){
+					//update monIn here???
+					if($scope.monIn === 'N/A'){
+						$scope.monIn = {};
+						$scope.monIn.dayCampMode = $scope.editMondayForm.monDayCampMode.$modelValue;						
+					}
+					
 					var punchesIn = $scope.child.punchesIn;
 					var punchesOut = $scope.child.punchesOut;
 					var dateFoundIn = false;
