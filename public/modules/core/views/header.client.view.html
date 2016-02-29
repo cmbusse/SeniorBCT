@@ -48,7 +48,7 @@
 			</li>
 			<li ui-route="/bill" ng-class="{active: $uiRoute}">
 				<!--<a data-ng-href="/#!/users/{{Authentication.user._id}}/bill" class="loversgray">My Bill</a>-->
-				<a ng-href="/#!/users/{{billHref}}/bill" class="loversgray">My Bill</a>
+				<a data-ng-href="{{billHref}}" class="loversgray">My Bill</a>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">

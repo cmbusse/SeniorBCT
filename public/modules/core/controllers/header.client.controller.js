@@ -16,16 +16,18 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 			$scope.currentUser = Authentication.user;
 		};
 
-		$scope.$watch('authentication',function(newValue, oldValue){
+		$scope.$watch('currentUser',function(newValue, oldValue){
 			if($scope.authentication.user){
-				$scope.billHref = $scope.authentication.user._id;
+				$scope.currentUser = Authentication.user;
+				$scope.billHref = '/#!/users/' + $scope.currentUser._id + '/bill';
 			}
 		});
 		
 		$scope.loggedInIsAdmin = function(){
 			if($scope.authentication.user){
+				$scope.currentUser = Authentication.user;
 				if($scope.billHref === '/#!/'){
-					$scope.billHref = $scope.authentication.user._id;
+					$scope.billHref = '/#!/users/' + $scope.currentUser._id + '/bill';
 				}
 			}
 			return $scope.authentication.user.roles === 'admin';
@@ -33,8 +35,9 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 
 		$scope.loggedInIsEmployee = function(){
 			if($scope.authentication.user){
+				$scope.currentUser = Authentication.user;
 				if($scope.billHref === '/#!/'){
-					$scope.billHref = $scope.authentication.user._id;
+					$scope.billHref = '/#!/users/' + $scope.currentUser._id + '/bill';
 				}
 			}
 			return $scope.authentication.user.roles === 'employee';
