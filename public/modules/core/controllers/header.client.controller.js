@@ -10,21 +10,33 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.currentUser = Authentication.user;
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
-		$scope.billHref = '/#!/mychildren';
+		$scope.billHref = '';
 
 		$scope.findCurrentUser = function(){
 			$scope.currentUser = Authentication.user;
 		};
 
-		$scope.$watch('currentUser',function(newValue, oldValue){
-			$scope.billHref = '/#!/users/' + $scope.currentUser._id + '/bill';
+		$scope.$watch('authentication',function(newValue, oldValue){
+			if($scope.authentication.user){
+				$scope.billHref = '/#!/users/' + $scope.authentication.user._id + '/bill';
+			}
 		});
 		
 		$scope.loggedInIsAdmin = function(){
+			if($scope.authentication.user){
+				if($scope.billHref === ''){
+					$scope.billHref = '/#!/users/' + $scope.authentication.user._id + '/bill';
+				}
+			}
 			return $scope.authentication.user.roles === 'admin';
 		};
 
 		$scope.loggedInIsEmployee = function(){
+			if($scope.authentication.user){
+				if($scope.billHref === ''){
+					$scope.billHref = '/#!/users/' + $scope.authentication.user._id + '/bill';
+				}
+			}
 			return $scope.authentication.user.roles === 'employee';
 		};
 		
