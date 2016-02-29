@@ -10,7 +10,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.currentUser = Authentication.user;
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
-		$scope.billHref = '/';
+		$scope.billHref = '/#!/';
 
 		$scope.findCurrentUser = function(){
 			$scope.currentUser = Authentication.user;
@@ -18,7 +18,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 
 		$scope.$watch('authentication',function(newValue, oldValue){
 			if($scope.authentication.user){
-				$scope.billHref = '/#!/users/' + $scope.authentication.user._id + '/bill';
+				//$scope.billHref = '/#!/users/' + $scope.authentication.user._id + '/bill';
 			}
 		});
 		
