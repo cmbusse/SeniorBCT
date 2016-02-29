@@ -10,7 +10,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.currentUser = Authentication.user;
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
-		$scope.billHref = '';
+		$scope.billHref = '/';
 
 		$scope.findCurrentUser = function(){
 			$scope.currentUser = Authentication.user;
@@ -24,7 +24,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		
 		$scope.loggedInIsAdmin = function(){
 			if($scope.authentication.user){
-				if($scope.billHref === ''){
+				if($scope.billHref === '/'){
 					$scope.billHref = '/#!/users/' + $scope.authentication.user._id + '/bill';
 				}
 			}
@@ -33,7 +33,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 
 		$scope.loggedInIsEmployee = function(){
 			if($scope.authentication.user){
-				if($scope.billHref === ''){
+				if($scope.billHref === '/'){
 					$scope.billHref = '/#!/users/' + $scope.authentication.user._id + '/bill';
 				}
 			}
