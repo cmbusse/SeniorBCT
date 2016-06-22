@@ -13,7 +13,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 
 		// Create new Child
 		$scope.create = function() {
-			if($scope.children[0]){
+			if($scope.children.length){
 				$scope.dayCampMode = $scope.children[0].dayCampMode;
 			} else{
 				$scope.dayCampMode = false;
@@ -128,7 +128,9 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 	       				usersChildren.push(currChild);
 	       			}
 	       		}
-	       		$scope.newestChild = usersChildren[0];
+			if(usersChildren.length){
+		       		$scope.newestChild = usersChildren[0];
+			}
         	});
 		};
 
