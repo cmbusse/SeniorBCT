@@ -2354,10 +2354,13 @@ angular.module('users').controller('CheckinController', ['$scope', '$http', '$lo
 				for(var i=0; i < allChildren.length; i++)
 	       		{
 	       			var currChild = allChildren[i];
-	       			if(currChild.user._id === userid)
-	       			{
-	       				usersChildren.push(currChild);
-	       			}
+	       			var parentID = -1;
+	       			if(currChild.user !== null){
+		       			parentID = currChild.user._id;	
+		       		}
+		       		if(parentID === userid){
+		       			usersChildren.push(currChild);
+		       		}
 	       		}
 	       		$scope.usersChildren = usersChildren;
 				console.log('poop');
