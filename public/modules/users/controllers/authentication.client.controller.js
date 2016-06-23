@@ -59,9 +59,9 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$root
 				// And redirect to the index page
 				$location.path('/');
 				// HERE IS THE "SOLUTION"
-        $rootScope.$on('$stateChangeSuccess', function(){
+        /*$rootScope.$on('$stateChangeSuccess', function(){
             $window.location.reload();
-        });
+        });*/
 
 			}).error(function(response) {
 				$scope.error = response.message;

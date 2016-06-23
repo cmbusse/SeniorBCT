@@ -376,6 +376,46 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			});
 		};
 
+		$scope.setupBill = function(){
+			
+
+			var path = $location.path();
+			var thisUserID = path.slice(7,path.length);
+			thisUserID = thisUserID.slice(0,thisUserID.length-5);
+
+			var usersChildren = [];
+
+			var allChildren = Children.query({}, function(){
+				var userid = thisUserID;
+				for(var i=0; i < allChildren.length; i++)
+	       		{
+	       			var currChild = allChildren[i];
+	       			var parentID = -1;
+	       			if(currChild.user !== null){
+		       			parentID = currChild.user._id;	
+		       		}
+		       		if(parentID === userid){
+		       			usersChildren.push(currChild);
+		       		}
+	       		}
+	       		$scope.usersChildren = usersChildren;
+        	});
+
+        	var allUsers = Users.query({}, function(){
+	       		for(var i=0; i < allUsers.length; i++)
+	       		{
+	       			var currUser = allUsers[i];
+	       			if(currUser._id === thisUserID)
+	       			{
+	       				$scope.billUser = currUser;
+	       			}
+	       		}
+        	});
+
+        	$scope.seedBill();
+			$scope.buildBill();
+		};
+
 		function timeBuilder(){
 			$scope.usersBill = 0;
 			var punchesIn;
