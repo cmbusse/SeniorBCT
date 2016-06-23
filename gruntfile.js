@@ -68,7 +68,7 @@ module.exports = function(grunt) {
 			all: {
 				src: watchFiles.clientCSS
 			}
-		},/*
+		},
 		uglify: {
 			production: {
 				options: {
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
 					'public/dist/application.min.js': 'public/dist/application.js'
 				}
 			}
-		},*/
+		},
 		cssmin: {
 			combine: {
 				files: {
@@ -174,7 +174,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate','uglify', 'cssmin']);
 
 	// Test task.
 	grunt.registerTask('test', ['test:server', 'test:client']);
