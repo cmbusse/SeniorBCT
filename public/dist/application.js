@@ -1923,21 +1923,33 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.currentUser = Authentication.user;
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
-		$scope.billHref = '/#!/';
+		$scope.billHref = '';
 
 		$scope.findCurrentUser = function(){
 			$scope.currentUser = Authentication.user;
 		};
 
-		$scope.$watch('currentUser',function(newValue, oldValue){
-			$scope.billHref = '/#!/users/' + $scope.currentUser._id + '/bill';
+		$scope.$watch('authentication',function(newValue, oldValue){
+ 			if($scope.authentication.user){
+ 				$scope.billHref = '/#!/users/' + $scope.authentication.user._id + '/bill';
+ 			}
 		});
 		
 		$scope.loggedInIsAdmin = function(){
+			if($scope.authentication.user){
+				if($scope.billHref === ''){
+					$scope.billHref = '/#!/users/' + $scope.authentication.user._id + '/bill';
+				}
+			}
 			return $scope.authentication.user.roles === 'admin';
 		};
 
 		$scope.loggedInIsEmployee = function(){
+			if($scope.authentication.user){
+				if($scope.billHref === ''){
+					$scope.billHref = '/#!/users/' + $scope.authentication.user._id + '/bill';
+				}
+			}
 			return $scope.authentication.user.roles === 'employee';
 		};
 		
@@ -2297,9 +2309,9 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$root
 				// And redirect to the index page
 				$location.path('/');
 				// HERE IS THE "SOLUTION"
-        $rootScope.$on('$stateChangeSuccess', function(){
+        /*$rootScope.$on('$stateChangeSuccess', function(){
             $window.location.reload();
-        });
+        });*/
 
 			}).error(function(response) {
 				$scope.error = response.message;
@@ -3095,6 +3107,46 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 					timeBuilder();
 				}
 			});
+		};
+
+		$scope.setupBill = function(){
+			
+
+			var path = $location.path();
+			var thisUserID = path.slice(7,path.length);
+			thisUserID = thisUserID.slice(0,thisUserID.length-5);
+
+			var usersChildren = [];
+
+			var allChildren = Children.query({}, function(){
+				var userid = thisUserID;
+				for(var i=0; i < allChildren.length; i++)
+	       		{
+	       			var currChild = allChildren[i];
+	       			var parentID = -1;
+	       			if(currChild.user !== null){
+		       			parentID = currChild.user._id;	
+		       		}
+		       		if(parentID === userid){
+		       			usersChildren.push(currChild);
+		       		}
+	       		}
+	       		$scope.usersChildren = usersChildren;
+        	});
+
+        	var allUsers = Users.query({}, function(){
+	       		for(var i=0; i < allUsers.length; i++)
+	       		{
+	       			var currUser = allUsers[i];
+	       			if(currUser._id === thisUserID)
+	       			{
+	       				$scope.billUser = currUser;
+	       			}
+	       		}
+        	});
+
+        	$scope.seedBill();
+			$scope.buildBill();
 		};
 
 		function timeBuilder(){
