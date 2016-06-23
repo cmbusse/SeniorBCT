@@ -123,10 +123,12 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 				for(var i=0; i < allChildren.length; i++)
 	       		{
 	       			var currChild = allChildren[i];
-	       			if(currChild.user._id === userid)
-	       			{
-	       				usersChildren.push(currChild);
-	       			}
+	       			if(currChild.user !== null){
+		       			if(currChild.user._id === userid)
+		       			{
+		       				usersChildren.push(currChild);
+		       			}
+		       		}
 	       		}
 			if(usersChildren.length){
 		       		$scope.newestChild = usersChildren[0];

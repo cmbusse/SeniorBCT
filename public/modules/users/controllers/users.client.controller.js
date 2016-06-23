@@ -42,7 +42,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 				for(var i=0; i < allChildren.length; i++)
 	       		{
 	       			var currChild = allChildren[i];
-	       			if(currChild.user){
+	       			if(currChild.user !== null){
 		       			if(currChild.user._id === userid)
 		       			{
 		       				usersChildren.push(currChild);
@@ -62,7 +62,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 				for(var i=0; i < allChildren.length; i++)
 	       		{
 	       			var currChild = allChildren[i];
-	       			if(currChild.user){
+	       			if(currChild.user !== null){
 		       			if(currChild.user._id === userid)
 		       			{
 		       				usersChildren.push(currChild);
