@@ -68,7 +68,7 @@ module.exports = function(grunt) {
 			all: {
 				src: watchFiles.clientCSS
 			}
-		},
+		},/*
 		uglify: {
 			production: {
 				options: {
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
 					'public/dist/application.min.js': 'public/dist/application.js'
 				}
 			}
-		},
+		},*/
 		cssmin: {
 			combine: {
 				files: {
