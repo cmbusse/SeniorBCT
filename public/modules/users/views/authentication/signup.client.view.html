@@ -3,6 +3,9 @@
 	<div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
 		<form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
 			<fieldset>
+				<!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+	            <input style="display:none" type="text" name="fakeusernameremembered"/>
+	            <input style="display:none" type="password" name="fakepasswordremembered"/>
 				<div class="form-group">
 					<label for="firstName">First Name</label>
 					<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
@@ -23,12 +26,9 @@
 					<label for="phone">Phone Number</label>
 					<input type="tel" id="phone" name="phone" class="form-control" data-ng-model="credentials.phone" placeholder="Phone Number">
 				</div>
-				<!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
-	            <input style="display:none" type="text" name="fakeusernameremembered"/>
-	            <input style="display:none" type="password" name="fakepasswordremembered"/>				
 				<div class="form-group">
 					<label for="password">Password</label>
-					<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+					<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password" autocomplete="new-password">
 				</div>
 				<div class="text-center form-group">
 					<button type="submit" class="btn btn-large btn-primary">Sign up</button>&nbsp; or&nbsp;
