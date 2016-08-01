@@ -112,6 +112,21 @@ exports.updateUser = function(req, res) {
 	});
 };
 
+exports.sendgrid = function(req, res) {
+	// clear out this key before commiting, use heroku's env variables to set key
+	var sg = require('sendgrid').SendGrid('process.env.SENDGRID_KEY');
+	var request = sg.emptyRequest();
+	request.body = req.body;
+	request.method = 'POST';
+	request.path = '/v3/mail/send';
+	sg.API(request, function (response) {
+		console.log(response.statusCode);
+		console.log(response.body);
+		console.log(response.headers);
+		res.jsonp(response);
+	});
+};
+
 
 /**
  * Delete a user

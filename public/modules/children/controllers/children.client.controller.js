@@ -867,7 +867,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
 			timeBuilder();
 		};
-
+		// TODO:  FOR MIKE'S THING WITH THE DEFAULT EDIT TIMES, PUT THEM IN THE EDITDAY HERE, IN THE N/A BLOCKS FOR IN AND OUT, SET THEM TO 9 AND 3
 		$scope.editMonday = function(){
 			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
 			$scope.monEdit = true;

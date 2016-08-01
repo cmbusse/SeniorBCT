@@ -14,8 +14,8 @@
 					<div class="col-xs-12 col-md-6 sortByBar">
 						<span>Sort Users by:  </span>
 						<a href="" ng-click="setOrderByUsers('lastName')">Last Name</a><span> | </span>
-						<a href="" ng-click="setOrderByUsers('roles')">Account Type</a>
-						<!--<a href="" ng-click="setOrderByUsers('-active')">Active Users</a>-->
+						<a href="" ng-click="setOrderByUsers('roles')">Account Type</a><span> | </span>
+						<a href="" ng-click="setOrderByUsers('-active')">Active Users</a>
 					</div>
 				</div>
 				<div style="margin-top: 10px">
@@ -26,7 +26,7 @@
 									<h4>
 										<a data-ng-href="#!/users/{{user._id}}">
 											{{user.firstName}} {{user.lastName}}
-											<!--<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>-->
+											<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
 										</a>
 									</h4>
 									<p class="userp" ng-show="isEmployee(user)" style="color: red"><strong>Employee Account</strong></p>
@@ -91,7 +91,9 @@
 		    		<h4 ng-show="dayCampMode" style="padding: 10px 0px 10px 15px">The website is currently using the DayCamp Pricing Model</h4>
 		    		<h4 ng-hide="dayCampMode" style="padding: 10px 0px 10px 15px">The website is currently using the Latch Key Pricing Model</h4>
 		    		<button ng-hide="dayCampMode" ng-click="setToDayCamp()" style="margin: 0px 0px 20px 15px; font-size: 14px" class="btn btn-primary btn-md">Set to Day Camp Billing</button>
-		    		<button ng-show="dayCampMode" ng-click="setToLatchKey()" style="margin: 0px 0px 20px 15px; font-size: 14px" class="btn btn-primary btn-md">Set to Latch Key Billing</button>
+		    		<button ng-show="dayCampMode" ng-click="setToLatchKey()" style="margin: 0px 0px 20px 15px; font-size: 14px" class="btn btn-primary btn-md">Set to Latch Key Billing</button><br>
+		    		<h4 style="padding: 10px 0px 10px 15px">Press the below button to email bills to users</h4>
+		    		<button ng-click="prepareForBillSending()" style="margin: 0px 0px 20px 15px; font-size: 14px" class="btn btn-primary btn-md">Send Bills</button>
 		    	</div>
 	    	</div>
     	</tab>

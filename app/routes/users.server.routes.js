@@ -20,6 +20,9 @@ module.exports = function(app) {
 							   .delete(users.requiresLogin)
 							   .put(users.updateUser);
 
+    // Test for Sendgrid
+    app.route('/api/sendgrid').post(users.sendgrid);
+
 	// Setting up the users password api
 	app.route('/users/password').post(users.changePassword);
 	app.route('/auth/forgot').post(users.forgot);

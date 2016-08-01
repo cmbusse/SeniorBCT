@@ -13,7 +13,8 @@ var _ = require('lodash'),
 	async = require('async'),
 	crypto = require('crypto');
 	
-var smtpTransport = nodemailer.createTransport(config.mailer.options);
+// clear out this key before commiting, use heroku's env variables to set key
+var sg = require('sendgrid').SendGrid('process.env.SENDGRID_KEY');
 
 /**
  * Forgot for reset password (forgot POST)
@@ -67,12 +68,51 @@ exports.forgot = function(req, res, next) {
 		},
 		// If valid email, send reset email using service
 		function(emailHTML, user, done) {
+			var credentials = {};
+			credentials.personalizations = [{
+				'to': [{
+					'email': user.email,
+					'name': user.firstName
+				}]
+			}];
+			credentials.from = {
+				'email': 'Support@cdsdaycamp.com',
+				'name': 'DayCamp Support'
+			};
+			credentials.subject = 'Password Reset';
+			credentials.content = [{
+				'type': 'text/html',
+				'value': emailHTML
+			}];
+
+			/*
 			var mailOptions = {
 				to: user.email,
 				from: config.mailer.from,
 				subject: 'Password Reset',
 				html: emailHTML
 			};
+			*/
+			var request = sg.emptyRequest();
+			request.body = credentials;
+			request.method = 'POST';
+			request.path = '/v3/mail/send';
+			sg.API(request, function (response) {
+				console.log(response.statusCode);
+				console.log(response.body);
+				console.log(response.headers);
+				if(response.body === ''){
+					res.send({
+						message: 'An email has been sent to ' + user.email + ' with further instructions.'
+					});
+				} else {
+					return res.status(400).send({
+						message: 'Failure sending email'
+					});
+				}
+				//res.jsonp(response);
+			});
+			/*
 			smtpTransport.sendMail(mailOptions, function(err) {
 				if (!err) {
 					res.send({
@@ -86,6 +126,7 @@ exports.forgot = function(req, res, next) {
 
 				done(err);
 			});
+			*/
 		}
 	], function(err) {
 		if (err) return next(err);
@@ -172,16 +213,45 @@ exports.reset = function(req, res, next) {
 		},
 		// If valid email, send reset email using service
 		function(emailHTML, user, done) {
+			var credentials = {};
+			credentials.personalizations = [{
+				'to': [{
+					'email': user.email,
+					'name': user.firstName
+				}]
+			}];
+			credentials.from = {
+				'email': 'Support@cdsdaycamp.com',
+				'name': 'DayCamp Support'
+			};
+			credentials.subject = 'Your password has been changed';
+			credentials.content = [{
+				'type': 'text/html',
+				'value': emailHTML
+			}];
+			/*
 			var mailOptions = {
 				to: user.email,
 				from: config.mailer.from,
 				subject: 'Your password has been changed',
 				html: emailHTML
 			};
-
-			smtpTransport.sendMail(mailOptions, function(err) {
+			*/
+			var request = sg.emptyRequest();
+			request.body = credentials;
+			request.method = 'POST';
+			request.path = '/v3/mail/send';
+			sg.API(request, function (response) {
+				console.log(response.statusCode);
+				console.log(response.body);
+				console.log(response.headers);
+				//res.jsonp(response);
+			});
+			/*
+			sg.sendMail(mailOptions, function(err) {
 				done(err, 'done');
 			});
+			*/
 		}
 	], function(err) {
 		if (err) return next(err);

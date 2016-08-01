@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 text-left">
 				<h3>{{::user.firstName}} {{::user.lastName}}'s Account 
-				<!--<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>-->
+				<span ng-show="!isActive(user)" class="text-muted"> - Inactive User</span>
 				</h3>
 				<p class="userp" ng-show="isEmployee(user)" style="color: red"><strong>Employee Account</strong></p>
 				<p class="userp" ng-show="isAdmin(user)" style="color: red"><strong>Admin Account</strong></p>
@@ -19,14 +19,14 @@
 			<div class="col-sm-6 col-md-6" style="margin-top: 0px">
 				<h3>Quick Editing</h3>
 				<ul style="list-style-type: none; padding-left: 0px">
-				<!--
+				
 					<li ng-show="!isActive(user)" class="editUserList">
 						<a ng-show="!isActive(user)" ng-click="activateUser()" class="userOp" title="Make Active"><img src="modules/users/img/checked21.svg" alt="checked" style="width: 30px"> Reactivate User</a>
 					</li>
 					<li ng-show="isActive(user)" class="editUserList">
 						<a ng-show="isActive(user)" ng-click="deactivateUser()" class="userOp" title="Make Inactive"><img src="modules/users/img/forbidden15.svg" alt="x'ed" style="width: 30px"> Deactivate User</a>
 					</li>
-				-->
+				
 					<!-- User Account -->
 					<li ng-show="!isEmployee(user) && !isAdmin(user)" class="editUserList">
 						<a ng-click="makeUserEmployee()" class="userOp" title="Make Employee"><img src="modules/users/img/administrator1.svg" alt="admin" style="width: 30px"> Promote User to Employee</a>
