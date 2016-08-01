@@ -114,7 +114,7 @@ exports.updateUser = function(req, res) {
 
 exports.sendgrid = function(req, res) {
 	// clear out this key before commiting, use heroku's env variables to set key
-	var sg = require('sendgrid').SendGrid('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+');
+	var sg = require('sendgrid').SendGrid('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');
 	var request = sg.emptyRequest();
 	request.body = req.body;
 	request.method = 'POST';
