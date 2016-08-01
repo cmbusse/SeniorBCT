@@ -14,7 +14,7 @@ var _ = require('lodash'),
 	crypto = require('crypto');
 	
 // clear out this key before commiting, use heroku's env variables to set key
-var sg = require('sendgrid').SendGrid('process.env.SENDGRID_KEY');
+var sg = require('sendgrid').SendGrid('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+');
 
 /**
  * Forgot for reset password (forgot POST)
