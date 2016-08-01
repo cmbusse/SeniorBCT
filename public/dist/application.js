@@ -963,7 +963,7 @@ angular.module('children').controller('ChildrenController', ['$scope', '$statePa
 			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
 			timeBuilder();
 		};
-
+		// TODO:  FOR MIKE'S THING WITH THE DEFAULT EDIT TIMES, PUT THEM IN THE EDITDAY HERE, IN THE N/A BLOCKS FOR IN AND OUT, SET THEM TO 9 AND 3
 		$scope.editMonday = function(){
 			$scope.monEdit = $scope.tueEdit = $scope.wedEdit = $scope.thuEdit = $scope.friEdit = $scope.satEdit = $scope.sunEdit = false;
 			$scope.monEdit = true;
@@ -2963,7 +2963,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 					}, function(response) {
 						$scope.error1 = response.data.message;
 				});
-				console.log('test');
+				//console.log('test');
 			} else {
 				$scope.submitted1 = true;
 			}
@@ -2978,7 +2978,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 					}, function(response) {
 						$scope.error2 = response.data.message;
 				});
-				console.log('test');
+				//console.log('test');
 			} else {
 				$scope.submitted2 = true;
 			}
@@ -2993,7 +2993,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 					}, function(response) {
 						$scope.error3 = response.data.message;
 				});
-				console.log('test');
+				//console.log('test');
 			} else {
 				$scope.submitted3 = true;
 			}
@@ -3008,7 +3008,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 					}, function(response) {
 						$scope.error4 = response.data.message;
 				});
-				console.log('test');
+				//console.log('test');
 			} else {
 				$scope.submitted4 = true;
 			}
@@ -3027,7 +3027,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			for(var i=0; i<$scope.children.length; i++){
 				$scope.children[i].dayCampMode = true;
 				$scope.children[i].$update();
-				console.log('test');
+				//console.log('test');
 			}
 		};
 
@@ -3036,15 +3036,42 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			for(var i=0; i<$scope.children.length; i++){
 				$scope.children[i].dayCampMode = false;
 				$scope.children[i].$update();
-				console.log('test');
+				//console.log('test');
 			}
 		};
 		// Test to see if is root child so not displayed
 		$scope.isRootChild = function(passedchild){
 			return passedchild.rootChild;
 		};
+		// Stuff for Email
+		function sendBillEmail(emailParams){
+			$scope.credentials = {};
+			$scope.credentials.personalizations = [{
+				'to': [{
+					'email': emailParams.email,
+					'name': emailParams.name
+				}]
+			}];
+			$scope.credentials.from = {
+				'email': 'Billing@cdsdaycamp.com',
+				'name': 'DayCamp Billing'
+			};
+			$scope.credentials.subject = 'Day Camp bill - week of ' + emailParams.weekStart;
+			$scope.credentials.content = [{
+				'type': 'text/html',
+					'value': '<html><p>Hello, ' + emailParams.name + ',</p><p>Your bill for the week of ' + (emailParams.weekStart.getMonth()+1) + '/' + emailParams.weekStart.getDate() + ' - ' + (emailParams.weekEnd.getMonth()+1) + '/' + emailParams.weekEnd.getDate() + ' is $' + emailParams.moneyOwed.toFixed(2) + '.</p><p>This is an automated message, <strong>do not reply.</strong> If you believe there is something wrong with this bill, please contact Kaitlin Swick at (989)-670-4470.</p><p>Thanks!</p><p>Day Camp</p></html>'
+			}];
+			//console.log($scope.credentials);
+			$http.post('/api/sendgrid', $scope.credentials).success(function (response) {
+				//The issue with it never getting to 'in client' could be that the sendgrid function never returns on success?  Look up that
+				return response;
+			}).error(function (response){
+				return response;
+			});
+			//console.log('bing');
+		}
 
-		// do location path see if user id = path thing and if so authorized to view, that or admin or employee
+		// Determines if the user viewing the page is authorized to view the bill.  Must be either the user themselves, or a staff member.
 		$scope.authToViewBill = function(){
 			var path = $location.path();
 			var thisUserID = path.slice(7,path.length);
@@ -3070,7 +3097,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			$scope.friDate = new Date(d.setDate(d.getDate()+1));
 			$scope.satDate = new Date(d.setDate(d.getDate()+1));
 			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
-			timeBuilder();
+			$scope.usersBill = timeBuilder();
 		};
 
 		$scope.backOneWeek = function(){
@@ -3084,7 +3111,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			$scope.friDate = new Date(d.setDate(d.getDate()+1));
 			$scope.satDate = new Date(d.setDate(d.getDate()+1));
 			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
-			timeBuilder();
+			$scope.usersBill = timeBuilder();
 		};
 
 		$scope.forwardOneWeek = function(){
@@ -3098,20 +3125,74 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 			$scope.friDate = new Date(d.setDate(d.getDate()+1));
 			$scope.satDate = new Date(d.setDate(d.getDate()+1));
 			$scope.sunDate = new Date(d.setDate(d.getDate()+1));
-			timeBuilder();
+			$scope.usersBill = timeBuilder();
 		};
 
 		$scope.buildBill = function(){
 			$scope.$watch('usersChildren.length',function(newValue, oldValue){
 				if(newValue > 0){
-					timeBuilder();
+					$scope.usersBill = timeBuilder();
 				}
 			});
 		};
 
-		$scope.setupBill = function(){
-			
+		$scope.prepareForBillSending = function(){
+			var r = confirm('Are you sure you would like to send bills out over email?');
+			if (r === true){
+				// Calculate the dates needed
+				var d = new Date();
+				var day = d.getDay();
+				var diff = d.getDate() - day + (day === 0 ? -6:1);
+				var billDates = {};
+				$scope.weekOfDate = $scope.thisMonday = $scope.monDate = new Date(d.setDate(diff));
+				$scope.scopeDiff = $scope.thisMonday.getDate();
+				$scope.tueDate = new Date(d.setDate(d.getDate()+1));
+				$scope.wedDate = new Date(d.setDate(d.getDate()+1));
+				$scope.thuDate = new Date(d.setDate(d.getDate()+1));
+				$scope.friDate = new Date(d.setDate(d.getDate()+1));
+				$scope.satDate = new Date(d.setDate(d.getDate()+1));
+				$scope.sunDate = new Date(d.setDate(d.getDate()+1));
+				billDates.monDate = $scope.monDate;
+				billDates.friDate = $scope.friDate;
+				setupBillEmailPerUser(billDates);	
+			}
+		}
+;
+		function setupBillEmailPerUser(billDates){
+			// Grab user from array
+			var userForEmail;
+			var failures = [];
+			for(var i=0; i<$scope.users.length; i++){
+				if($scope.users[i].active && $scope.users[i].email !== 'kaitlinswick@live.com' && $scope.users[i].email !== 'mike@hiperf.com' && $scope.users[i].email !== 'chrismbusse@gmail.com'){
+					userForEmail = $scope.users[i];
+					// find their children from the child array
+					var childrenForEmail = [];
+					for(var j=0; j<$scope.children.length; j++){
+						var currChild = $scope.children[j];
+						var parentID = -1;
+		       			if(currChild.user !== null){
+			       			parentID = currChild.user._id;	
+			       		}
+			       		if(parentID === userForEmail._id){
+			       			childrenForEmail.push(currChild);
+			       		}
+					}
+					// calculate the bill per child, add to total bill
+					$scope.usersChildren = childrenForEmail;
+					var totalBill = timeBuilder();
+					// send email with predefineds and total
+					var emailParams = {};
+					emailParams.name = userForEmail.firstName;
+					emailParams.email = userForEmail.email;
+					emailParams.weekStart = billDates.monDate;
+					emailParams.weekEnd = billDates.friDate;
+					emailParams.moneyOwed = totalBill;
+					$scope.response = sendBillEmail(emailParams);
+				}
+			}
+		}
 
+		$scope.setupBill = function(){
 			var path = $location.path();
 			var thisUserID = path.slice(7,path.length);
 			thisUserID = thisUserID.slice(0,thisUserID.length-5);
@@ -3144,13 +3225,12 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 	       			}
 	       		}
         	});
-
         	$scope.seedBill();
 			$scope.buildBill();
 		};
 
 		function timeBuilder(){
-			$scope.usersBill = 0;
+			var usersBill = 0;
 			var punchesIn;
 			var punchesOut;
 			var d;
@@ -3246,7 +3326,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var monRoundedUp = Math.round(monMinutesAfter/15);
 						// Store number of quarter hours times 50 cents as monBill
 						$scope.monBill = monRoundedUp * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 					else if($scope.monIn.dayCampMode === true){
 						// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
@@ -3264,7 +3344,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var monRoundedUp2 = Math.round(monMinutesAfter2/15);
 						// Add hourly charges to hourly scope variable
 						$scope.monBill = monRoundedDown * 0.5 + monRoundedUp2 * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 				}
 				// build tuesday Times
@@ -3319,7 +3399,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var tueRoundedUp = Math.round(tueMinutesAfter/15);
 						// Store number of quarter hours times 50 cents as monBill
 						$scope.tueBill = tueRoundedUp * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 					else if($scope.tueIn.dayCampMode === true){
 						// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
@@ -3337,7 +3417,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var tueRoundedUp2 = Math.round(tueMinutesAfter2/15);
 						// Add hourly charges to hourly scope variable
 						$scope.tueBill = tueRoundedDown * 0.5 + tueRoundedUp2 * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 				}
 				// build wednesday Times
@@ -3393,7 +3473,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var wedRoundedUp = Math.round(wedMinutesAfter/15);
 						// Store number of quarter hours times 50 cents as monBill
 						$scope.wedBill = wedRoundedUp * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 					else if($scope.wedIn.dayCampMode === true){
 						// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
@@ -3411,7 +3491,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var wedRoundedUp2 = Math.round(wedMinutesAfter2/15);
 						// Add hourly charges to hourly scope variable
 						$scope.wedBill = wedRoundedDown * 0.5 + wedRoundedUp2 * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 				}
 				// build thursday Times
@@ -3467,7 +3547,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var thuRoundedUp = Math.round(thuMinutesAfter/15);
 						// Store number of quarter hours times 50 cents as monBill
 						$scope.thuBill = thuRoundedUp * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 					else if($scope.thuIn.dayCampMode === true){
 						// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
@@ -3485,7 +3565,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var thuRoundedUp2 = Math.round(thuMinutesAfter2/15);
 						// Add hourly charges to hourly scope variable
 						$scope.thuBill = thuRoundedDown * 0.5 + thuRoundedUp2 * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 				}
 				// build friday Times
@@ -3541,7 +3621,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var friRoundedUp = Math.round(friMinutesAfter/15);
 						// Store number of quarter hours times 50 cents as monBill
 						$scope.friBill = friRoundedUp * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 					else if($scope.friIn.dayCampMode === true){
 						// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
@@ -3559,7 +3639,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var friRoundedUp2 = Math.round(friMinutesAfter2/15);
 						// Add hourly charges to hourly scope variable
 						$scope.friBill = friRoundedDown * 0.5 + friRoundedUp2 * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 				}
 				// build saturday Times
@@ -3615,7 +3695,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var satRoundedUp = Math.round(satMinutesAfter/15);
 						// Store number of quarter hours times 50 cents as monBill
 						$scope.satBill = satRoundedUp * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 					else if($scope.satIn.dayCampMode === true){
 						// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
@@ -3633,7 +3713,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var satRoundedUp2 = Math.round(satMinutesAfter2/15);
 						// Add hourly charges to hourly scope variable
 						$scope.satBill = satRoundedDown * 0.5 + satRoundedUp2 * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 				}
 				// build sunday Times
@@ -3689,7 +3769,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var sunRoundedUp = Math.round(sunMinutesAfter/15);
 						// Store number of quarter hours times 50 cents as monBill
 						$scope.sunBill = sunRoundedUp * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 					else if($scope.sunIn.dayCampMode === true){
 						// Set Temp in/out to day's in and out times, with dates of today/dcStart and dcEnd
@@ -3707,7 +3787,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						var sunRoundedUp2 = Math.round(sunMinutesAfter2/15);
 						// Add hourly charges to hourly scope variable
 						$scope.sunBill = sunRoundedDown * 0.5 + sunRoundedUp2 * 0.5;
-						console.log('test');
+						//console.log('test');
 					}
 				}
 				// If one day is on day camp mode, use the day camp feature, otherwise use latch key pricing
@@ -3730,8 +3810,10 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 				// Latchkey pricing for total bill
 				if(useLatchKey){
 					$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill;
-					$scope.usersBill += $scope.totalBill;
-					console.log('text');
+					usersBill += $scope.totalBill;
+					if(j === $scope.usersChildren.length-1) {
+						return usersBill;
+					}
 				}
 				// Figure out number of days attended to see if getting the weekly rate discount
 				else {
@@ -3756,28 +3838,36 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$root
 						// If the usersChildren[j] applies for the in city rate
 						if($scope.usersChildren[j].inCity){
 							$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill + 45;
-							$scope.usersBill += $scope.totalBill;
-							console.log('text');
+							usersBill += $scope.totalBill;
+							if(j === $scope.usersChildren.length-1) {
+								return usersBill;
+							}
 						}
 						// If the usersChildren[j] doesn't apply for the in city rate
 						if(!$scope.usersChildren[j].inCity){
 							$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill + 50;
-							$scope.usersBill += $scope.totalBill;
-							console.log('text');
+							usersBill += $scope.totalBill;
+							if(j === $scope.usersChildren.length-1) {
+								return usersBill;
+							}
 						}
 					}
 					// If usersChildren[j] attended less than 5 days use daily pricing model
 					else{
 						if($scope.usersChildren[j].inCity){
 							$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill + dayCount * 11;
-							$scope.usersBill += $scope.totalBill;
-							console.log('text');
+							usersBill += $scope.totalBill;
+							if(j === $scope.usersChildren.length-1) {
+								return usersBill;
+							}
 						}
 						// If the usersChildren[j] doesn't apply for the in city rate
 						if(!$scope.usersChildren[j].inCity){
 							$scope.totalBill = $scope.monBill + $scope.tueBill + $scope.wedBill + $scope.thuBill + $scope.friBill + $scope.satBill + $scope.sunBill + dayCount * 13;
-							$scope.usersBill += $scope.totalBill;
-							console.log('text');
+							usersBill += $scope.totalBill;
+							if(j === $scope.usersChildren.length-1) {
+								return usersBill;
+							}
 						}
 					}
 				}
